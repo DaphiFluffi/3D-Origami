@@ -1,0 +1,4 @@
+#Fri Sep 18 13:00:13 CEST 2020
+base.0=C\:\\Users\\mcflu\\git\\3D-Origami\\3D Origami\\Temp\\gradleOut\\launcher\\build\\intermediates\\transforms\\dexMerger\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex

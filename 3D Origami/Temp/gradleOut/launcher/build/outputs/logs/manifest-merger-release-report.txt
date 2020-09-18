@@ -1,0 +1,204 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:1-6:12
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:1-6:12
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:1-6:12
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:1-6:12
+MERGED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:3:1-59:12
+MERGED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:2:1-37:12
+MERGED from [:UnityAdsAndroidPlugin:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\1405af57539fccc1c6c54d80548bcec6\AndroidManifest.xml:2:1-11:12
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:1-6:12
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:1-6:12
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:1-6:12
+	package
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:70-97
+		INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:1-6:12
+		INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:98-144
+	android:versionCode
+		INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:1-6:12
+		INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:11-69
+	android:installLocation
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:3:145-185
+supports-screens
+ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:4:3-163
+	android:largeScreens
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:4:78-105
+	android:smallScreens
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:4:21-48
+	android:normalScreens
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:4:49-77
+	android:xlargeScreens
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:4:106-134
+	android:anyDensity
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:4:135-160
+application
+ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:5:3-121
+MERGED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:28:5-57:19
+MERGED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:28:5-57:19
+MERGED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:14:5-35:19
+MERGED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:14:5-35:19
+	android:label
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:5:16-48
+	android:icon
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:5:49-80
+	android:banner
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml:5:81-118
+	android:isGame
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:28:18-39
+uses-sdk
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+MERGED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:9:5-11:41
+MERGED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:9:5-11:41
+MERGED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:7:5-9:41
+MERGED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:7:5-9:41
+MERGED from [:UnityAdsAndroidPlugin:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\1405af57539fccc1c6c54d80548bcec6\AndroidManifest.xml:7:5-9:41
+MERGED from [:UnityAdsAndroidPlugin:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\1405af57539fccc1c6c54d80548bcec6\AndroidManifest.xml:7:5-9:41
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+		ADDED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\launcher\src\main\AndroidManifest.xml
+uses-feature#0x00030000
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:13:5-54
+	android:glEsVersion
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:13:19-51
+uses-permission#android.permission.INTERNET
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:15:5-67
+MERGED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:12:5-67
+MERGED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:12:5-67
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:15:22-64
+uses-permission#android.permission.CHANGE_WIFI_MULTICAST_STATE
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:16:5-86
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:16:22-83
+uses-feature#android.hardware.touchscreen
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:18:5-20:36
+	android:required
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:20:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:19:9-52
+uses-feature#android.hardware.touchscreen.multitouch
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:21:5-23:36
+	android:required
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:23:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:22:9-63
+uses-feature#android.hardware.touchscreen.multitouch.distinct
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:24:5-26:36
+	android:required
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:26:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:25:9-72
+activity#com.unity3d.player.UnityPlayerActivity
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:29:9-46:20
+	android:screenOrientation
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:34:13-51
+	android:launchMode
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:33:13-44
+	android:hardwareAccelerated
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:32:13-48
+	android:configChanges
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:31:13-194
+	android:theme
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:35:13-54
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:30:13-66
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER+category:name:android.intent.category.LEANBACK_LAUNCHER
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:36:13-41:29
+action#android.intent.action.MAIN
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:37:17-69
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:37:25-66
+category#android.intent.category.LAUNCHER
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:39:17-77
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:39:27-74
+category#android.intent.category.LEANBACK_LAUNCHER
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:40:17-86
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:40:27-83
+meta-data#unityplayer.UnityActivity
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:43:13-45:40
+	android:value
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:45:17-37
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:44:17-57
+meta-data#unity.splash-mode
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:48:9-50:33
+	android:value
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:50:13-30
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:49:13-45
+meta-data#unity.splash-enable
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:51:9-53:36
+	android:value
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:53:13-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:52:13-47
+meta-data#unity.build-id
+ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:54:9-56:68
+	android:value
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:56:13-65
+	android:name
+		ADDED from [:unityLibrary] C:\Users\mcflu\git\3D-Origami\3D Origami\Temp\gradleOut\unityLibrary\build\intermediates\library_manifest\release\AndroidManifest.xml:55:13-42
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:11:5-79
+	android:name
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:11:22-76
+activity#com.unity3d.services.ads.adunit.AdUnitActivity
+ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:15:9-19:74
+	android:hardwareAccelerated
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:18:13-47
+	android:configChanges
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:17:13-170
+	android:theme
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:19:13-71
+	android:name
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:16:13-74
+activity#com.unity3d.services.ads.adunit.AdUnitTransparentActivity
+ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:20:9-24:86
+	android:hardwareAccelerated
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:23:13-47
+	android:configChanges
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:22:13-170
+	android:theme
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:24:13-83
+	android:name
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:21:13-85
+activity#com.unity3d.services.ads.adunit.AdUnitTransparentSoftwareActivity
+ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:25:9-29:86
+	android:hardwareAccelerated
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:28:13-48
+	android:configChanges
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:27:13-170
+	android:theme
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:29:13-83
+	android:name
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:26:13-93
+activity#com.unity3d.services.ads.adunit.AdUnitSoftwareActivity
+ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:30:9-34:74
+	android:hardwareAccelerated
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:33:13-48
+	android:configChanges
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:32:13-170
+	android:theme
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:34:13-71
+	android:name
+		ADDED from [:UnityAds:] C:\Users\mcflu\.gradle\caches\transforms-2\files-2.1\fe8ae627a9cad92976cdc7a4af969aa1\AndroidManifest.xml:31:13-82
