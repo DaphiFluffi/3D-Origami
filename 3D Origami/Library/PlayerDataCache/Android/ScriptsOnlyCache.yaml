@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - RotationControlls
     - TutorialController
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
@@ -23,8 +24,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -40,7 +43,7 @@ ScriptsOnlyBuild:
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/Color_Test.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -63,6 +66,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -72,37 +77,33 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11416}
+      Script: {instanceID: 11434}
     - Class: 114
-      Script: {instanceID: 11422}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 12196}
+      Script: {instanceID: 12460}
     - Class: 114
-      Script: {instanceID: 13538}
+      Script: {instanceID: 12512}
     - Class: 114
-      Script: {instanceID: 13638}
+      Script: {instanceID: 13080}
     - Class: 114
-      Script: {instanceID: 14948}
+      Script: {instanceID: 13186}
     - Class: 114
-      Script: {instanceID: 15030}
+      Script: {instanceID: 13522}
     - Class: 114
-      Script: {instanceID: 15588}
+      Script: {instanceID: 13540}
     - Class: 114
-      Script: {instanceID: 15622}
+      Script: {instanceID: 13866}
     - Class: 114
-      Script: {instanceID: 16250}
+      Script: {instanceID: 13966}
     - Class: 114
-      Script: {instanceID: 17044}
+      Script: {instanceID: 14254}
     - Class: 114
-      Script: {instanceID: 17366}
+      Script: {instanceID: 14412}
     - Class: 114
-      Script: {instanceID: 17368}
+      Script: {instanceID: 14414}
     - Class: 114
-      Script: {instanceID: 17698}
-    - Class: 114
-      Script: {instanceID: 17736}
-    - Class: 114
-      Script: {instanceID: 17742}
+      Script: {instanceID: 14598}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -121,45 +122,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
-    - Class: 258
-      Script: {instanceID: 0}
   scriptHashData:
-  - hash:
-      serializedVersion: 2
-      Hash: aa88ae22474df55295327e4ee99e5a24
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Toggle
   - hash:
       serializedVersion: 2
       Hash: aeb62f729c52c814dec86c47dcac1471
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Text
-  - hash:
-      serializedVersion: 2
-      Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: ContentSizeFitter
-  - hash:
-      serializedVersion: 2
-      Hash: ae83e830e7a90c0aff918c4c2e520825
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: GraphicRaycaster
-  - hash:
-      serializedVersion: 2
-      Hash: 499fd23433e68e265d153aa6b95d0047
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Scrollbar
-  - hash:
-      serializedVersion: 2
-      Hash: 5ad4aa237d47ac2bab17bacb672edf7a
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
@@ -234,6 +203,12 @@ ScriptsOnlyBuild:
     className: MultiRotationConstraint
   - hash:
       serializedVersion: 2
+      Hash: 499fd23433e68e265d153aa6b95d0047
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Scrollbar
+  - hash:
+      serializedVersion: 2
       Hash: eafb77726b67b7571818a7210a3ce11e
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
@@ -292,6 +267,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: ContentSizeFitter
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -546,6 +527,12 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
+      Hash: 3f7d3eac3468685ef18425a40cd5b891
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RotationControlls
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.Monetization.dll
     namespaceName: UnityEngine.Monetization
@@ -586,6 +573,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: TMP_ExampleScript_01
+  - hash:
+      serializedVersion: 2
+      Hash: 5ad4aa237d47ac2bab17bacb672edf7a
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -774,6 +767,12 @@ ScriptsOnlyBuild:
     className: ApplicationQuit
   - hash:
       serializedVersion: 2
+      Hash: ae83e830e7a90c0aff918c4c2e520825
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
       Hash: 8a874a8207a7664bdf44e61f28717254
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -894,7 +893,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: fe0e6e6276e3b8f123b6a26900750c11
+      Hash: 5b30fdc7643499ff391d2e3ce8038733
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TutorialController
@@ -984,6 +983,12 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
+      Hash: aa88ae22474df55295327e4ee99e5a24
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Toggle
+  - hash:
+      serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1020,6 +1025,6 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 13
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/Color_Test.unity
   playerPath: C:/Users/mcflu/git/3D-Origami/3D Origami/Builds/Android_KitKat/3D Origami
-    v0.1.apk
+    v0.2.apk
