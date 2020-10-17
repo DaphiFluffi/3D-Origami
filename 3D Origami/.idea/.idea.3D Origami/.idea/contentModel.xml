@@ -10,9 +10,9 @@
         <e p="Scripts" t="Include">
           <e p="InstructionsController.cs" t="Include" />
           <e p="RotationControlls.cs" t="Include" />
+          <e p="SpeedSettings.cs" t="Include" />
           <e p="TutorialController.cs" t="Include" />
         </e>
-        <e p="SpeedSettings.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Examples &amp; Extras" t="Include">
             <e p="Fonts" t="Include">

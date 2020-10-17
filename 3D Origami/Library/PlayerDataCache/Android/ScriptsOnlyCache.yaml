@@ -1,7 +1,9 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - InstructionsController
     - RotationControlls
+    - SpeedSettings
     - TutorialController
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
@@ -24,10 +26,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -38,8 +38,10 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Slider
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
@@ -81,29 +83,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11788}
     - Class: 114
+      Script: {instanceID: 11950}
+    - Class: 114
       Script: {instanceID: 12460}
     - Class: 114
-      Script: {instanceID: 12512}
+      Script: {instanceID: 12486}
     - Class: 114
-      Script: {instanceID: 13080}
+      Script: {instanceID: 12514}
     - Class: 114
-      Script: {instanceID: 13186}
+      Script: {instanceID: 12846}
     - Class: 114
-      Script: {instanceID: 13522}
+      Script: {instanceID: 13084}
     - Class: 114
-      Script: {instanceID: 13540}
+      Script: {instanceID: 13190}
     - Class: 114
-      Script: {instanceID: 13866}
+      Script: {instanceID: 13526}
     - Class: 114
-      Script: {instanceID: 13966}
+      Script: {instanceID: 13544}
     - Class: 114
-      Script: {instanceID: 14254}
+      Script: {instanceID: 13870}
     - Class: 114
-      Script: {instanceID: 14412}
+      Script: {instanceID: 13970}
     - Class: 114
-      Script: {instanceID: 14414}
+      Script: {instanceID: 14258}
     - Class: 114
-      Script: {instanceID: 14598}
+      Script: {instanceID: 14416}
+    - Class: 114
+      Script: {instanceID: 14418}
+    - Class: 114
+      Script: {instanceID: 14602}
+    - Class: 114
+      Script: {instanceID: 14648}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -413,6 +423,12 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: 5d88a9f17fa980a9bc46e55216fe5b07
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InstructionsController
+  - hash:
+      serializedVersion: 2
       Hash: dd7520b7d4e690e8c593273e7b9fbe80
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -477,6 +493,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: ac5b2ca0a46823923bd4db8fbf4dc727
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpeedSettings
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -893,7 +915,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: 5b30fdc7643499ff391d2e3ce8038733
+      Hash: 860698b19987bc9c03eb5ae9bc22543d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TutorialController
@@ -1027,4 +1049,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Color_Test.unity
   playerPath: C:/Users/mcflu/git/3D-Origami/3D Origami/Builds/Android_KitKat/3D Origami
-    v0.2.apk
+    v0.3.apk
