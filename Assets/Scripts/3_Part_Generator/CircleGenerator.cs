@@ -5,26 +5,34 @@ public class CircleGenerator : MonoBehaviour
     [SerializeField] private GameObject prefabToInstantiate = default;
     [SerializeField] private float rows = 4f;
     [SerializeField] private int amountPerRow = 5;
-    [SerializeField] private float radius = 1f;
-    [SerializeField] private float distance= 1f;
+    [SerializeField] private bool collapsed = false;
+
+    private void Start()
+    {
+        GenerateCylinder(rows, prefabToInstantiate, amountPerRow);
+    } 
+    
     /// <summary> 
     ///    Spawns a cylinder with an equal amount of pieces per row
     ///    while the amount of rows is up to the user.
     /// </summary>
-    /// <param name="prefab">The object it will be intantiated</param>
+    /// <param name="prefab">The object it will be instantiated</param>
     /// <param name="howManyRows">How many rows should be generated</param>
     /// <param name="amountPerRow">The number of objects per row</param>
     /// <param name="radius">
     ///     The margin from center, if your center is at (1,1,1) and your radius is 3 
     ///     your final position can be (4,1,1) for example </param>
     /// <param name="distance">Distance between rows</param>
-    private void GenerateCylinder(float howManyRows, GameObject prefab, int amountPerRow, float radius, float distance)
+    private void GenerateCylinder(float howManyRows, GameObject prefab, int amountPerRow)
     {
         Vector3 center = new Vector3(0, 0, 0);
+        float radius = 0.08f * amountPerRow; // 0.08f was determined empirically
         float angleSection = Mathf.PI * 2f / amountPerRow;
         float angle = 0f;
         GameObject cylinder = new GameObject {name = "cylinder"};
         cylinder.AddComponent<RotationControlls>();
+        float distance = 1.5f; // determined empirically
+        if (collapsed) { distance = 0.5f;}
         for (int r = 0; r < howManyRows; r++)
         {
             center.y = distance * r;
@@ -52,9 +60,4 @@ public class CircleGenerator : MonoBehaviour
             }
         }
     }
-   
-    private void Start()
-    {
-        GenerateCylinder(rows, prefabToInstantiate, amountPerRow, radius, distance);
-    } 
 }
