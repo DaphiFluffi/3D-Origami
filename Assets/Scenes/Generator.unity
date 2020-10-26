@@ -519,3 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabToInstantiate: {fileID: 2341656378580270600, guid: 476fb05b6d7c94347b7a4dc523d1a726,
     type: 3}
+  rows: 4
+  amountPerRow: 12
+  radius: 1
+  distance: 0.5
