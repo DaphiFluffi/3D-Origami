@@ -7,7 +7,9 @@ public class CircleGenerator : MonoBehaviour
     [SerializeField] private float rows = 4f;
     [SerializeField] private int amountPerRow = 5;
     [SerializeField] private bool collapsed = false;
-    [SerializeField] private int invertedRow; 
+    [SerializeField] private int invertedRow  ; 
+    
+   
     private void Start()
     {
         GenerateCylinder(rows, prefabToInstantiate, amountPerRow, invertedRow);
@@ -27,20 +29,22 @@ public class CircleGenerator : MonoBehaviour
     private void GenerateCylinder(float howManyRows, GameObject prefab, int amountPerRow, int invertedRow)
     {
         Vector3 center = new Vector3(0, 0, 0);
-        float radius = 0.08f * amountPerRow; // 0.08f was determined empirically
+        float radius, angle;
         float angleSection = Mathf.PI * 2f / amountPerRow;
-        float angle = 0f;
-        GameObject cylinder = new GameObject {name = "cylinder"};
-        cylinder.AddComponent<RotationControlls>();
         float distance = 1.5f; // determined empirically
         if (collapsed) { distance = 0.5f;}
+        
+        // parent cylinder object
+        GameObject cylinder = new GameObject {name = "cylinder"};
+        cylinder.AddComponent<RotationControlls>();
         
         for (int r = 0; r < howManyRows; r++)
         {
             center.y = distance * r;
-           
+            //parent row object
             GameObject row = new GameObject {name = r + 1 + ".row"};
             row.transform.parent = cylinder.transform;
+            
             for (int a = 0; a < amountPerRow; a++) 
             {
                 if (r % 2 == 0) // even row starts counting at 0 degrees
@@ -51,6 +55,15 @@ public class CircleGenerator : MonoBehaviour
                 {
                     angle = (a * angleSection) + (angleSection / 2f);
                 }
+                
+                if (r == invertedRow - 1)
+                {
+                    radius = 0.13f * amountPerRow; // was determined empirically
+                }
+                else
+                {
+                     radius = 0.08f * amountPerRow; // 0.08f was determined empirically
+                }
                 // How to instantiate game objects around a point https://answers.unity.com/questions/1068513/place-8-objects-around-a-target-gameobject.html
                 // How to make game objects look towards a point https://forum.unity.com/threads/instantiate-prefab-towards-object.134213/
                 Vector3 spawnPosition = center + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
@@ -59,13 +72,15 @@ public class CircleGenerator : MonoBehaviour
 
                 if (r == invertedRow - 1)
                 {
-                    // 0.2f * amountPerRow is good here
                     piece.transform.rotation *= Quaternion.Euler(0f, 180f, 0f);
                 }
+                
                 // naming every instantiated piece according to its respective row 
                 piece.name = a+1 + ".piece in the " + (r+1) + ".row";
                 // parenting every piece to its respective row 
                 piece.transform.parent = row.transform;
+                
+
             }
         }
     }
