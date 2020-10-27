@@ -16,7 +16,6 @@
           </e>
           <e p="3_Part_Generator" t="Include">
             <e p="CircleGenerator.cs" t="Include" />
-            <e p="GeneratorScript.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
