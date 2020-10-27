@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class CircleGenerator : MonoBehaviour
 {
@@ -6,10 +7,10 @@ public class CircleGenerator : MonoBehaviour
     [SerializeField] private float rows = 4f;
     [SerializeField] private int amountPerRow = 5;
     [SerializeField] private bool collapsed = false;
-
+    [SerializeField] private int invertedRow; 
     private void Start()
     {
-        GenerateCylinder(rows, prefabToInstantiate, amountPerRow);
+        GenerateCylinder(rows, prefabToInstantiate, amountPerRow, invertedRow);
     } 
     
     /// <summary> 
@@ -23,7 +24,7 @@ public class CircleGenerator : MonoBehaviour
     ///     The margin from center, if your center is at (1,1,1) and your radius is 3 
     ///     your final position can be (4,1,1) for example </param>
     /// <param name="distance">Distance between rows</param>
-    private void GenerateCylinder(float howManyRows, GameObject prefab, int amountPerRow)
+    private void GenerateCylinder(float howManyRows, GameObject prefab, int amountPerRow, int invertedRow)
     {
         Vector3 center = new Vector3(0, 0, 0);
         float radius = 0.08f * amountPerRow; // 0.08f was determined empirically
@@ -33,9 +34,11 @@ public class CircleGenerator : MonoBehaviour
         cylinder.AddComponent<RotationControlls>();
         float distance = 1.5f; // determined empirically
         if (collapsed) { distance = 0.5f;}
+        
         for (int r = 0; r < howManyRows; r++)
         {
             center.y = distance * r;
+           
             GameObject row = new GameObject {name = r + 1 + ".row"};
             row.transform.parent = cylinder.transform;
             for (int a = 0; a < amountPerRow; a++) 
@@ -52,7 +55,13 @@ public class CircleGenerator : MonoBehaviour
                 // How to make game objects look towards a point https://forum.unity.com/threads/instantiate-prefab-towards-object.134213/
                 Vector3 spawnPosition = center + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
                 // so that the pieces look towards the center 
-                GameObject piece = Instantiate(prefab, spawnPosition, Quaternion.LookRotation (center - spawnPosition)); 
+                GameObject piece = Instantiate(prefab, spawnPosition, Quaternion.LookRotation (center - spawnPosition));
+
+                if (r == invertedRow - 1)
+                {
+                    // 0.2f * amountPerRow is good here
+                    piece.transform.rotation *= Quaternion.Euler(0f, 180f, 0f);
+                }
                 // naming every instantiated piece according to its respective row 
                 piece.name = a+1 + ".piece in the " + (r+1) + ".row";
                 // parenting every piece to its respective row 
