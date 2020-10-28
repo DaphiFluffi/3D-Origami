@@ -7,14 +7,21 @@ public class CircleGenerator : MonoBehaviour
     [SerializeField] private float rows = 4f;
     [SerializeField] private int amountPerRow = 5;
     [SerializeField] private bool collapsed = false;
-    [SerializeField] private int invertedRow  ; 
-    
-   
+    [SerializeField] private int invertedRow = default;
+    // accessing user input
+    //[SerializeField] private GameObject inputGameObject;
+
+    private GeneratorInputs inputs;
     private void Start()
     {
+        //inputs = inputGameObject.GetComponent<GeneratorInputs>();
         GenerateCylinder(rows, prefabToInstantiate, amountPerRow, invertedRow);
-    } 
-    
+    }
+
+   /* private void Update()
+    {
+        GenerateCylinder(inputs.GetRows(), prefabToInstantiate, inputs.GetAmountPerRow(), invertedRow, inputs.getCollapsed());
+    }*/
     /// <summary> 
     ///    Spawns a cylinder with an equal amount of pieces per row
     ///    while the amount of rows is up to the user.
