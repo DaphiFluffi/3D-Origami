@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -55,9 +56,9 @@ public class GeneratorInputs : MonoBehaviour
         else
         {
             errorPanel.SetActive(false);
-            int[] userAnswers = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse); 
-            generator.GenerateCylinder(rows, amountPerRow, userAnswers[0], collapsed);
-            
+            int[] invertedRowsArray = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse); 
+            List<int> invertedRowsList = new List<int>(invertedRowsArray); //converted array to a list 
+            generator.GenerateCylinder(rows, amountPerRow, invertedRowsList, collapsed);
         }
     }
 
@@ -81,20 +82,14 @@ public class GeneratorInputs : MonoBehaviour
         }
     }
 
-    /*public void WhichRows() //was for testing
+    public void WhichRows() //was for testing
     {
         //int[] userAnswers = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse);
-        //int[] userAnswers = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse);
-
-        string[] strArr = whereToAddInvertedRow.text.Split(',');
-        if ( strArr != null ||strArr.Length != 0)
-        {
-            int[] userAnswers = Array.ConvertAll(strArr, Convert.ToInt32);
-        }
-
+       /* int[] userAnswers = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse);
+        
         for (int i = 0; i < userAnswers.Length; i++)
         {
             Debug.Log(userAnswers[i]);
-        }
-    }*/
+        }*/
+    }
 }
