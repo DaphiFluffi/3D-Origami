@@ -11,7 +11,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private Sprite Unpause = default;
     [SerializeField] private Sprite Pause = default;
     [SerializeField] private Slider progressBar = default;
-    [SerializeField] private Slider speedSettingsSlider = default; 
+    //[SerializeField] private Slider speedSettingsSlider = default; 
     private int _index;
     private bool _paused;
     private Animator m_Animator;
