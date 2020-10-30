@@ -16,7 +16,6 @@
             <e p="TutorialController.cs" t="Include" />
           </e>
           <e p="3_Part_Generator" t="Include">
-            <e p="BigScript.cs" t="Include" />
             <e p="CircleGenerator.cs" t="Include" />
           </e>
         </e>
