@@ -8,10 +8,10 @@ public class GeneratorInputs : MonoBehaviour
     [SerializeField] private TMP_InputField amountPerRowInput = default;
     [SerializeField] private Toggle collapsedInput = default;
     [SerializeField] private GameObject errorPanel = default;
-    [SerializeField] private GameObject generatorObject;
-    [SerializeField] private TMP_InputField whereToAddInvertedRow;
-    
     private CircleGenerator generator;
+    [SerializeField] private GameObject generatorObject = default;
+    [SerializeField] private TMP_InputField whereToAddInvertedRow = default;
+    
     private TMP_Text errorText;
     private float rows;
     private int amountPerRow;
@@ -22,24 +22,27 @@ public class GeneratorInputs : MonoBehaviour
         errorText = errorPanel.transform.Find("ErrorMessage").GetComponent<TMP_Text>();
         errorPanel.SetActive(false);
         whereToAddInvertedRow.gameObject.SetActive(false);
+        whereToAddInvertedRow.DeactivateInputField();
+        whereToAddInvertedRow.text = "0"; // prevents false input exception
         rowsInput.text = "1";
         amountPerRowInput.text = "10";
     }
-    public void onSubmit()
+    public void OnSubmit()
     {
-        GameObject generatedCylinder = null; 
+        // does not work 
         // https://answers.unity.com/questions/1151762/check-if-inputfield-is-empty.html
-        if (!string.IsNullOrEmpty(rowsInput.text) || !string.IsNullOrEmpty(amountPerRowInput.text))
-        {
-           rows = float.Parse(rowsInput.text);
-           amountPerRow = int.Parse(amountPerRowInput.text);
-        }
-        else
+        if (string.IsNullOrEmpty(rowsInput.text) || string.IsNullOrEmpty(amountPerRowInput.text))
         {
             ShowErrorMessage("Please provide values for all input fields.");
         }
+        else
+        {
+            rows = float.Parse(rowsInput.text);
+            amountPerRow = int.Parse(amountPerRowInput.text);
+        }
 
         collapsed = collapsedInput.isOn;
+        
         
         if (rows < 1 || rows > 30)
         {
@@ -52,7 +55,9 @@ public class GeneratorInputs : MonoBehaviour
         else
         {
             errorPanel.SetActive(false);
-            generator.GenerateCylinder(rows, amountPerRow, 3, collapsed);
+            int[] userAnswers = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse); 
+            generator.GenerateCylinder(rows, amountPerRow, userAnswers[0], collapsed);
+            
         }
     }
 
@@ -65,14 +70,31 @@ public class GeneratorInputs : MonoBehaviour
     public void OnAddInvertedRowsChecked(bool checkedOrUnchecked)
     {
         whereToAddInvertedRow.gameObject.SetActive(checkedOrUnchecked);
+        if (checkedOrUnchecked)
+        {
+            whereToAddInvertedRow.ActivateInputField();
+        }
+        else
+        {
+            whereToAddInvertedRow.DeactivateInputField();
+            whereToAddInvertedRow.text = "0";
+        }
     }
 
-    public void WhichRows()
+    /*public void WhichRows() //was for testing
     {
-        int[] userAnswers = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse);
+        //int[] userAnswers = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse);
+        //int[] userAnswers = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse);
+
+        string[] strArr = whereToAddInvertedRow.text.Split(',');
+        if ( strArr != null ||strArr.Length != 0)
+        {
+            int[] userAnswers = Array.ConvertAll(strArr, Convert.ToInt32);
+        }
+
         for (int i = 0; i < userAnswers.Length; i++)
         {
             Debug.Log(userAnswers[i]);
         }
-    }
+    }*/
 }

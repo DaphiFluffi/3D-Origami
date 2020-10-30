@@ -36,7 +36,7 @@ public class CircleGenerator : MonoBehaviour
         isCreated = false;
         if (!isCreated)
         {
-            Vector3 center = new Vector3(0, 0, 0);
+            Vector3 center = new Vector3(-4, 0, 0);
             float radius, angle;
             float angleSection = Mathf.PI * 2f / amountPerRow;
             float distance = 1.5f; // determined empirically
