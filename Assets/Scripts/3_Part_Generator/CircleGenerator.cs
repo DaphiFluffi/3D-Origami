@@ -13,7 +13,6 @@ public class CircleGenerator : MonoBehaviour
 
     private GameObject generatedCylinder;
     private bool isCreated;
-    GameObject piece;
     /*private void Start()
     {
         GenerateCylinder(rows, prefabToInstantiate, amountPerRow, invertedRow);
@@ -66,6 +65,7 @@ public class CircleGenerator : MonoBehaviour
                         angle = (a * angleSection) + (angleSection / 2f);
                     }
 
+                    GameObject piece;
                     if(invertedRows.Contains(0))
                     {
                         piece = AssemblePieces(angle, 0.08f, amountPerRow, center);
@@ -87,7 +87,8 @@ public class CircleGenerator : MonoBehaviour
                     piece.name = a + 1 + ".piece in the " + (r + 1) + ".row";
                     // parenting every piece to its respective row 
                     piece.transform.parent = row.transform;
-                    
+                    //piece.transform.GetChild(0).gameObject.AddComponent<ColorOrigami>();
+                    piece.AddComponent<ColorOrigami>();
                     /*GameObject piece;
                     
                     if (r == invertedRow - 1)
