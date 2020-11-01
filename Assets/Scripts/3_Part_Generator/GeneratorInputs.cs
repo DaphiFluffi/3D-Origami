@@ -27,7 +27,9 @@ public class GeneratorInputs : MonoBehaviour
         whereToAddInvertedRow.text = "0"; // prevents false input exception
         rowsInput.text = "1";
         amountPerRowInput.text = "10";
+        
     }
+    
     public void OnSubmit()
     {
         // does not work 
