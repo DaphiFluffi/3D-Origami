@@ -36,7 +36,7 @@ public class CircleGenerator : MonoBehaviour
         isCreated = false;
         if (!isCreated) // so that only one cylinder is created
         {
-            Vector3 center = new Vector3(-4, 0, 0);
+            Vector3 center = new Vector3(0, 0, 0);
          
             float angle;
             float angleSection = Mathf.PI * 2f / amountPerRow;
@@ -45,8 +45,7 @@ public class CircleGenerator : MonoBehaviour
 
             // parent cylinder object
             generatedCylinder = new GameObject {name = "cylinder"};
-            generatedCylinder.AddComponent<RotationControlls>();
-
+            generatedCylinder.AddComponent<CylinderRotation>();
             for (int r = 0; r < howManyRows; r++)
             {
                 center.y = distance * r;
