@@ -10,6 +10,7 @@ public class ColorOrigami : MonoBehaviour
     void Awake()
     {
          fcp = Resources.FindObjectsOfTypeAll<FlexibleColorPicker>()[0]; //find the colorpicker Object even though it is disabled, returns list -> [0]
+        
     }
     
     private void OnMouseDown()

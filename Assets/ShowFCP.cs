@@ -14,7 +14,7 @@ public class ShowFCP : MonoBehaviour
 
     }*/
 
-    [SerializeField] private Button backBtn;
+    [SerializeField] private Button backBtn = default;
     private bool isOn;
    
     public void ShowColorPicker()
