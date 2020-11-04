@@ -9,17 +9,21 @@ public class GeneratorInputs : MonoBehaviour
     [SerializeField] private TMP_InputField amountPerRowInput = default;
     [SerializeField] private Toggle collapsedInput = default;
     [SerializeField] private GameObject errorPanel = default;
-    private CircleGenerator generator;
-    [SerializeField] private GameObject generatorObject = default;
+    [SerializeField] private GameObject origamiObject = default;
     [SerializeField] private TMP_InputField whereToAddInvertedRow = default;
+    [SerializeField] private TMP_Text widthTMP = default;
+    [SerializeField] private TMP_Text heightTMP = default;
     
+        private CircleGenerator generator;
+    private CalculateWidthHeight calculator;
     private TMP_Text errorText;
     private float rows;
     private int amountPerRow;
     private bool collapsed;
     void Awake()
     {
-        generator = generatorObject.GetComponent<CircleGenerator>();
+        generator = origamiObject.GetComponent<CircleGenerator>();
+        calculator = origamiObject.GetComponent<CalculateWidthHeight>();
         errorText = errorPanel.transform.Find("ErrorMessage").GetComponent<TMP_Text>();
         errorPanel.SetActive(false);
         whereToAddInvertedRow.gameObject.SetActive(false);
@@ -27,7 +31,6 @@ public class GeneratorInputs : MonoBehaviour
         whereToAddInvertedRow.text = "0"; // prevents false input exception
         rowsInput.text = "1";
         amountPerRowInput.text = "10";
-        
     }
     
     public void OnSubmit()
@@ -61,6 +64,9 @@ public class GeneratorInputs : MonoBehaviour
             int[] invertedRowsArray = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse); 
             List<int> invertedRowsList = new List<int>(invertedRowsArray); //converted array to a list 
             generator.GenerateCylinder(rows, amountPerRow, invertedRowsList, collapsed);
+            calculator.CalculateDimensions(rows, amountPerRow, invertedRowsList);
+            widthTMP.text = "Width: " + calculator.GetWidth() + " cm";
+            heightTMP.text = "Height: " + calculator.GetHeight() + " cm";
         }
     }
 

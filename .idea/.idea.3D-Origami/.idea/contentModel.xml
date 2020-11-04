@@ -27,13 +27,14 @@
             <e p="TutorialController.cs" t="Include" />
           </e>
           <e p="3_Part_Generator" t="Include">
+            <e p="CalculateWidthHeight.cs" t="Include" />
             <e p="CircleGenerator.cs" t="Include" />
             <e p="ColorOrigami.cs" t="Include" />
             <e p="CylinderRotation.cs" t="Include" />
             <e p="GeneratorInputs.cs" t="Include" />
+            <e p="ShowFCP.cs" t="Include" />
           </e>
         </e>
-        <e p="ShowFCP.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Examples &amp; Extras" t="Include">
             <e p="Fonts" t="Include">
