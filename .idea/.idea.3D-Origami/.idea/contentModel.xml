@@ -34,6 +34,7 @@
             <e p="GeneratorInputs.cs" t="Include" />
             <e p="ShowFCP.cs" t="Include" />
           </e>
+          <e p="MainMenuController.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Examples &amp; Extras" t="Include">
