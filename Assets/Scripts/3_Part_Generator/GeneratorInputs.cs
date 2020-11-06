@@ -20,7 +20,7 @@ public class GeneratorInputs : MonoBehaviour
     private int howManyRows;
     private int[] rowsInfo;
     private int amountPerRow;
-    private bool collapsed;
+    //private bool collapsed;
     void Awake()
     {
         generator = origamiObject.GetComponent<CircleGenerator>();
@@ -48,7 +48,7 @@ public class GeneratorInputs : MonoBehaviour
             amountPerRow = int.Parse(amountPerRowInput.text);
         }
 
-        collapsed = collapsedInput.isOn;
+        //collapsed = collapsedInput.isOn;
         
         
         if (howManyRows < 1 || howManyRows > 30)
@@ -79,12 +79,12 @@ public class GeneratorInputs : MonoBehaviour
                 {
                     rowsInfo[i] = 0; 
                 }
-               // Debug.Log(rowsInfo[i]);
             }
-            generator.GenerateCylinder(rowsInfo, amountPerRow, collapsed);
+            generator.GenerateCylinder(rowsInfo, amountPerRow/*, collapsed*/);
             calculator.CalculateDimensions(rowsInfo, amountPerRow);
             widthTMP.text = "Width: " + calculator.GetWidth() + " cm";
             heightTMP.text = "Height: " + calculator.GetHeight() + " cm";
+            //generator.CollapseCylinder();
         }
     }
 
