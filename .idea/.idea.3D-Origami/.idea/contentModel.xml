@@ -19,6 +19,7 @@
             <e p="FlexibleColorPicker.cs" t="Include" />
           </e>
         </e>
+        <e p="PanCamera.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="1_Part_HowTo" t="Include">
             <e p="InstructionsController.cs" t="Include" />

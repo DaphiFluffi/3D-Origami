@@ -22,21 +22,21 @@ public class CircleGenerator : MonoBehaviour
     ///    Spawns a cylinder with an equal amount of pieces per row
     ///    while the amount of rows is up to the user.
     /// </summary>
-    /// <param name="prefab">The object it will be instantiated</param>
-    /// <param name="howManyRows">How many rows should be generated</param>
+    /// <param name="pieceModel">The object it will be instantiated</param>
+    /// <param name="rows">How many rows should be generated</param>
     /// <param name="amountPerRow">The number of objects per row</param>
     /// <param name="radius">
     ///     The margin from center, if your center is at (1,1,1) and your radius is 3 
     ///     your final position can be (4,1,1) for example </param>
     /// <param name="distance">Distance between rows</param>
     
-    public void GenerateCylinder(float howManyRows, int amountPerRow, List<int> invertedRows, bool collapsed)
+    public void GenerateCylinder(int[] rows, int amountPerRow, bool collapsed)
     {
         Destroy(generatedCylinder);
         isCreated = false;
         if (!isCreated) // so that only one cylinder is created
         {
-            Vector3 center = new Vector3(-4, 0, 0);
+            Vector3 center = new Vector3(-3, 0, 0);
          
             float angle;
             float angleSection = Mathf.PI * 2f / amountPerRow;
@@ -47,7 +47,7 @@ public class CircleGenerator : MonoBehaviour
             generatedCylinder = new GameObject {name = "cylinder"};
             generatedCylinder.AddComponent<CylinderRotation>();
             
-            for (int r = 0; r < howManyRows; r++)
+            for (int r = 0; r < rows.Length; r++)
             {
                 center.y = distance * r;
                 //parent row object
@@ -66,21 +66,14 @@ public class CircleGenerator : MonoBehaviour
                     }
 
                     GameObject piece;
-                    if(invertedRows.Contains(0))
+                    if (rows[r] == 1) //inverted Row
+                    {
+                        piece = AssemblePieces(angle, 0.13f, amountPerRow, center);
+                        piece.transform.rotation *= Quaternion.Euler(0f, 180f, 0f); //turn the piece to face inwards
+                    }
+                    else // normal row
                     {
                         piece = AssemblePieces(angle, 0.08f, amountPerRow, center);
-                    }
-                    else
-                    {
-                        if (invertedRows.Contains(r + 1))
-                        {
-                            piece = AssemblePieces(angle, 0.13f, amountPerRow, center);
-                            piece.transform.rotation *= Quaternion.Euler(0f, 180f, 0f);
-                        }
-                        else
-                        {
-                            piece = AssemblePieces(angle, 0.08f, amountPerRow, center);
-                        }
                     }
                     
                     // naming every instantiated piece according to its respective row 
@@ -89,22 +82,6 @@ public class CircleGenerator : MonoBehaviour
                     piece.transform.parent = row.transform;
                     //piece.transform.GetChild(0).gameObject.AddComponent<ColorOrigami>();
                     piece.AddComponent<ColorOrigami>();
-                    /*GameObject piece;
-                    
-                    if (r == invertedRow - 1)
-                    {
-                        piece = AssemblePieces(angle, 0.13f, amountPerRow, center);
-                        piece.transform.rotation *= Quaternion.Euler(0f, 180f, 0f);
-                        // row.name += "inverted"; //adds the inverted suffix as ofter as we have pieces per inverted row 
-                    }
-                    else
-                    {
-                        piece = AssemblePieces(angle, 0.08f, amountPerRow, center);
-                    }
-                    // naming every instantiated piece according to its respective row 
-                    piece.name = a + 1 + ".piece in the " + (r + 1) + ".row";
-                    // parenting every piece to its respective row 
-                    piece.transform.parent = row.transform;*/
                 }
             }
             isCreated = true;

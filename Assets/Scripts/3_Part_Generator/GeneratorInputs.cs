@@ -14,10 +14,11 @@ public class GeneratorInputs : MonoBehaviour
     [SerializeField] private TMP_Text widthTMP = default;
     [SerializeField] private TMP_Text heightTMP = default;
     
-        private CircleGenerator generator;
+    private CircleGenerator generator;
     private CalculateWidthHeight calculator;
     private TMP_Text errorText;
-    private float rows;
+    private int howManyRows;
+    private int[] rowsInfo;
     private int amountPerRow;
     private bool collapsed;
     void Awake()
@@ -43,14 +44,14 @@ public class GeneratorInputs : MonoBehaviour
         }
         else
         {
-            rows = float.Parse(rowsInput.text);
+            howManyRows = int.Parse(rowsInput.text);
             amountPerRow = int.Parse(amountPerRowInput.text);
         }
 
         collapsed = collapsedInput.isOn;
         
         
-        if (rows < 1 || rows > 30)
+        if (howManyRows < 1 || howManyRows > 30)
         {
             ShowErrorMessage("Rows have a minimum value of 1 and a maximum of 30.");
         }
@@ -61,10 +62,27 @@ public class GeneratorInputs : MonoBehaviour
         else
         {
             errorPanel.SetActive(false);
+            rowsInfo = new int[howManyRows];
             int[] invertedRowsArray = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse); 
             List<int> invertedRowsList = new List<int>(invertedRowsArray); //converted array to a list 
-            generator.GenerateCylinder(rows, amountPerRow, invertedRowsList, collapsed);
-            calculator.CalculateDimensions(rows, amountPerRow, invertedRowsList);
+            for (int i = 0; i < rowsInfo.Length; i++)
+            {
+                if (invertedRowsList.Contains(0))
+                {
+                    Array.Clear(rowsInfo, 0, rowsInfo.Length);
+                }
+                else if (invertedRowsList.Contains(i + 1))
+                {
+                    rowsInfo[i] = 1;
+                }
+                else
+                {
+                    rowsInfo[i] = 0; 
+                }
+               // Debug.Log(rowsInfo[i]);
+            }
+            generator.GenerateCylinder(rowsInfo, amountPerRow, collapsed);
+            calculator.CalculateDimensions(rowsInfo, amountPerRow);
             widthTMP.text = "Width: " + calculator.GetWidth() + " cm";
             heightTMP.text = "Height: " + calculator.GetHeight() + " cm";
         }

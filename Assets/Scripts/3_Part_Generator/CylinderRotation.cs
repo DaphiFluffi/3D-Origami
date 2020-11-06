@@ -17,6 +17,6 @@ public class CylinderRotation : MonoBehaviour
         rotationY *= Time.deltaTime;
 
         // Rotate around new center at x = -4
-        transform.RotateAround(new Vector3(-4,0,0), new Vector3(0,rotationY,0), rotationSpeed * Time.deltaTime);
+        transform.RotateAround(new Vector3(-3,0,0), new Vector3(0,rotationY,0), rotationSpeed * Time.deltaTime);
     }
 }
