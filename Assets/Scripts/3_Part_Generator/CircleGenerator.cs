@@ -30,7 +30,7 @@ public class CircleGenerator : MonoBehaviour
     ///     your final position can be (4,1,1) for example </param>
     /// <param name="distance">Distance between rows</param>
     
-    public void GenerateCylinder(int[] rows, int amountPerRow, bool collapsed)
+    public void GenerateCylinder(int[] rows, int amountPerRow/*, bool collapsed*/)
     {
         Destroy(generatedCylinder);
         isCreated = false;
@@ -40,8 +40,8 @@ public class CircleGenerator : MonoBehaviour
          
             float angle;
             float angleSection = Mathf.PI * 2f / amountPerRow;
-            float distance = 1.5f; // determined empirically
-            if (collapsed) { distance = 0.5f; }
+            float /*distance = 1.5f; // determined empirically
+            if (collapsed) {*/ distance = 0.5f; /*}*/
 
             // parent cylinder object
             generatedCylinder = new GameObject {name = "cylinder"};
@@ -53,7 +53,7 @@ public class CircleGenerator : MonoBehaviour
                 //parent row object
                 GameObject row = new GameObject {name = r + 1 + ".row"};
                 row.transform.parent = generatedCylinder.transform;
-
+                row.gameObject.tag= "Row";
                 for (int a = 0; a < amountPerRow; a++)
                 {
                     if (r % 2 == 0) // even row starts counting at 0 degrees
@@ -99,4 +99,30 @@ public class CircleGenerator : MonoBehaviour
         return piece;
     }
     
+    //would be attached to the final clinder 
+    // every cylinder has rows as children 
+    // we want to space the children 1,5 units apart 
+    public void CollapseCylinder(bool collapse)
+    {
+        
+            GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
+            /*float distance = 1.5f; // determined empirically
+            if (collapsed) { distance = 0.5f; }*/
+            for (int i = 1; i < generatedRows.Length; i++)
+            {
+                if (collapse)
+                {
+                    generatedRows[i].transform.position = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    //float dist = Vector3.Distance(generatedRows[0].transform.position, generatedRows[1].transform.position);
+                    generatedRows[i].transform.position = new Vector3(0, 1 * i, 0);
+                    //print(generatedRows[i].transform.position);
+                }
+                // float dist = Vector3.Distance(generatedRows[i].transform.GetChild(0).position, generatedRows[i+1].transform.GetChild(0).position);
+                //print("Distance " + i + " to "  + (i+1) +" Row: " + dist);
+            }
+        
+    }
 }
