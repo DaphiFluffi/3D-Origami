@@ -7,7 +7,6 @@ public class GeneratorInputs : MonoBehaviour
 {
     [SerializeField] private TMP_InputField rowsInput = default;
     [SerializeField] private TMP_InputField amountPerRowInput = default;
-    [SerializeField] private Toggle collapsedInput = default;
     [SerializeField] private GameObject errorPanel = default;
     [SerializeField] private GameObject origamiObject = default;
     [SerializeField] private TMP_InputField whereToAddInvertedRow = default;
@@ -20,15 +19,12 @@ public class GeneratorInputs : MonoBehaviour
     private int howManyRows;
     private int[] rowsInfo;
     private int amountPerRow;
-    //private bool collapsed;
     void Awake()
     {
         generator = origamiObject.GetComponent<CircleGenerator>();
         calculator = origamiObject.GetComponent<CalculateWidthHeight>();
         errorText = errorPanel.transform.Find("ErrorMessage").GetComponent<TMP_Text>();
         errorPanel.SetActive(false);
-        whereToAddInvertedRow.gameObject.SetActive(false);
-        whereToAddInvertedRow.DeactivateInputField();
         whereToAddInvertedRow.text = "0"; // prevents false input exception
         rowsInput.text = "1";
         amountPerRowInput.text = "10";
@@ -47,9 +43,6 @@ public class GeneratorInputs : MonoBehaviour
             howManyRows = int.Parse(rowsInput.text);
             amountPerRow = int.Parse(amountPerRowInput.text);
         }
-
-        //collapsed = collapsedInput.isOn;
-        
         
         if (howManyRows < 1 || howManyRows > 30)
         {
@@ -84,7 +77,6 @@ public class GeneratorInputs : MonoBehaviour
             calculator.CalculateDimensions(rowsInfo, amountPerRow);
             widthTMP.text = "Width: " + calculator.GetWidth() + " cm";
             heightTMP.text = "Height: " + calculator.GetHeight() + " cm";
-            //generator.CollapseCylinder();
         }
     }
 
@@ -93,29 +85,5 @@ public class GeneratorInputs : MonoBehaviour
         errorPanel.SetActive(true);
         errorText.text = errorDescription;
     }
-
-    public void OnAddInvertedRowsChecked(bool checkedOrUnchecked)
-    {
-        whereToAddInvertedRow.gameObject.SetActive(checkedOrUnchecked);
-        if (checkedOrUnchecked)
-        {
-            whereToAddInvertedRow.ActivateInputField();
-        }
-        else
-        {
-            whereToAddInvertedRow.DeactivateInputField();
-            whereToAddInvertedRow.text = "0";
-        }
-    }
-
-    public void WhichRows() //was for testing
-    {
-        //int[] userAnswers = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse);
-       /* int[] userAnswers = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse);
-        
-        for (int i = 0; i < userAnswers.Length; i++)
-        {
-            Debug.Log(userAnswers[i]);
-        }*/
-    }
+    
 }
