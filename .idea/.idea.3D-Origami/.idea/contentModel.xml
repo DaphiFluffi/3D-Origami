@@ -19,7 +19,6 @@
             <e p="FlexibleColorPicker.cs" t="Include" />
           </e>
         </e>
-        <e p="PanCamera.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="1_Part_HowTo" t="Include">
             <e p="InstructionsController.cs" t="Include" />
@@ -36,6 +35,7 @@
             <e p="ShowFCP.cs" t="Include" />
           </e>
           <e p="MainMenuController.cs" t="Include" />
+          <e p="PanCamera.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Examples &amp; Extras" t="Include">

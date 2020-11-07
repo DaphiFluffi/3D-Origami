@@ -73,6 +73,8 @@ public class GeneratorInputs : MonoBehaviour
                     rowsInfo[i] = 0; 
                 }
             }
+
+            rowsInfo[1] = 2;
             generator.GenerateCylinder(rowsInfo, amountPerRow/*, collapsed*/);
             calculator.CalculateDimensions(rowsInfo, amountPerRow);
             widthTMP.text = "Width: " + calculator.GetWidth() + " cm";

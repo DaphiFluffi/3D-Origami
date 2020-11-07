@@ -70,6 +70,12 @@ public class CircleGenerator : MonoBehaviour
                         piece = AssemblePieces(angle, 0.13f, amountPerRow, center);
                         piece.transform.rotation *= Quaternion.Euler(0f, 180f, 0f); //turn the piece to face inwards
                     }
+                    if (rows[r] == 2)
+                    {
+                        int decreasedAmount = (2 * amountPerRow) / 3;
+                        Debug.Log(decreasedAmount);
+                        piece = AssemblePieces(angle, 0.13f, decreasedAmount, center);
+                    }
                     else // normal row
                     {
                         piece = AssemblePieces(angle, 0.08f, amountPerRow, center);
@@ -98,7 +104,7 @@ public class CircleGenerator : MonoBehaviour
         return piece;
     }
     
-    
+    //TODO put this outside the generator -> maybe a customizationScript
     public void CollapseCylinder(bool collapse)
     {
         
