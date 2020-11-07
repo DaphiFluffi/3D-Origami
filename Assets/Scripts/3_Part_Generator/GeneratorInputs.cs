@@ -10,6 +10,7 @@ public class GeneratorInputs : MonoBehaviour
     [SerializeField] private GameObject errorPanel = default;
     [SerializeField] private GameObject origamiObject = default;
     [SerializeField] private TMP_InputField whereToAddInvertedRow = default;
+    [SerializeField] private TMP_InputField whereToAddDecreasedRow = default;
     [SerializeField] private TMP_Text widthTMP = default;
     [SerializeField] private TMP_Text heightTMP = default;
     
@@ -26,8 +27,9 @@ public class GeneratorInputs : MonoBehaviour
         errorText = errorPanel.transform.Find("ErrorMessage").GetComponent<TMP_Text>();
         errorPanel.SetActive(false);
         whereToAddInvertedRow.text = "0"; // prevents false input exception
+        whereToAddDecreasedRow.text = "0";
         rowsInput.text = "1";
-        amountPerRowInput.text = "10";
+        amountPerRowInput.text = "9";
     }
     
     public void OnSubmit()
@@ -44,13 +46,21 @@ public class GeneratorInputs : MonoBehaviour
             amountPerRow = int.Parse(amountPerRowInput.text);
         }
         
+        // TODO this is wrong at this point 
+        //TODO all the error messaging etc. should happen on EndEdit so that you instantly know about your mistakes rather than hvong to generate something false 
+        if (howManyRows == 1)
+        {
+            whereToAddDecreasedRow.enabled = false; 
+            whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.gray;
+        }
+        
         if (howManyRows < 1 || howManyRows > 30)
         {
             ShowErrorMessage("Rows have a minimum value of 1 and a maximum of 30.");
         }
-        else if (amountPerRow < 10 || amountPerRow > 50)
+        else if (amountPerRow < 9 || amountPerRow > 50)
         {
-            ShowErrorMessage("At least 10 and at most 50 pieces per row are required.");
+            ShowErrorMessage("At least 9 and at most 50 pieces per row are required.");
         }
         else
         {
@@ -66,7 +76,8 @@ public class GeneratorInputs : MonoBehaviour
                 }
                 else if (invertedRowsList.Contains(i + 1))
                 {
-                    rowsInfo[i] = 1;
+                   // rowsInfo[i] = 1;
+                   rowsInfo[i] = 2;
                 }
                 else
                 {
@@ -74,7 +85,7 @@ public class GeneratorInputs : MonoBehaviour
                 }
             }
 
-            rowsInfo[1] = 2;
+            // rowsInfo[1] = 2;
             generator.GenerateCylinder(rowsInfo, amountPerRow/*, collapsed*/);
             calculator.CalculateDimensions(rowsInfo, amountPerRow);
             widthTMP.text = "Width: " + calculator.GetWidth() + " cm";
@@ -82,6 +93,23 @@ public class GeneratorInputs : MonoBehaviour
         }
     }
 
+    public void CheckRowsInput(string rowString)
+    {
+        int howManyRows = int.Parse(rowString);
+        if (howManyRows < 1 || howManyRows > 30)
+        {
+            ShowErrorMessage("Rows have a minimum value of 1 and a maximum of 30.");
+        }
+        else
+        {
+            errorPanel.SetActive(false);
+        }
+        if (howManyRows == 1)
+        {
+            whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.gray;
+            whereToAddDecreasedRow.enabled = false; 
+        }
+    }
     private void ShowErrorMessage(string errorDescription)
     {
         errorPanel.SetActive(true);
