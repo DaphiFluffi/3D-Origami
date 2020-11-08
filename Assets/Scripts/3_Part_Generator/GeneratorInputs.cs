@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Debug = UnityEngine.Debug;
+
 public class GeneratorInputs : MonoBehaviour
 {
     [SerializeField] private TMP_InputField rowsInput = default;
@@ -13,6 +16,7 @@ public class GeneratorInputs : MonoBehaviour
     [SerializeField] private TMP_InputField whereToAddDecreasedRow = default;
     [SerializeField] private TMP_Text widthTMP = default;
     [SerializeField] private TMP_Text heightTMP = default;
+    [SerializeField] private Button generateButton = default; 
     
     private CircleGenerator generator;
     private CalculateWidthHeight calculator;
@@ -28,13 +32,14 @@ public class GeneratorInputs : MonoBehaviour
         errorPanel.SetActive(false);
         whereToAddInvertedRow.text = "0"; // prevents false input exception
         whereToAddDecreasedRow.text = "0";
-        rowsInput.text = "1";
+        // generates the most basic, but stable, base 3D Origami model
+        rowsInput.text = "3";
         amountPerRowInput.text = "9";
     }
     
     public void OnSubmit()
     {
-        // does not work 
+        // TODO does not work 
         // https://answers.unity.com/questions/1151762/check-if-inputfield-is-empty.html
         if (string.IsNullOrEmpty(rowsInput.text) || string.IsNullOrEmpty(amountPerRowInput.text))
         {
@@ -46,15 +51,7 @@ public class GeneratorInputs : MonoBehaviour
             amountPerRow = int.Parse(amountPerRowInput.text);
         }
         
-        // TODO this is wrong at this point 
-        //TODO all the error messaging etc. should happen on EndEdit so that you instantly know about your mistakes rather than hvong to generate something false 
-        if (howManyRows == 1)
-        {
-            whereToAddDecreasedRow.enabled = false; 
-            whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.gray;
-        }
-        
-        if (howManyRows < 1 || howManyRows > 30)
+        /*if (howManyRows < 1 || howManyRows > 30)
         {
             ShowErrorMessage("Rows have a minimum value of 1 and a maximum of 30.");
         }
@@ -63,51 +60,113 @@ public class GeneratorInputs : MonoBehaviour
             ShowErrorMessage("At least 9 and at most 50 pieces per row are required.");
         }
         else
-        {
-            errorPanel.SetActive(false);
+        {*/
+            //errorPanel.SetActive(false);
             rowsInfo = new int[howManyRows];
             int[] invertedRowsArray = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse); 
             List<int> invertedRowsList = new List<int>(invertedRowsArray); //converted array to a list 
-            for (int i = 0; i < rowsInfo.Length; i++)
+            int[] decreasedRowsArray = Array.ConvertAll<string, int>(whereToAddDecreasedRow.text.Split(','), int.Parse); 
+            List<int> decreasedRowsList = new List<int>(decreasedRowsArray); //converted array to a list 
+            
+            // in case no special rows are requested
+            if (invertedRowsList.Contains(0) && decreasedRowsList.Contains(0)) 
             {
-                if (invertedRowsList.Contains(0))
+                Array.Clear(rowsInfo, 0, rowsInfo.Length);
+            }
+            else
+            {
+                for (int i = 0; i < rowsInfo.Length; i++)
                 {
-                    Array.Clear(rowsInfo, 0, rowsInfo.Length);
-                }
-                else if (invertedRowsList.Contains(i + 1))
-                {
-                   // rowsInfo[i] = 1;
-                   rowsInfo[i] = 2;
-                }
-                else
-                {
-                    rowsInfo[i] = 0; 
+                    if (invertedRowsList.Contains(i + 1))
+                    {
+                        // 1 = inverted
+                        rowsInfo[i] = 1;
+                    }
+                    else if (decreasedRowsList.Contains(i + 1))
+                    {
+                        // 2 = decreased
+                        rowsInfo[i] = 2;
+                    }
+                    else
+                    {
+                        // 0 = normal
+                        rowsInfo[i] = 0;
+                    }
                 }
             }
 
-            // rowsInfo[1] = 2;
-            generator.GenerateCylinder(rowsInfo, amountPerRow/*, collapsed*/);
+            //TODO make function access not public
+            generator.GenerateCylinder(rowsInfo, amountPerRow);
             calculator.CalculateDimensions(rowsInfo, amountPerRow);
             widthTMP.text = "Width: " + calculator.GetWidth() + " cm";
             heightTMP.text = "Height: " + calculator.GetHeight() + " cm";
-        }
+        /*}*/
     }
 
+    //TODO validate decreased and increased input fields: rows that were not generated cannot be inverted
+    //TODO create ValidationScript
     public void CheckRowsInput(string rowString)
     {
-        int howManyRows = int.Parse(rowString);
-        if (howManyRows < 1 || howManyRows > 30)
+        int rowInt = int.Parse(rowString);
+        if (rowInt < 1 || rowInt > 30)
         {
             ShowErrorMessage("Rows have a minimum value of 1 and a maximum of 30.");
+            //disable "Generate" Button 
+            generateButton.enabled = false;
+            generateButton.GetComponent<Image>().color = Color.gray; 
         }
         else
         {
+            generateButton.enabled = true;
+            //re-enable "Generate" Button 
+            generateButton.GetComponent<Image>().color = Color.white; 
             errorPanel.SetActive(false);
         }
-        if (howManyRows == 1)
+        if (rowInt == 1)
         {
             whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.gray;
+            whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.gray;
             whereToAddDecreasedRow.enabled = false; 
+        }
+        else
+        {
+            whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.white;
+            whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.white;
+            whereToAddDecreasedRow.enabled = true; 
+        }
+    }
+    
+    public void CheckAmountInput(string amountString)
+    {
+        int amountInt = int.Parse(amountString);
+        if (amountInt < 9 || amountInt > 50)
+        {
+            ShowErrorMessage("At least 9 and at most 50 pieces per row are required.");
+            //disable "Generate" Button 
+            generateButton.enabled = false;
+            generateButton.GetComponent<Image>().color = Color.gray; 
+        }
+        else
+        {
+            generateButton.enabled = true;
+            //re-enable "Generate" Button 
+            generateButton.GetComponent<Image>().color = Color.white; 
+            errorPanel.SetActive(false);
+        }
+        if (amountInt % 3 > 0)
+        {
+            //TODO this error message always dominates the other one 
+           // ShowErrorMessage("You can only use decrease in rows that are multiples of 3.");
+            whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.gray;
+            whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.gray;
+            whereToAddDecreasedRow.enabled = false; 
+        }
+        else
+        {
+           // errorPanel.SetActive(false);
+            whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.white;
+            whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.white;
+            whereToAddDecreasedRow.enabled = true; 
         }
     }
     private void ShowErrorMessage(string errorDescription)
