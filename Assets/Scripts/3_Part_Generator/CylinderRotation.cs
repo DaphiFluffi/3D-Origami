@@ -6,7 +6,7 @@ public class CylinderRotation : MonoBehaviour
 {
     // https://docs.unity3d.com/ScriptReference/Input.GetAxis.html
     public float rotationSpeed = 100.0f;
-
+    // TODO restricted vertical rotation
     void Update()
     {
         // Get the horizontal axis.

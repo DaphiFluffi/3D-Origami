@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -137,19 +138,37 @@ public class CircleGenerator : MonoBehaviour
     //TODO put this outside the generator -> maybe a customizationScript
     public void CollapseCylinder(bool collapse)
     {
-        
-            GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
-            for (int i = 1; i < generatedRows.Length; i++)
+        GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
+        for (int i = 1; i < generatedRows.Length; i++)
+        {
+            if (collapse)
             {
-                if (collapse)
+                generatedRows[i].transform.position = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                generatedRows[i].transform.position = new Vector3(0, i, 0);
+            }
+        }
+    }
+
+   /* public void InvertRows(string rowsToInvert)
+    {
+        GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
+        // for every row on generated Rows that has a number mentioned in rowsTOInvert[] I want to turn it around 
+
+        for (int i = 0; i < generatedRows.Length; i++)
+        {
+            if(rowsToInvert.Contains((i+1).ToString())) //only works thanks to LINQ
+            {
+                Debug.Log((i+1));
+                Transform[] children = generatedRows[i].GetComponentsInChildren<Transform>();
+                for (int j = 0; j < children.Length; j++)
                 {
-                    generatedRows[i].transform.position = new Vector3(0, 0, 0);
-                }
-                else
-                {
-                    generatedRows[i].transform.position = new Vector3(0, i, 0);
+                    //change the radius too :( 
+                    children[j].rotation *= Quaternion.Euler(0f, 180f, 0f); //turn the piece to face inwards
                 }
             }
-        
-    }
+        }
+    }*/
 }

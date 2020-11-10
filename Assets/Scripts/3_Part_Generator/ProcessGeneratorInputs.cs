@@ -19,7 +19,6 @@ public class ProcessGeneratorInputs : MonoBehaviour
     
     private CircleGenerator generator;
     private CalculateWidthHeight calculator;
-    //private TMP_Text errorText;
     private int howManyRows;
     private int[] rowsInfo;
     private int amountPerRow;
@@ -28,29 +27,23 @@ public class ProcessGeneratorInputs : MonoBehaviour
         generator = origamiObject.GetComponent<CircleGenerator>();
         calculator = origamiObject.GetComponent<CalculateWidthHeight>();
         // generates the most basic, but stable, base 3D Origami model
+        // prevents false input exception
         rowsInput.text = "3";
         amountPerRowInput.text = "9";
-        // prevents false input exception
         whereToAddInvertedRow.text = "0"; 
         whereToAddDecreasedRow.text = "0";
         
     }
     
+    // can only be accessed if all Validations were passed
     public void OnSubmit()
     {
-        // TODO does not work 
-        // https://answers.unity.com/questions/1151762/check-if-inputfield-is-empty.html
-        /*if (string.IsNullOrEmpty(rowsInput.text) || string.IsNullOrEmpty(amountPerRowInput.text))
-        {
-            ShowErrorMessage("Please provide values for all input fields.", true);
-        }
-        else
-        {*/
-            howManyRows = int.Parse(rowsInput.text);
-            amountPerRow = int.Parse(amountPerRowInput.text);
-        //}
+        howManyRows = int.Parse(rowsInput.text);
+        amountPerRow = int.Parse(amountPerRowInput.text);
         
         rowsInfo = new int[howManyRows];
+        
+        //TODO I should probably sort the Array
         int[] invertedRowsArray = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse); 
         List<int> invertedRowsList = new List<int>(invertedRowsArray); //converted array to a list 
         int[] decreasedRowsArray = Array.ConvertAll<string, int>(whereToAddDecreasedRow.text.Split(','), int.Parse); 
