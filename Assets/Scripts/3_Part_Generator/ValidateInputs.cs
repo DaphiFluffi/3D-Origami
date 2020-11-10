@@ -39,9 +39,29 @@ public class ValidateInputs : MonoBehaviour
             generateButton.GetComponent<Image>().color = Color.white; 
         }
     }
+
+    private void InputFieldsCantBeEmpty(string inputString)
+    {
+        try
+        {
+            if(string.IsNullOrEmpty(inputString))
+            {
+                ShowErrorMessage("Please provide values for all input fields.", true);
+            }
+            else
+            {
+                ShowErrorMessage("Please provide values for all input fields.", false);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
     
     public void CheckRowsInput(string rowString)
     {
+        InputFieldsCantBeEmpty(rowString);
         int rowInt = int.Parse(rowString);
         if (rowInt < 1 || rowInt > 30)
         {
@@ -67,6 +87,7 @@ public class ValidateInputs : MonoBehaviour
     
     public void CheckAmountInput(string amountString)
     {
+        InputFieldsCantBeEmpty(amountString);
         int amountInt = int.Parse(amountString);
         if (amountInt < 9 || amountInt > 50)
         {
@@ -93,8 +114,7 @@ public class ValidateInputs : MonoBehaviour
             whereToAddDecreasedRow.enabled = true; 
         }
     }
-   
-
+    
     public void CheckInvertedAndDecreasedInput(string invertedOrDecreasedString)
     {
         // https://stackoverflow.com/questions/17472580/regular-expression-to-allow-comma-and-space-delimited-number-list
@@ -103,22 +123,23 @@ public class ValidateInputs : MonoBehaviour
         Regex rgx = new Regex(@"^[\d,\s]+$");
         if(rgx.IsMatch(invertedOrDecreasedString))
         {
-            ShowErrorMessage("Type in the rows' numbers separated by commas.", false);
+            ShowErrorMessage("Please type in the rows' numbers separated by commas.", false);
             // https://stackoverflow.com/questions/47646090/int-parse-is-not-working-with-string-value-system-formatexception-input-string
             try
             {
                 int rows = int.Parse(rowsInput.text);
-                //TryParse does not work with arrays(?)
-                int[] invertedArray = Array.ConvertAll<string, int>(invertedOrDecreasedString.Split(','), int.Parse); 
+                //TODO TryParse does not work with arrays(?)
+                int[] invertedArray = Array.ConvertAll<string, int>(invertedOrDecreasedString.Split(','), int.Parse);
+                //TODO first row cannot be decreased
                 for(int i = 0; i < invertedArray.Length; i++)
                 {
                     if (invertedArray[i] > rows)
                     {
-                        ShowErrorMessage("You cannot access a row that has not been generated", true);
+                        ShowErrorMessage("You cannot access a row that has not been generated.", true);
                     }
                     else
                     {
-                        ShowErrorMessage("You cannot access a row that has not been generated", false);
+                        ShowErrorMessage("You cannot access a row that has not been generated.", false);
                     }
                 }
             }
@@ -126,11 +147,10 @@ public class ValidateInputs : MonoBehaviour
             {
                 Console.WriteLine(e.Message);
             }
-            
         }
         else
         {
-         ShowErrorMessage("Type in the rows' numbers separated by commas.", true);
+         ShowErrorMessage(" Please type in the rows' numbers separated by commas.", true);
         }
     }
 }

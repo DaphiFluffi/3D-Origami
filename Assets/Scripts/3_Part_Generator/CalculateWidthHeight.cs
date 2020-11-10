@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CalculateWidthHeight : MonoBehaviour
@@ -10,29 +11,38 @@ public class CalculateWidthHeight : MonoBehaviour
     public void CalculateDimensions(int[] rows, int amountPerRow)
     {
         width = 3.4f + (0.05f * amountPerRow);
-        /* 
-        Höhe:normalen Reihen  = 2cm (Teil-Höhe) + (0,5 cm (1/4 der Teil-Höhe) * Menge an Reihen)
-        1. Reihe eine inverted Row oder zwei aufeinanderforlgende : - 0,5 cm 
-            normale Reihe - inverted Reihe - normale Reihe: +0,5 cm 
-        */
-        height = 2f + 0.5f * (rows.Length - 1); //for normal rows 
-
-        if (rows[0] == 1 && rows.Length > 1) //if we have an inverted row in the first row and it is not the only row
+        //for normal rows 
+        height = 2f + 0.5f * (rows.Length - 1); 
+        //Debug.Log( "normal: "  + height);
+        
+        //TODO comment this mess
+        //whenever the first row is inverted, the model is 0.5 cm shorter
+        if (rows[0] == 1 && rows[rows.Length -1] != 1)
         {
+            Debug.Log("-0.5");
             height -= 0.5f;
         }
-        for (int i = 0; i < rows.Length; i++)
+        else
         {
-            if (rows[i] == 1 && i > 0 && i < rows.Length - 1) //whenever we have an inverted row in the middle, but not at the top or bottom 
+            if (rows.Contains(1) && rows[rows.Length - 1] == 1 && rows[rows.Length - 2] == 1)
             {
+                Debug.Log("+0.5");
                 height += 0.5f;
             }
-          /*  else if (rows[i] == 1 && rows[i + 1] == 1 && (i+1) != rows.Length - 1)
+
+            int index = 0;
+            for (int i = 0; i < rows.Length; i++)
             {
-                height -= 0.5f;
-            }*/
+                if (rows[i] == 1)
+                {
+                    index++;
+                    if (index == rows.Length)
+                    {
+                        height -= 0.5f; 
+                    }
+                }
+            }
         }
-        //Debug.Log("Width: " + width + " cm Height: " + height + " cm" + rows.Length);
     }
 
     public float GetWidth()
