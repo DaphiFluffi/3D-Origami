@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
+
 using Debug = UnityEngine.Debug;
 
 public class ProcessGeneratorInputs : MonoBehaviour
@@ -14,6 +16,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
     [SerializeField] private GameObject origamiObject = default;
     [SerializeField] private TMP_InputField whereToAddInvertedRow = default;
     [SerializeField] private TMP_InputField whereToAddDecreasedRow = default;
+    [SerializeField] private TMP_InputField whereToAddIncreasedRow = default;
     [SerializeField] private TMP_Text widthTMP = default;
     [SerializeField] private TMP_Text heightTMP = default;
     [SerializeField] private Toggle collapsed = default;
@@ -32,7 +35,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
         amountPerRowInput.text = "9";
         whereToAddInvertedRow.text = "0"; 
         whereToAddDecreasedRow.text = "0";
-        
+        whereToAddIncreasedRow.text = "0";
     }
     
     // can only be accessed if all Validations were passed
@@ -45,13 +48,12 @@ public class ProcessGeneratorInputs : MonoBehaviour
         rowsInfo = new int[howManyRows];
         
         //TODO I should probably sort the Array
-        int[] invertedRowsArray = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse); 
-        List<int> invertedRowsList = new List<int>(invertedRowsArray); //converted array to a list 
-        int[] decreasedRowsArray = Array.ConvertAll<string, int>(whereToAddDecreasedRow.text.Split(','), int.Parse); 
-        List<int> decreasedRowsList = new List<int>(decreasedRowsArray); //converted array to a list 
-        
+        int[] inverted = Array.ConvertAll<string, int>(whereToAddInvertedRow.text.Split(','), int.Parse);
+        int[] decreased = Array.ConvertAll<string, int>(whereToAddDecreasedRow.text.Split(','), int.Parse);
+        int[] increased = Array.ConvertAll<string, int>(whereToAddIncreasedRow.text.Split(','), int.Parse);
+
         // in case no special rows are requested
-        if (invertedRowsList.Contains(0) && decreasedRowsList.Contains(0)) 
+        if (inverted.Contains(0) && decreased.Contains(0) && increased.Contains(0)) 
         {
             Array.Clear(rowsInfo, 0, rowsInfo.Length);
         }
@@ -59,15 +61,20 @@ public class ProcessGeneratorInputs : MonoBehaviour
         {
             for (int i = 0; i < rowsInfo.Length; i++)
             {
-                if (invertedRowsList.Contains(i + 1))
+                if (inverted.Contains(i + 1))
                 {
                     // 1 = inverted
                     rowsInfo[i] = 1;
                 }
-                else if (decreasedRowsList.Contains(i + 1))
+                else if (decreased.Contains(i + 1))
                 {
                     // 2 = decreased
                     rowsInfo[i] = 2;
+                }
+                else if (increased.Contains(i + 1))
+                {
+                    // 2 = decreased
+                    rowsInfo[i] = 3;
                 }
                 else
                 {

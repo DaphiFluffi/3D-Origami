@@ -79,6 +79,12 @@ public class CircleGenerator : MonoBehaviour
                     }*/
                     amountPerRow = decreasedAmount;
                 }
+                if (rows[r] == 3) //increased row 
+                {
+                    int increasedAmount = (2 * amountPerRow);
+                    amountPerRow = increasedAmount;
+                }
+                
                 for (int a = 0; a < amountPerRow; a++)
                 {
                     float angleSection = Mathf.PI * 2f / amountPerRow;
@@ -107,6 +113,7 @@ public class CircleGenerator : MonoBehaviour
                         // when you put a piece over 3 tips, it looks larger 
                         piece.transform.localScale += new Vector3(0.7f, 0, 0);
                     }
+                    // TODO increased heißt schmaler machen
                     else // normal row
                     {
                         piece = AssemblePieces(angle, 0.08f, amountPerRow, center, 0);
