@@ -16,7 +16,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
     [SerializeField] private TMP_InputField whereToAddDecreasedRow = default;
     [SerializeField] private TMP_Text widthTMP = default;
     [SerializeField] private TMP_Text heightTMP = default;
-    
+    [SerializeField] private Toggle collapsed = default;
     private CircleGenerator generator;
     private CalculateWidthHeight calculator;
     private int howManyRows;
@@ -38,6 +38,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
     // can only be accessed if all Validations were passed
     public void OnSubmit()
     {
+        collapsed.isOn = true;
         howManyRows = int.Parse(rowsInput.text);
         amountPerRow = int.Parse(amountPerRowInput.text);
         
