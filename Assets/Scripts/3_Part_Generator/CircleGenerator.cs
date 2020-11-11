@@ -153,7 +153,7 @@ public class CircleGenerator : MonoBehaviour
         }
     }
 
-   /* public void InvertRows(string rowsToInvert)
+    /*public void InvertRows(string rowsToInvert)
     {
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         // for every row on generated Rows that has a number mentioned in rowsTOInvert[] I want to turn it around 
@@ -166,6 +166,7 @@ public class CircleGenerator : MonoBehaviour
                 Transform[] children = generatedRows[i].GetComponentsInChildren<Transform>();
                 for (int j = 0; j < children.Length; j++)
                 {
+                    // invert back when 0 
                     //change the radius too :( 
                     children[j].rotation *= Quaternion.Euler(0f, 180f, 0f); //turn the piece to face inwards
                 }

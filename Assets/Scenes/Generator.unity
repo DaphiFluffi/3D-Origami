@@ -820,6 +820,7 @@ MonoBehaviour:
   whereToAddDecreasedRow: {fileID: 1769947812}
   widthTMP: {fileID: 39630777}
   heightTMP: {fileID: 1500505036}
+  collapsed: {fileID: 864616231}
 --- !u!1 &216274948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,7 +2626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &752998311
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5757,7 +5758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1786144376
 RectTransform:
   m_ObjectHideFlags: 0
