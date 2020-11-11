@@ -9,6 +9,11 @@ public class PanCamera : MonoBehaviour
     private Vector3 touchStart;
     public Camera cam;
     public float groundZ = 0;
+    private Vector3 camStartPos;
+    void Awake()
+    {
+        camStartPos = Camera.main.transform.position;
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -20,7 +25,7 @@ public class PanCamera : MonoBehaviour
         {
             Vector3 direction = touchStart - GetWorldPosition(groundZ);
             cam.transform.position += direction;
-            cam.transform.position = new Vector3(0f, cam.transform.position.y, cam.transform.position.z);
+            cam.transform.position = new Vector3( camStartPos.x, cam.transform.position.y, cam.transform.position.z);
         }
     }
 

@@ -31,6 +31,7 @@ public class CircleGenerator : MonoBehaviour
     ///     The margin from center, if your center is at (1,1,1) and your radius is 3 
     ///     your final position can be (4,1,1) for example </param>
     /// <param name="distance">Distance between rows</param>
+   
     
     public void GenerateCylinder(int[] rows, int amountPerRow)
     {
@@ -39,7 +40,7 @@ public class CircleGenerator : MonoBehaviour
         isCreated = false;
         if (!isCreated) // so that only one cylinder is created
         {
-            Vector3 center = new Vector3(-3, 0, 0); 
+            Vector3 center = new Vector3(0, 0, 0); 
          
             float angle;
             // empirically, with this distance the pieces look like they were stacked on top of each other
