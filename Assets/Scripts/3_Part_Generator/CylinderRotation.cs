@@ -9,14 +9,16 @@ public class CylinderRotation : MonoBehaviour
     // TODO restricted vertical rotation
     void Update()
     {
+        GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
+
         // Get the horizontal axis.
         // By default they are mapped to the arrow keys.
         // The value is in the range -1 to 1
         float rotationY = Input.GetAxis("Horizontal") * rotationSpeed;
-
+       // float rotationX = Input.GetAxis("Vertical") * rotationSpeed;
         rotationY *= Time.deltaTime;
-
+       // rotationX *= Time.deltaTime;
         // Rotate around new center at x = -4
-        transform.RotateAround(new Vector3(-3,0,0), new Vector3(0,rotationY,0), rotationSpeed * Time.deltaTime);
+        transform.RotateAround(new Vector3(0,0,0), new Vector3(0, rotationY,0), rotationSpeed * Time.deltaTime);
     }
 }
