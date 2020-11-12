@@ -5931,6 +5931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077e01eada7b88d45b0fb29ca8c6df37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paintPotPrefab: {fileID: 5642125426136234285, guid: f2b19867edb81e4468924bdc597e2fc3,
+    type: 3}
 --- !u!1 &1769947810
 GameObject:
   m_ObjectHideFlags: 0
@@ -6634,18 +6636,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 765428442}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1802941148 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2130943084915617136, guid: 4214b57e615806c448ba9d993d629531,
-    type: 3}
-  m_PrefabInstance: {fileID: 765428442}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802941146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31629c56f6f83234a90f6296f902f9c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1802941151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6658,7 +6648,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87f7acaac9a1ca4ca00c60a92089ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fcp: {fileID: 1802941148}
 --- !u!1 &1833275763
 GameObject:
   m_ObjectHideFlags: 0
