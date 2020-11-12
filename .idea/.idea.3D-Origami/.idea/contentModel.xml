@@ -29,6 +29,7 @@
           <e p="3_Part_Generator" t="Include">
             <e p="CalculateWidthHeight.cs" t="Include" />
             <e p="CircleGenerator.cs" t="Include" />
+            <e p="ColorManager.cs" t="Include" />
             <e p="ColorOrigami.cs" t="Include" />
             <e p="CylinderRotation.cs" t="Include" />
             <e p="ProcessGeneratorInputs.cs" t="Include" />
