@@ -1,17 +1,36 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class ColorOrigami : MonoBehaviour
 {
     private FlexibleColorPicker fcp;
-
+    private Color currentColor;
+    private Canvas canv;
+    private int colorCounter;
+    private GameObject palettePanel;
+    private Image paintPot;
+    private TMP_Text amount;
+    
     void Awake()
     {
-         fcp = Resources.FindObjectsOfTypeAll<FlexibleColorPicker>()[0]; //find the colorpicker Object even though it is disabled, returns list -> [0]
+        canv = FindObjectOfType<Canvas>();
+        fcp = canv.GetComponentInChildren<FlexibleColorPicker>(true);
+        palettePanel = GameObject.FindGameObjectWithTag("Palette");
+        paintPot = palettePanel.transform.GetChild(0).GetComponent<Image>();
+    }
+
+    void Start()
+    {
+        currentColor = GetComponent<Renderer>().material.color;
     }
     
+    //TODO Quelle
     private void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
@@ -20,15 +39,17 @@ public class ColorOrigami : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100))
             {
-                if (fcp != null)
-                {
-                    this.GetComponent<Renderer>().material.color = fcp.color;
+                if (fcp != null && currentColor != fcp.color)
+                { 
+                    GetComponent<Renderer>().material.color= fcp.color;
+                    Debug.Log("colorChanged");
+                    currentColor = fcp.color;
                 }
             }
         }
     }
 
-    
+
 
     /*void Update()
     {

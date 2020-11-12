@@ -113,7 +113,28 @@ public class CircleGenerator : MonoBehaviour
                         // when you put a piece over 3 tips, it looks larger 
                         piece.transform.localScale += new Vector3(0.7f, 0, 0);
                     }
-                    // TODO increased heißt schmaler machen
+                    else if (rows[r] == 3 ) //increased row
+                    {
+                        // yPosition was added so that the decreased row faces inwards slightly
+                        // that way the tips dont overlap with the row on top 
+                        piece = AssemblePieces(angle, 0.035f, amountPerRow, center, 0.1f); 
+                        // when you put a piece over 1 tip, it looks smaller
+                        piece.transform.localScale -= new Vector3(0.4f, 0, 0);
+                        if (r + 1 < rows.Length)
+                        {
+                            rows[r + 1] = 4;
+                        }
+                    }
+                    else if (rows[r] == 4)
+                    {
+                        piece = AssemblePieces(angle, 0.035f, amountPerRow, center, 0.1f); 
+                        // when you put a piece over 1 tip, it looks smaller
+                        piece.transform.localScale -= new Vector3(0.4f, 0, 0);
+                        if (r + 1 < rows.Length)
+                        {
+                            rows[r + 1] = 4;
+                        }
+                    }
                     else // normal row
                     {
                         piece = AssemblePieces(angle, 0.08f, amountPerRow, center, 0);

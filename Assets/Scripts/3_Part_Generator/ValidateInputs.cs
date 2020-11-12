@@ -25,7 +25,7 @@ public class ValidateInputs : MonoBehaviour
         if (enable)
         {
             errorPanel.SetActive(true);
-            errorText.text = errorDescription;
+            errorText.text = errorDescription + "\nPlease change your input accordingly.";
             // disable "Generate" Button
             generateButton.enabled = false;
             generateButton.GetComponent<Image>().color = Color.gray;
