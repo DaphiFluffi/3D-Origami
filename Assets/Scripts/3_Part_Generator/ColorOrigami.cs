@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-using Debug = UnityEngine.Debug;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 //https://docs.unity3d.com/ScriptReference/Events.UnityEvent_1.html
@@ -19,20 +12,12 @@ public class ColorOrigami : MonoBehaviour
     public ColorEvent ColorChanged;
     private FlexibleColorPicker fcp;
     private Color currentColor;
-    private Canvas canv;
-    private int colorCounter;
-    private GameObject palettePanel;
-    private Image paintPot;
-    private TMP_Text amount;
-    private ColorManager manager;
+    
+    private ColorManager colorManager;
     void Awake()
     {
-        manager = FindObjectOfType<ColorManager>();
-        canv = FindObjectOfType<Canvas>();
-        fcp = canv.GetComponentInChildren<FlexibleColorPicker>(true);
-        palettePanel = GameObject.FindGameObjectWithTag("Palette");
-        paintPot = palettePanel.transform.GetChild(0).GetComponent<Image>();
-        
+        colorManager = FindObjectOfType<ColorManager>();
+        fcp = FindObjectOfType<Canvas>().GetComponentInChildren<FlexibleColorPicker>(true);
     }
 
     void Start()
@@ -40,12 +25,12 @@ public class ColorOrigami : MonoBehaviour
         if (ColorChanged == null)
             ColorChanged = new ColorEvent();
 
-        ColorChanged.AddListener(manager.Ping);
+        ColorChanged.AddListener(colorManager.HowManyPiecesAreTheSameColor);
         currentColor = GetComponent<Renderer>().material.color;
         
     }
     
-    //TODO Quelle
+    //https://answers.unity.com/questions/856790/click-gameobject-to-change-color.html
     private void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
@@ -57,11 +42,7 @@ public class ColorOrigami : MonoBehaviour
                 if (fcp != null && currentColor != fcp.color)
                 { 
                     GetComponent<Renderer>().material.color= fcp.color;
-                    //Debug.Log("colorChanged");
                     currentColor = fcp.color;
-                    colorCounter++;
-                    // TODO Send out "colorChanged" event to ColorManager ListenerScript
-                    //Debug.Log(colorCounter);
                     ColorChanged.Invoke(fcp.color);
                 }
             }
