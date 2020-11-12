@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Row
+  - Palette
   layers:
   - Default
   - TransparentFX
