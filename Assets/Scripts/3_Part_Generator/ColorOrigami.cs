@@ -3,8 +3,9 @@ using UnityEngine.Events;
 
 //https://docs.unity3d.com/ScriptReference/Events.UnityEvent_1.html
 [System.Serializable]
-public class ColorEvent : UnityEvent<Color>
+public class ColorEvent : UnityEvent<Color, Color>
 {
+    //Color old and Color new
 }
 
 public class ColorOrigami : MonoBehaviour
@@ -41,9 +42,9 @@ public class ColorOrigami : MonoBehaviour
             {
                 if (fcp != null && currentColor != fcp.color)
                 { 
+                    ColorChanged.Invoke(GetComponent<Renderer>().material.color, fcp.color);
                     GetComponent<Renderer>().material.color= fcp.color;
                     currentColor = fcp.color;
-                    ColorChanged.Invoke(fcp.color);
                 }
             }
         }
