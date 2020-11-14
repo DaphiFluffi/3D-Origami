@@ -9,27 +9,25 @@ using UnityEngine.UI;
 public class ColorManager : MonoBehaviour
 {
     [SerializeField] private Image paintPotPrefab = default;
-    private ProcessGeneratorInputs processGeneratorInputs;
+    //private ProcessGeneratorInputs processGeneratorInputs;
     private int amount;
     private Vector3 spawnPosition;
-    private GameObject palettePanel;
+    private GameObject palettePanel = default;
     private Image paintPot;
     private Dictionary<string, int> usedColorsAndAmounts;
     
     void Start()
     {
-        processGeneratorInputs = FindObjectOfType<Canvas>().GetComponentInChildren<ProcessGeneratorInputs>();
         //TODO calculate the total rows in generatorinputs and access it here ! "GetTotalRows" in STart oder so
-        //TODO bei erneutem Generieren soll die Datenbank komplett geleert werden 
-        int totalRows = 0;
+        //processGeneratorInputs = FindObjectOfType<Canvas>().GetComponentInChildren<ProcessGeneratorInputs>();
         
         palettePanel = GameObject.FindGameObjectWithTag("Palette");
+        palettePanel.SetActive (false);
+
         spawnPosition = palettePanel.transform.position;
         // TODO why? when it used to be <Color,int> it did not work 
         usedColorsAndAmounts = new Dictionary<string, int>();
-        usedColorsAndAmounts.Add("FFFFFF", totalRows); // add to database
-        InstantiatePaintPot("FFFFFF");
-        paintPot.GetComponentInChildren<TMP_Text>().text = totalRows.ToString();
+        
     }
     
     //called every time a color changes
@@ -60,12 +58,12 @@ public class ColorManager : MonoBehaviour
             paintPot.GetComponentInChildren<TMP_Text>().text = usedColorsAndAmounts[beforeColor].ToString();
             
             //if we reach 0 -> remove paintPot, also remove key from database 
-           /* if (usedColorsAndAmounts[beforeColor] == 0)
+            if (usedColorsAndAmounts[beforeColor] == 0)
             {
                 spawnPosition = paintPot.transform.position;
                 usedColorsAndAmounts.Remove(beforeColor);
                 Destroy(paintPot.gameObject);
-            }*/
+            }
         }
     }
     
@@ -82,4 +80,22 @@ public class ColorManager : MonoBehaviour
        paintPot.transform.SetParent(palettePanel.transform);
        spawnPosition += new Vector3(55, 0, 0);
    }
+
+   // TODO OnGenerateDeleteEverything
+   public void ResetColorManager()
+   {
+       /*foreach (Transform child in palettePanel.transform)
+       {
+           if (child.GetType() == typeof(Image))
+           {
+               Destroy(child.gameObject);
+           }
+       }*/
+      /* int totalRows = 0;
+       usedColorsAndAmounts.Add("FFFFFF", totalRows); // add to database
+       InstantiatePaintPot("FFFFFF");
+       paintPot.GetComponentInChildren<TMP_Text>().text = totalRows.ToString();*/
+       usedColorsAndAmounts.Clear();
+   }
+
 }
