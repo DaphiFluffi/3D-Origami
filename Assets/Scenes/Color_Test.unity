@@ -1466,6 +1466,7 @@ GameObject:
   - component: {fileID: 570654969}
   - component: {fileID: 570654968}
   - component: {fileID: 570654967}
+  - component: {fileID: 570654970}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -1536,8 +1537,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1778053710}
-        m_MethodName: ReplayAnimation
+      - m_Target: {fileID: 570654970}
+        m_MethodName: BackToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1584,6 +1585,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570654965}
   m_CullTransparentMesh: 0
+--- !u!114 &570654970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570654965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53eca434c16252a40a26fde6c0f057f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &574856340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2487,12 +2500,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3507,12 +3520,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3839,7 +3852,6 @@ MonoBehaviour:
   Unpause: {fileID: 21300000, guid: ab3febfd35d580b42a78edf32dd87369, type: 3}
   Pause: {fileID: 21300000, guid: bbdc38e9e3fe75745908022f92b11952, type: 3}
   progressBar: {fileID: 1944263913}
-  speedSettingsSlider: {fileID: 455852587}
 --- !u!4 &1778053711
 Transform:
   m_ObjectHideFlags: 0
