@@ -88,8 +88,8 @@ public class ProcessGeneratorInputs : MonoBehaviour
         //TODO make function access not public
         generator.GenerateCylinder(rowsInfo, amountPerRow);
         calculator.CalculateDimensions(rowsInfo, amountPerRow);
-        widthTMP.text = "Width: " + calculator.GetWidth() + " cm";
-        heightTMP.text = "Height: " + calculator.GetHeight() + " cm";
+        widthTMP.text = "w: " + calculator.GetWidth() + " cm";
+        heightTMP.text = "h: " + calculator.GetHeight() + " cm";
         totalAmountOfPieces = howManyRows * amountPerRow;
         Debug.Log(totalAmountOfPieces);
     }

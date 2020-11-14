@@ -6,17 +6,16 @@ using UnityEngine.UI;
 
 public class ShowFCP : MonoBehaviour
 {
-    
-    private bool isOn;
-   
-    public void ShowColorPicker()
+    public void ShowColorPicker(bool show)
     {
-        this.gameObject.SetActive(true);
-    }
-
-    public void HideColorPicker()
-    {
-        this.gameObject.SetActive(false);
+        if (show)
+        {
+            this.gameObject.SetActive(true);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
     }
     
 }

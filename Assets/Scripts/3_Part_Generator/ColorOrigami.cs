@@ -11,7 +11,7 @@ public class ColorEvent : UnityEvent<string, string>
 public class ColorOrigami : MonoBehaviour
 {
     //TODO can this be private?
-    public ColorEvent ColorChanged;
+    public ColorEvent OnColorChanged;
     private FlexibleColorPicker fcp;
     private Color currentColor;
     private ColorManager colorManager;
@@ -24,12 +24,12 @@ public class ColorOrigami : MonoBehaviour
 
     void Start()
     {
-        if (ColorChanged == null)
+        if (OnColorChanged == null)
         {
-            ColorChanged = new ColorEvent();
+            OnColorChanged = new ColorEvent();
         }
 
-        ColorChanged.AddListener(colorManager.HowManyPiecesAreTheSameColor);
+        OnColorChanged.AddListener(colorManager.HowManyPiecesAreTheSameColor);
         currentColor = GetComponent<Renderer>().material.color;
         
     }
@@ -45,7 +45,7 @@ public class ColorOrigami : MonoBehaviour
             {
                 if (fcp != null && currentColor != fcp.color)
                 { 
-                    ColorChanged.Invoke(ColorUtility.ToHtmlStringRGB(GetComponent<Renderer>().material.color), ColorUtility.ToHtmlStringRGB(fcp.color));
+                    OnColorChanged.Invoke(ColorUtility.ToHtmlStringRGB(GetComponent<Renderer>().material.color), ColorUtility.ToHtmlStringRGB(fcp.color));
                     GetComponent<Renderer>().material.color= fcp.color;
                     currentColor = fcp.color;
                 }
