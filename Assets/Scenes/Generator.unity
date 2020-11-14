@@ -5926,6 +5926,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintPotPrefab: {fileID: 5642125426136234285, guid: f2b19867edb81e4468924bdc597e2fc3,
     type: 3}
+  rowsInput: {fileID: 401162607}
+  amountPerRowInput: {fileID: 1014887753}
 --- !u!1 &1769947810
 GameObject:
   m_ObjectHideFlags: 0

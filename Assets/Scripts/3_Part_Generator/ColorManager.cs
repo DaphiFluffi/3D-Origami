@@ -8,47 +8,74 @@ using UnityEngine.UI;
 public class ColorManager : MonoBehaviour
 {
     [SerializeField] private Image paintPotPrefab = default;
+    [SerializeField] private TMP_InputField rowsInput = default;
+    [SerializeField] private TMP_InputField amountPerRowInput = default;
     private int amount = 1;
     private Vector3 spawnPosition;
     private GameObject palettePanel;
     private Image paintPot;
-    private Color colorWeAreCurrentlyCounting;
-    private Dictionary<Color, int> usedColorsAndAmounts;
+   // private Color colorWeAreCurrentlyCounting;
+    private Dictionary<string, int> usedColorsAndAmounts;
     
     void Awake()
     {
+        int rows = int.Parse(rowsInput.text);
+        int amountPerRow = int.Parse(amountPerRowInput.text);
+        int totalRows = rows * amountPerRow;
         palettePanel = GameObject.FindGameObjectWithTag("Palette");
         //paintPot = palettePanel.transform.GetChild(0).GetComponent<Image>();
         spawnPosition = palettePanel.transform.position;
-        usedColorsAndAmounts = new Dictionary<Color, int>();
+        // when it used to be <Color,int> it did not work 
+        usedColorsAndAmounts = new Dictionary<string, int>();
+        // start with Counter = rows*PiecesPErRow 3*9 = 27 Teile WEISS
+        usedColorsAndAmounts.Add("FFFFFF", totalRows); // add to database
+        InstantiatePaintPot(Color.white);
+        paintPot.GetComponentInChildren<TMP_Text>().text = totalRows.ToString();
     }
     
     //called every time a color changes
     public void HowManyPiecesAreTheSameColor(Color beforeColor, Color afterColor)
     {
-        amount++;
+        string afterColorHex = ColorUtility.ToHtmlStringRGB(afterColor);
+        string beforeColorHex = ColorUtility.ToHtmlStringRGB(beforeColor);
         //https://docs.unity3d.com/ScriptReference/ColorUtility.ToHtmlStringRGB.html?_ga=2.191917357.688254702.1604789679-1992563851.1586013854
-        
-        //save colors we had before to an array and ask the array if we had the color already
-        
-        colorWeAreCurrentlyCounting = afterColor; //keep track of current color
-
-        if (!usedColorsAndAmounts.ContainsKey(colorWeAreCurrentlyCounting)) //color NOT in database yet
+        if (!usedColorsAndAmounts.ContainsKey(afterColorHex))
         {
-            Debug.Log("new");
-            
-            usedColorsAndAmounts.Add(colorWeAreCurrentlyCounting, amount); // add to database
-            InstantiatePaintPot(colorWeAreCurrentlyCounting); //instantiate a paintpot for new color
-            amount = 1; 
-        }
-        else
-        {
-            Debug.Log("old");
-            usedColorsAndAmounts[colorWeAreCurrentlyCounting] = amount;
-            paintPot = GameObject.Find(ColorUtility.ToHtmlStringRGB(colorWeAreCurrentlyCounting)).GetComponent<Image>();
+            amount = 1;
+            usedColorsAndAmounts.Add(afterColorHex, amount); // add to database
+            //instantiate a paintpot for new color
+            InstantiatePaintPot(afterColor); 
+            paintPot.GetComponentInChildren<TMP_Text>().text = amount.ToString();
         }
 
-        paintPot.GetComponentInChildren<TMP_Text>().text = amount.ToString();
+        else if (usedColorsAndAmounts.ContainsKey(afterColorHex))
+        {
+            usedColorsAndAmounts[afterColorHex] += 1;
+            //find the existing paint pot with that color
+            paintPot = GameObject.Find(afterColorHex).GetComponent<Image>();
+            paintPot.GetComponentInChildren<TMP_Text>().text = usedColorsAndAmounts[afterColorHex].ToString();
+        }
+
+        if (usedColorsAndAmounts.ContainsKey(beforeColorHex)) //if the beforeColor was in the database, it was overcolored -> -1
+        {
+            usedColorsAndAmounts[beforeColorHex] -= 1;
+            //find the existing paint pot with that color
+            paintPot = GameObject.Find(beforeColorHex).GetComponent<Image>();
+            paintPot.GetComponentInChildren<TMP_Text>().text = usedColorsAndAmounts[beforeColorHex].ToString();
+            //if we reach 0 -> remove paintPot, also remove key from database 
+            /*if (usedColorsAndAmounts[beforeColorHex] == 0)
+            {
+                spawnPosition -= new Vector3(55, 0, 0);
+                usedColorsAndAmounts.Remove(beforeColorHex);
+                Destroy(paintPot.gameObject);
+            }*/
+        }
+        
+        foreach (KeyValuePair<string, int> kvp in usedColorsAndAmounts)
+        {
+            Debug.Log(kvp.Key + "" + kvp.Value);
+        }
+       
     }
     // Debug.Log("My old color was " + ColorUtility.ToHtmlStringRGB(beforeColor) + " now I am " + ColorUtility.ToHtmlStringRGB(afterColor));
    // dictionary [color1][amount: 44]
