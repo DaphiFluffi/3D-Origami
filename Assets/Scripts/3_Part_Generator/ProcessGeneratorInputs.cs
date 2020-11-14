@@ -25,6 +25,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
     private int howManyRows;
     private int[] rowsInfo;
     private int amountPerRow;
+    private int totalAmountOfPieces;
     void Awake()
     {
         generator = origamiObject.GetComponent<CircleGenerator>();
@@ -89,5 +90,8 @@ public class ProcessGeneratorInputs : MonoBehaviour
         calculator.CalculateDimensions(rowsInfo, amountPerRow);
         widthTMP.text = "Width: " + calculator.GetWidth() + " cm";
         heightTMP.text = "Height: " + calculator.GetHeight() + " cm";
+        totalAmountOfPieces = howManyRows * amountPerRow;
+        Debug.Log(totalAmountOfPieces);
     }
+    
 }
