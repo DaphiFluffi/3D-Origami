@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using TMPro;
+using Unity.UNetWeaver;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class ColorManager : MonoBehaviour
 {
@@ -15,16 +17,18 @@ public class ColorManager : MonoBehaviour
     private GameObject palettePanel = default;
     private Image paintPot;
     private Dictionary<string, int> usedColorsAndAmounts;
+    private List<Image> positions;
     
     void Start()
     {
         //TODO calculate the total rows in generatorinputs and access it here ! "GetTotalRows" in STart oder so
         //processGeneratorInputs = FindObjectOfType<Canvas>().GetComponentInChildren<ProcessGeneratorInputs>();
-        
+        positions = new List<Image>();
         palettePanel = GameObject.FindGameObjectWithTag("Palette");
         palettePanel.SetActive (false);
 
         spawnPosition = palettePanel.transform.position;
+        Debug.Log(spawnPosition);
         // TODO why? when it used to be <Color,int> it did not work 
         usedColorsAndAmounts = new Dictionary<string, int>();
         
@@ -60,25 +64,33 @@ public class ColorManager : MonoBehaviour
             //if we reach 0 -> remove paintPot, also remove key from database 
             if (usedColorsAndAmounts[beforeColor] == 0)
             {
-                spawnPosition = paintPot.transform.position;
+                for (int i = 0; i < positions.Count - 1; i++)
+                {
+                    if (Vector3.Distance(positions[i].transform.position, positions[i + 1].transform.position) > 5)
+                    {
+                        positions[i + 1].transform.position -= new Vector3(55, 0, 0);
+                    }
+                }
                 usedColorsAndAmounts.Remove(beforeColor);
                 Destroy(paintPot.gameObject);
+                positions.Remove(paintPot);
             }
         }
     }
-    
-   // extra funktion: erstelle color palette für den user
-   // sortiere die Farben nach Menge
 
    private void InstantiatePaintPot(string newColor)
    {
        //instantiate a new paint pot with the color and the amoount
        paintPot = Instantiate(paintPotPrefab, spawnPosition, Quaternion.identity);
+      // Debug.Log(paintPot.transform.position);
+       positions.Add(paintPot);
        ColorUtility.TryParseHtmlString("#"+newColor, out var convertedColor);
        paintPot.color = convertedColor;
        paintPot.name = newColor;
        paintPot.transform.SetParent(palettePanel.transform);
+       //paintpots zu array huínzufügen
        spawnPosition += new Vector3(55, 0, 0);
+   
    }
 
    // TODO OnGenerateDeleteEverything
