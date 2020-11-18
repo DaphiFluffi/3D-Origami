@@ -5,7 +5,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public class ColorEvent : UnityEvent<string, string>
 {
-    //Color old and Color new
+    //Color before and after
 }
 
 public class ColorOrigami : MonoBehaviour
