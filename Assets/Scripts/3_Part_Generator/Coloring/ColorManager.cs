@@ -8,11 +8,11 @@ public class ColorManager : MonoBehaviour
 {
     [SerializeField] private Image paintPotPrefab = default;
     //private ProcessGeneratorInputs processGeneratorInputs;
-    private float paintPotPrefabWidth;
-    private Vector3 spawnPosition;
-    private int currentAmountOfPaintPots;
-    private GameObject palettePanel = default;
+    
+    private GameObject content = default;
+    private GameObject scrollView = default;
     private Image paintPot;
+    
     private Dictionary<string, int> usedColors;
     private List<Image> paintPots;
     
@@ -23,11 +23,9 @@ public class ColorManager : MonoBehaviour
         //TODO calculate the total rows in generatorinputs and access it here ! "GetTotalRows" in STart oder so
         //processGeneratorInputs = FindObjectOfType<Canvas>().GetComponentInChildren<ProcessGeneratorInputs>();
         paintPots = new List<Image>();
-        palettePanel = GameObject.FindGameObjectWithTag("Palette");
-        palettePanel.SetActive (false);
-
-        spawnPosition = palettePanel.transform.position;
-        paintPotPrefabWidth = paintPotPrefab.rectTransform.rect.width;
+        content = GameObject.FindGameObjectWithTag("Content");
+        scrollView = GameObject.FindGameObjectWithTag("Palette");
+        scrollView.SetActive(false);
     }
     
     //called every time a color changes
@@ -65,7 +63,7 @@ public class ColorManager : MonoBehaviour
             {
                 usedColors.Remove(beforeColor);
                 paintPots.Remove(paintPot);
-                ArrangePaintPots(paintPots);
+             //   ArrangePaintPots(paintPots);
                 Destroy(paintPot.gameObject);
             }
         }
@@ -73,27 +71,33 @@ public class ColorManager : MonoBehaviour
 
    private void InstantiatePaintPot(string newColor)
    {
-       currentAmountOfPaintPots++;
        //paintPot.transform.SetParent(palettePanel.transform);
-       paintPot = Instantiate(paintPotPrefab, palettePanel.transform);
+       paintPot = Instantiate(paintPotPrefab, content.transform);
        ColorUtility.TryParseHtmlString("#"+newColor, out var convertedColor);
        paintPot.color = convertedColor;
        paintPot.name = newColor;
        paintPots.Add(paintPot);
-       ArrangePaintPots(paintPots);
+      // ArrangePaintPots(paintPots);
    }
 
    // arranges paint pots 
    // used when a new paint pot is added or one is removed
-   private void ArrangePaintPots(List<Image> paintPotsList)
+   /*private void ArrangePaintPots(List<Image> paintPotsList)
    {
        paintPotsList[0].transform.position = spawnPosition;
        for (int i = 1; i < paintPotsList.Count; i++)
        {
-           // 5 is the margin between paint pots
-           paintPotsList[i].transform.position = spawnPosition+ new Vector3( paintPotPrefabWidth * 2  * i ,0,0) + new Vector3(5 * i,0,0);
-       }
-   }
+           int margin = 5; 
+           paintPotsList[i].transform.position = spawnPosition + new Vector3( i * (2 * paintPotPrefabWidth + margin),0,0);
+            Debug.Log("paintPot " + paintPotsList[i].rectTransform.rect.position.x);
+            Debug.Log("palette: " + paletteScrollView.GetComponent<RectTransform>().rect.width);
+           /*if (paintPotsList[i].transform.position.x == palettePanel.GetComponent<RectTransform>().rect.width)
+           {
+               //because my paint pot is a square I can use Width, it should be height otherwise
+               paintPotsList[i].transform.position += new Vector3(0,paintPotPrefabWidth + margin,0);
+           }*/
+       //}
+   //}
    
    // TODO OnGenerateDeleteEverything
    public void ResetColorManager()
