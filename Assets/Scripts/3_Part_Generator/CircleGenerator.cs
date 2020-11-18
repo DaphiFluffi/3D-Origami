@@ -61,15 +61,6 @@ public class CircleGenerator : MonoBehaviour
                 
                 if (rows[r] == 2) //decreased row 
                 {
-                    /*
-                     * When you make a "decreased row" that means that you are putting the two pockets every 3D Origami piece has
-                     * over three and not two tips as you normally would. That leads to the rows above the decreased row to have
-                     * less pieces per row.
-                     * To calculate the decreased amount you first determine the amount of tips in the previous rows.
-                     * Since every piece has two tips we achieve that with 2*amountPerRow. The amount of tips has to be divided
-                     * by 3 because a piece in a decreased row goes over 3 tips.
-                     */
-                    
                     // integer divison automatically takes the first number before comma
                     // only allow rows that are divisible by 3 
                     int decreasedAmount = (2 * amountPerRow) / 3; 

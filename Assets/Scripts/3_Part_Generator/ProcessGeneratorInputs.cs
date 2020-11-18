@@ -9,6 +9,7 @@ using System.Linq;
 
 using Debug = UnityEngine.Debug;
 
+//responsible for checking the inpu and preparing it for the generator
 public class ProcessGeneratorInputs : MonoBehaviour
 {
     [SerializeField] private TMP_InputField rowsInput = default;
