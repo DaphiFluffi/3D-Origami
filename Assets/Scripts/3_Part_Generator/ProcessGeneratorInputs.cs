@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
-
+using UnityEngine.Events;
 using Debug = UnityEngine.Debug;
 
-//responsible for checking the inpu and preparing it for the generator
+[System.Serializable] public class IntEvent : UnityEvent<int> { }
+//responsible for checking the input and preparing it for the generator
 public class ProcessGeneratorInputs : MonoBehaviour
 {
     [SerializeField] private TMP_InputField rowsInput = default;
@@ -21,12 +19,18 @@ public class ProcessGeneratorInputs : MonoBehaviour
     [SerializeField] private TMP_Text widthTMP = default;
     [SerializeField] private TMP_Text heightTMP = default;
     [SerializeField] private Toggle collapsed = default;
+   
+    public IntEvent OnNewCylinder;
+    private ColorManager colorManager;
+
+    
     private CircleGenerator generator;
     private CalculateWidthHeight calculator;
     private int howManyRows;
     private int[] rowsInfo;
     private int amountPerRow;
-    private int totalAmountOfPieces;
+    
+    
     void Awake()
     {
         generator = origamiObject.GetComponent<CircleGenerator>();
@@ -38,6 +42,15 @@ public class ProcessGeneratorInputs : MonoBehaviour
         whereToAddInvertedRow.text = "0"; 
         whereToAddDecreasedRow.text = "0";
         whereToAddIncreasedRow.text = "0";
+        
+        colorManager = FindObjectOfType<ColorManager>();
+
+        if (OnNewCylinder == null)
+        {
+            OnNewCylinder = new IntEvent();
+        }
+
+        OnNewCylinder.AddListener(colorManager.InputCallback);
     }
     
     // can only be accessed if all Validations were passed
@@ -91,8 +104,9 @@ public class ProcessGeneratorInputs : MonoBehaviour
         calculator.CalculateDimensions(rowsInfo, amountPerRow);
         widthTMP.text = "w: " + calculator.GetWidth() + " cm";
         heightTMP.text = "h: " + calculator.GetHeight() + " cm";
-        totalAmountOfPieces = howManyRows * amountPerRow;
-        Debug.Log(totalAmountOfPieces);
+        
+        OnNewCylinder.Invoke(generator.GetTotalPieces());
+
     }
     
 }

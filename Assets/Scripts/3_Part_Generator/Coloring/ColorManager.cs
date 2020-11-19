@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -15,35 +16,88 @@ public class ColorManager : MonoBehaviour
     
     private Dictionary<string, int> usedColors;
     private List<Image> paintPots;
-    
+
+    private int amount;
+    private int totalAmount;
     void Start()
     {
         // TODO why? when it used to be <Color,int> it did not work 
         usedColors = new Dictionary<string, int>();
-        //TODO calculate the total rows in generatorinputs and access it here ! "GetTotalRows" in STart oder so
-        //processGeneratorInputs = FindObjectOfType<Canvas>().GetComponentInChildren<ProcessGeneratorInputs>();
         paintPots = new List<Image>();
         content = GameObject.FindGameObjectWithTag("Content");
         scrollView = GameObject.FindGameObjectWithTag("Palette");
-        scrollView.SetActive(false);
+        //scrollView.SetActive(false);
+    }
+    
+    public void InputCallback(int totalPieces)
+    {
+        //Debug.Log("This is the callback function working: " + totalPieces);
+        usedColors.Add("FFFFFF", totalPieces);
+        //instantiate a paintPot for new color
+        InstantiatePaintPot("FFFFFF");
+        paintPot.GetComponentInChildren<TMP_Text>().text = totalPieces.ToString();
+        //Debug.Log(usedColors["FFFFFF"]);
+        //HowManyPiecesAreTheSameColor("000000", "FFFFFF");
+
+        if (usedColors.ContainsKey("FFFFFF"))
+        {
+            Debug.Log("InputCallback: " + usedColors["FFFFFF"]);
+
+        }
+        else
+        {
+            throw new Exception(String.Format("Key {0} was not found", "FFFFFF"));        
+
+        }
+        
     }
     
     //called every time a color changes
     public void HowManyPiecesAreTheSameColor(string beforeColor, string afterColor)
     {
+        //Debug.Log(beforeColor + " + " + afterColor);
         //https://docs.unity3d.com/ScriptReference/ColorUtility.ToHtmlStringRGB.html?_ga=2.191917357.688254702.1604789679-1992563851.1586013854
         // if the color is used for the first time
+        
+        
         if (!usedColors.ContainsKey(afterColor))
         {
-            int amount = 1;
+            Debug.Log("new");
+           
+            amount = 1;
+            
             // add to database
             usedColors.Add(afterColor, amount); 
             //instantiate a paintPot for new color
             InstantiatePaintPot(afterColor); 
             paintPot.GetComponentInChildren<TMP_Text>().text = amount.ToString();
+            if (usedColors.ContainsKey(afterColor))
+            {
+                Debug.Log("HowManyColors: " + usedColors[afterColor]);
+
+            }
+            else
+            {
+                throw new Exception(String.Format("Key {0} was not found", afterColor));        
+
+            }
+            if (usedColors.ContainsKey("FFFFFF"))
+            {
+                Debug.Log("HowManyColors: " + usedColors["FFFFFF"]);
+
+            }
+            else
+            {
+                throw new Exception(String.Format("Key {0} was not found", "FFFFFF"));        
+
+            }
+            
+            
         }
         else if (usedColors.ContainsKey(afterColor))
         {
+            Debug.Log("old");
+
             usedColors[afterColor] += 1;
             //find the existing paint pot with that color
             paintPot = GameObject.Find(afterColor).GetComponent<Image>();
@@ -53,6 +107,7 @@ public class ColorManager : MonoBehaviour
         //if the beforeColor was in the database, it was overcolored -> -1
         if (usedColors.ContainsKey(beforeColor)) 
         {
+            Debug.Log("overcolored");
             usedColors[beforeColor] -= 1;
             //find the existing paint pot with that color
             paintPot = GameObject.Find(beforeColor).GetComponent<Image>();
@@ -62,42 +117,25 @@ public class ColorManager : MonoBehaviour
             if (usedColors[beforeColor] == 0)
             {
                 usedColors.Remove(beforeColor);
+                //brauch ich nicht mehr
                 paintPots.Remove(paintPot);
-             //   ArrangePaintPots(paintPots);
                 Destroy(paintPot.gameObject);
             }
         }
     }
 
+    
+    
    private void InstantiatePaintPot(string newColor)
    {
-       //paintPot.transform.SetParent(palettePanel.transform);
        paintPot = Instantiate(paintPotPrefab, content.transform);
-       ColorUtility.TryParseHtmlString("#"+newColor, out var convertedColor);
+       ColorUtility.TryParseHtmlString("#" + newColor, out var convertedColor);
        paintPot.color = convertedColor;
        paintPot.name = newColor;
        paintPots.Add(paintPot);
-      // ArrangePaintPots(paintPots);
    }
 
-   // arranges paint pots 
-   // used when a new paint pot is added or one is removed
-   /*private void ArrangePaintPots(List<Image> paintPotsList)
-   {
-       paintPotsList[0].transform.position = spawnPosition;
-       for (int i = 1; i < paintPotsList.Count; i++)
-       {
-           int margin = 5; 
-           paintPotsList[i].transform.position = spawnPosition + new Vector3( i * (2 * paintPotPrefabWidth + margin),0,0);
-            Debug.Log("paintPot " + paintPotsList[i].rectTransform.rect.position.x);
-            Debug.Log("palette: " + paletteScrollView.GetComponent<RectTransform>().rect.width);
-           /*if (paintPotsList[i].transform.position.x == palettePanel.GetComponent<RectTransform>().rect.width)
-           {
-               //because my paint pot is a square I can use Width, it should be height otherwise
-               paintPotsList[i].transform.position += new Vector3(0,paintPotPrefabWidth + margin,0);
-           }*/
-       //}
-   //}
+   
    
    // TODO OnGenerateDeleteEverything
    public void ResetColorManager()

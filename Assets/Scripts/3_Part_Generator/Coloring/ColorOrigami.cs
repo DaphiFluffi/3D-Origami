@@ -10,6 +10,7 @@ public class ColorEvent : UnityEvent<string, string>
 
 public class ColorOrigami : MonoBehaviour
 {
+    // ich müsste hier simulieren, dass wenn die teile generiert werden alle weiß sind 
     //TODO can this be private?
     public ColorEvent OnColorChanged;
     private FlexibleColorPicker fcp;
