@@ -15,6 +15,13 @@ public class CircleGenerator : MonoBehaviour
 
     private GameObject generatedCylinder;
     private bool isCreated;
+
+    private int totalPieces;
+
+    public int GetTotalPieces()
+    {
+        return totalPieces;
+    }
     /*private void Start()
     {
         GenerateCylinder(rows, prefabToInstantiate, amountPerRow, invertedRow);
@@ -38,6 +45,7 @@ public class CircleGenerator : MonoBehaviour
         // replace the old generated Cylinder once a new one is requested to be generated
         Destroy(generatedCylinder);
         isCreated = false;
+        totalPieces = 0;
         if (!isCreated) // so that only one cylinder is created
         {
             Vector3 center = new Vector3(0, 0, 0); 
@@ -61,15 +69,6 @@ public class CircleGenerator : MonoBehaviour
                 
                 if (rows[r] == 2) //decreased row 
                 {
-                    /*
-                     * When you make a "decreased row" that means that you are putting the two pockets every 3D Origami piece has
-                     * over three and not two tips as you normally would. That leads to the rows above the decreased row to have
-                     * less pieces per row.
-                     * To calculate the decreased amount you first determine the amount of tips in the previous rows.
-                     * Since every piece has two tips we achieve that with 2*amountPerRow. The amount of tips has to be divided
-                     * by 3 because a piece in a decreased row goes over 3 tips.
-                     */
-                    
                     // integer divison automatically takes the first number before comma
                     // only allow rows that are divisible by 3 
                     int decreasedAmount = (2 * amountPerRow) / 3; 
@@ -161,6 +160,7 @@ public class CircleGenerator : MonoBehaviour
         spawnPosition.y += yPosition;
         // so that the pieces look towards the center 
         GameObject piece = Instantiate(pieceModel, spawnPosition, Quaternion.LookRotation((center - spawnPosition) + new Vector3(0,0.1f, 0)));
+        totalPieces++;
         return piece;
     }
     
