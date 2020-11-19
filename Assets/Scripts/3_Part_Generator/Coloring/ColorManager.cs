@@ -15,7 +15,6 @@ public class ColorManager : MonoBehaviour
     private Image paintPot;
     
     private Dictionary<string, int> usedColors;
-    private List<Image> paintPots;
     
     private int hashWhite;
     private int amount;
@@ -23,19 +22,21 @@ public class ColorManager : MonoBehaviour
     void Start()
     {
         // TODO why? when it used to be <Color,int> it did not work 
+        // I would have had to override Equals() function
+        // for dictionaries with complex keys
         usedColors = new Dictionary<string, int>();
-        paintPots = new List<Image>();
         content = GameObject.FindGameObjectWithTag("Content");
         scrollView = GameObject.FindGameObjectWithTag("Palette");
         //scrollView.SetActive(false);
     }
     
+    //called on Generate Button
     public void InputCallback(int totalPieces)
     {
         usedColors.Add("FFFFFF", totalPieces);
-        //instantiate a paintPot for new color
+        //instantiate a paintPot for white
         InstantiatePaintPot("FFFFFF");
-        paintPot.GetComponentInChildren<TMP_Text>().text = totalPieces.ToString();
+        SetPaintPotText(totalPieces);
     }
     
     //called every time a color changes
@@ -45,37 +46,34 @@ public class ColorManager : MonoBehaviour
         // if the color is used for the first time
         if (!usedColors.ContainsKey(afterColor))
         {
-            amount = 1;
             // add to database
-            usedColors.Add(afterColor, amount); 
+            usedColors.Add(afterColor, 1); 
             //instantiate a paintPot for new color
             InstantiatePaintPot(afterColor); 
-            paintPot.GetComponentInChildren<TMP_Text>().text = amount.ToString();
+            SetPaintPotText(1);
+
         }
         else if (usedColors.ContainsKey(afterColor))
         {
             usedColors[afterColor] += 1;
             //find the existing paint pot with that color
             paintPot = GameObject.Find(afterColor).GetComponent<Image>();
-            paintPot.GetComponentInChildren<TMP_Text>().text = usedColors[afterColor].ToString();
-            usedColors[afterColor].GetHashCode();
+            SetPaintPotText(usedColors[afterColor]);
+
         }
         
         //if the beforeColor was in the database, it was overcolored -> -1
         if (usedColors.ContainsKey(beforeColor)) 
         {
-            //Debug.Log("overcolored");
             usedColors[beforeColor] -= 1;
             //find the existing paint pot with that color
             paintPot = GameObject.Find(beforeColor).GetComponent<Image>();
-            paintPot.GetComponentInChildren<TMP_Text>().text = usedColors[beforeColor].ToString();
-            
+            SetPaintPotText(usedColors[beforeColor]);
+
             //if we reach 0 -> remove paintPot, also remove key from database 
             if (usedColors[beforeColor] == 0)
             {
                 usedColors.Remove(beforeColor);
-                //brauch ich nicht mehr
-                paintPots.Remove(paintPot);
                 Destroy(paintPot.gameObject);
             }
         }
@@ -87,9 +85,25 @@ public class ColorManager : MonoBehaviour
        ColorUtility.TryParseHtmlString("#" + newColor, out var convertedColor);
        paintPot.color = convertedColor;
        paintPot.name = newColor;
-       paintPots.Add(paintPot);
    }
 
+   private void SetPaintPotText(int number)
+   {
+       ColorUtility.TryParseHtmlString("#" + paintPot.name, out var convertedColor);
+       // https://docs.unity3d.com/ScriptReference/Color.RGBToHSV.html
+       float H, S, V;
+       Color.RGBToHSV(convertedColor, out H, out S, out V);
+       if (V <= 0.3f)
+       {
+           paintPot.GetComponentInChildren<TMP_Text>().color = Color.white;
+       }
+       else
+       {
+           paintPot.GetComponentInChildren<TMP_Text>().color = Color.black;
+       }
+       paintPot.GetComponentInChildren<TMP_Text>().text = number.ToString();
+
+   }
    
    public void ResetColorManager()
    {
@@ -97,7 +111,6 @@ public class ColorManager : MonoBehaviour
        {
            Destroy(child.gameObject);
        }
-
        usedColors.Clear();
    }
 
