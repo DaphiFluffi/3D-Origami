@@ -45,6 +45,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
         
         colorManager = FindObjectOfType<ColorManager>();
 
+        
         if (OnNewCylinder == null)
         {
             OnNewCylinder = new IntEvent();
@@ -52,6 +53,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
 
         OnNewCylinder.AddListener(colorManager.InputCallback);
     }
+    
     
     // can only be accessed if all Validations were passed
     public void OnSubmit()
@@ -104,9 +106,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
         calculator.CalculateDimensions(rowsInfo, amountPerRow);
         widthTMP.text = "w: " + calculator.GetWidth() + " cm";
         heightTMP.text = "h: " + calculator.GetHeight() + " cm";
-        
+        //sends totalPieces to ColorManager after Cylinder was generated
         OnNewCylinder.Invoke(generator.GetTotalPieces());
-
     }
-    
 }
