@@ -15,6 +15,13 @@ public class CircleGenerator : MonoBehaviour
 
     private GameObject generatedCylinder;
     private bool isCreated;
+
+    private int totalPieces;
+
+    public int GetTotalPieces()
+    {
+        return totalPieces;
+    }
     /*private void Start()
     {
         GenerateCylinder(rows, prefabToInstantiate, amountPerRow, invertedRow);
@@ -38,6 +45,7 @@ public class CircleGenerator : MonoBehaviour
         // replace the old generated Cylinder once a new one is requested to be generated
         Destroy(generatedCylinder);
         isCreated = false;
+        totalPieces = 0;
         if (!isCreated) // so that only one cylinder is created
         {
             Vector3 center = new Vector3(0, 0, 0); 
@@ -152,6 +160,7 @@ public class CircleGenerator : MonoBehaviour
         spawnPosition.y += yPosition;
         // so that the pieces look towards the center 
         GameObject piece = Instantiate(pieceModel, spawnPosition, Quaternion.LookRotation((center - spawnPosition) + new Vector3(0,0.1f, 0)));
+        totalPieces++;
         return piece;
     }
     
