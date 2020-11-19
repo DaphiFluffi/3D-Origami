@@ -5,11 +5,12 @@ using UnityEngine.Events;
 [System.Serializable]
 public class ColorEvent : UnityEvent<string, string>
 {
-    //Color old and Color new
+    //Color before and after
 }
 
 public class ColorOrigami : MonoBehaviour
 {
+    // ich müsste hier simulieren, dass wenn die teile generiert werden alle weiß sind 
     //TODO can this be private?
     public ColorEvent OnColorChanged;
     private FlexibleColorPicker fcp;
