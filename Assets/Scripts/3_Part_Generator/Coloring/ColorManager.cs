@@ -16,7 +16,8 @@ public class ColorManager : MonoBehaviour
     
     private Dictionary<string, int> usedColors;
     private List<Image> paintPots;
-
+    
+    private int hashWhite;
     private int amount;
     private int totalAmount;
     void Start()
@@ -31,83 +32,39 @@ public class ColorManager : MonoBehaviour
     
     public void InputCallback(int totalPieces)
     {
-        //Debug.Log("This is the callback function working: " + totalPieces);
         usedColors.Add("FFFFFF", totalPieces);
         //instantiate a paintPot for new color
         InstantiatePaintPot("FFFFFF");
         paintPot.GetComponentInChildren<TMP_Text>().text = totalPieces.ToString();
-        //Debug.Log(usedColors["FFFFFF"]);
-        //HowManyPiecesAreTheSameColor("000000", "FFFFFF");
-
-        if (usedColors.ContainsKey("FFFFFF"))
-        {
-            Debug.Log("InputCallback: " + usedColors["FFFFFF"]);
-
-        }
-        else
-        {
-            throw new Exception(String.Format("Key {0} was not found", "FFFFFF"));        
-
-        }
-        
     }
     
     //called every time a color changes
     public void HowManyPiecesAreTheSameColor(string beforeColor, string afterColor)
     {
-        //Debug.Log(beforeColor + " + " + afterColor);
         //https://docs.unity3d.com/ScriptReference/ColorUtility.ToHtmlStringRGB.html?_ga=2.191917357.688254702.1604789679-1992563851.1586013854
         // if the color is used for the first time
-        
-        
         if (!usedColors.ContainsKey(afterColor))
         {
-            Debug.Log("new");
-           
             amount = 1;
-            
             // add to database
             usedColors.Add(afterColor, amount); 
             //instantiate a paintPot for new color
             InstantiatePaintPot(afterColor); 
             paintPot.GetComponentInChildren<TMP_Text>().text = amount.ToString();
-            if (usedColors.ContainsKey(afterColor))
-            {
-                Debug.Log("HowManyColors: " + usedColors[afterColor]);
-
-            }
-            else
-            {
-                throw new Exception(String.Format("Key {0} was not found", afterColor));        
-
-            }
-            if (usedColors.ContainsKey("FFFFFF"))
-            {
-                Debug.Log("HowManyColors: " + usedColors["FFFFFF"]);
-
-            }
-            else
-            {
-                throw new Exception(String.Format("Key {0} was not found", "FFFFFF"));        
-
-            }
-            
-            
         }
         else if (usedColors.ContainsKey(afterColor))
         {
-            Debug.Log("old");
-
             usedColors[afterColor] += 1;
             //find the existing paint pot with that color
             paintPot = GameObject.Find(afterColor).GetComponent<Image>();
             paintPot.GetComponentInChildren<TMP_Text>().text = usedColors[afterColor].ToString();
+            usedColors[afterColor].GetHashCode();
         }
         
         //if the beforeColor was in the database, it was overcolored -> -1
         if (usedColors.ContainsKey(beforeColor)) 
         {
-            Debug.Log("overcolored");
+            //Debug.Log("overcolored");
             usedColors[beforeColor] -= 1;
             //find the existing paint pot with that color
             paintPot = GameObject.Find(beforeColor).GetComponent<Image>();
@@ -123,8 +80,6 @@ public class ColorManager : MonoBehaviour
             }
         }
     }
-
-    
     
    private void InstantiatePaintPot(string newColor)
    {
@@ -136,21 +91,13 @@ public class ColorManager : MonoBehaviour
    }
 
    
-   
-   // TODO OnGenerateDeleteEverything
    public void ResetColorManager()
    {
-       /*foreach (Transform child in palettePanel.transform)
+       foreach (Transform child in content.transform)
        {
-           if (child.GetType() == typeof(Image))
-           {
-               Destroy(child.gameObject);
-           }
-       }*/
-      /* int totalRows = 0;
-       usedColorsAndAmounts.Add("FFFFFF", totalRows); // add to database
-       InstantiatePaintPot("FFFFFF");
-       paintPot.GetComponentInChildren<TMP_Text>().text = totalRows.ToString();*/
+           Destroy(child.gameObject);
+       }
+
        usedColors.Clear();
    }
 
