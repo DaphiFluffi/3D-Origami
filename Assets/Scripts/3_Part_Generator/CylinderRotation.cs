@@ -4,7 +4,8 @@ public class CylinderRotation : MonoBehaviour
 {
     // https://docs.unity3d.com/ScriptReference/Input.GetAxis.html
     public float rotationSpeed = 100.0f;
-
+    private float startingPosition;
+    
     void Update()
     { 
         // Get the horizontal and vertical axis.
@@ -22,6 +23,32 @@ public class CylinderRotation : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             transform.rotation = Quaternion.identity;
+        }
+        
+        //Touch Drag Rotation
+        // thanks to https://answers.unity.com/questions/1681603/how-to-rotate-an-object-using-touch-controls.html
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    startingPosition = touch.position.x;
+                    break;
+                case TouchPhase.Moved:
+                    if (startingPosition > touch.position.x)
+                    {
+                        transform.Rotate(new Vector3(0,1,0), rotationSpeed * Time.deltaTime);
+                    }
+                    else if (startingPosition < touch.position.x)
+                    {
+                        transform.Rotate(new Vector3(0,1,0), -rotationSpeed * Time.deltaTime);
+                    }
+                    break;
+                case TouchPhase.Ended:
+                    Debug.Log("Touch Phase Ended.");
+                    break;
+            }
         }
     }
 }
