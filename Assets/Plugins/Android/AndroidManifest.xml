@@ -12,6 +12,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+            <!-- https://answers.unity.com/questions/1500698/2d-mobile-how-to-support-unusual-aspect-ratios.html -->
             <meta-data android:name="android.max_aspect" android:value="2.1" />
         </activity>
     </application>
