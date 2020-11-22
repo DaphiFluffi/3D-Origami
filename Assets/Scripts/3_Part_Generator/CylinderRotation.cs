@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 public class CylinderRotation : MonoBehaviour
 {
@@ -6,34 +8,51 @@ public class CylinderRotation : MonoBehaviour
     public float rotationSpeed = 100.0f;
     private float startingPositionX;
     private float startingPositionY;
+    private Button resetButton;
     
+    private void ResetRotation()
+    {
+        transform.rotation = Quaternion.identity;
+    }
+    
+    void Start()
+    {
+        resetButton = GameObject.FindGameObjectWithTag("Reset").GetComponent<Button>();
+        resetButton.onClick.AddListener(ResetRotation);
+    }
     void Update()
     {
-        //MovementPlayer();
         // Get the horizontal and vertical axis.
         // By default they are mapped to the arrow keys.
         // The value is in the range -1 to 1
         // TODO restricted vertical rotation
-        /*float rotationX = Input.GetAxis("Vertical") * rotationSpeed;
-        float rotationY = Input.GetAxis("Horizontal") * rotationSpeed;*/
-        float rotationX = CrossPlatformInputManager.GetAxis("Vertical") * rotationSpeed;
-        float rotationY = CrossPlatformInputManager.GetAxis("Horizontal") * rotationSpeed;
-        rotationX *= Time.deltaTime;
-        rotationY *= Time.deltaTime;
+        float rotationX, rotationY;
+        if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            rotationX = Input.GetAxis("Vertical") * rotationSpeed;
+            rotationY = Input.GetAxis("Horizontal") * rotationSpeed;
+            rotationX *= Time.deltaTime;
+            rotationY *= Time.deltaTime;
+            transform.RotateAround(new Vector3(0,0,0), new Vector3(rotationX, rotationY,0), rotationSpeed * Time.deltaTime);
+        }
+        if (SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            rotationX = CrossPlatformInputManager.GetAxis("Vertical") * rotationSpeed;
+            rotationY = CrossPlatformInputManager.GetAxis("Horizontal") * rotationSpeed;
+            rotationX *= Time.deltaTime;
+            rotationY *= Time.deltaTime;
+            transform.RotateAround(new Vector3(0,0,0), new Vector3(rotationX, rotationY,0), rotationSpeed * Time.deltaTime);
+        }
         
-        transform.RotateAround(new Vector3(0,0,0), new Vector3(rotationX, rotationY,0), rotationSpeed * Time.deltaTime);
-        //transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
-
-     
         // reset rotation with space
         if(Input.GetKeyDown(KeyCode.Space))
         {
             ResetRotation();
         }
         
-        //Touch Drag Rotation
+        // Touch Drag Rotation
         // thanks to https://answers.unity.com/questions/1681603/how-to-rotate-an-object-using-touch-controls.html
-        if (Input.touchCount > 0)
+       /* if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             switch (touch.phase)
@@ -51,24 +70,21 @@ public class CylinderRotation : MonoBehaviour
                     {
                         transform.Rotate(new Vector3(0,1,0), -rotationSpeed * Time.deltaTime);
                     }
-                   /* if (startingPositionY > touch.position.y)
+                    if (startingPositionY > touch.position.y)
                     {
                         transform.Rotate(new Vector3(1,0,0), -rotationSpeed * Time.deltaTime);
                     }
                     else if (startingPositionY < touch.position.y)
                     {
                         transform.Rotate(new Vector3(1,0,0), rotationSpeed * Time.deltaTime);
-                    }*/
+                    }
                     break;
                 case TouchPhase.Ended:
                     Debug.Log("Touch Phase Ended.");
                     break;
             }
-        }
+        }*/
     }
 
-    public void ResetRotation()
-    {
-        transform.rotation = Quaternion.identity;
-    }
+   
 }
