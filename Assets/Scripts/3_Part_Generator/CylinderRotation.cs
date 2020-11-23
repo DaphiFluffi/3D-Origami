@@ -37,6 +37,7 @@ public class CylinderRotation : MonoBehaviour
         }
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {
+            //https://www.youtube.com/watch?v=XFbNTeW1d_8
             rotationX = CrossPlatformInputManager.GetAxis("Vertical") * rotationSpeed;
             rotationY = CrossPlatformInputManager.GetAxis("Horizontal") * rotationSpeed;
             rotationX *= Time.deltaTime;

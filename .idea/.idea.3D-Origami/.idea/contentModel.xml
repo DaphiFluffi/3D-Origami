@@ -26,7 +26,6 @@
             <e p="AndroidManifest.xml" t="Include" />
           </e>
         </e>
-        <e p="resetBtn.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="1_Part_HowTo" t="Include">
             <e p="InstructionsController.cs" t="Include" />
