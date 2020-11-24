@@ -46,6 +46,7 @@
             <e p="ProcessGeneratorInputs.cs" t="Include" />
             <e p="ValidateInputs.cs" t="Include" />
           </e>
+          <e p="ClampText.cs" t="Include" />
           <e p="MainMenuController.cs" t="Include" />
           <e p="PanCamera.cs" t="Include" />
         </e>

@@ -38,6 +38,7 @@ public class ColorOrigami : MonoBehaviour
     //https://answers.unity.com/questions/856790/click-gameobject-to-change-color.html
     private void OnMouseDown()
     {
+      
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
