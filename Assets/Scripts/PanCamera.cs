@@ -10,10 +10,23 @@ public class PanCamera : MonoBehaviour
     public Camera cam;
     public float groundZ = 0;
     private Vector3 camStartPos;
+    private int fingerID = -1;
+
     void Awake()
     {
         camStartPos = Camera.main.transform.position;
+        #if !UNITY_EDITOR
+             fingerID = 0;
+        #endif
     }
+
+    void Start()
+    {
+        // prevents phone screen from tutning off 
+        // https://answers.unity.com/questions/46204/stop-mobile-screens-turning-off.html
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+    
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -23,9 +36,16 @@ public class PanCamera : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            Vector3 direction = touchStart - GetWorldPosition(groundZ);
-            cam.transform.position += direction;
-            cam.transform.position = new Vector3( camStartPos.x, cam.transform.position.y, cam.transform.position.z);
+            //https://answers.unity.com/questions/822273/how-to-prevent-raycast-when-clicking-46-ui.html?childToView=862598#answer-862598
+            // prevent raycasts when hovering over UI elements so that using the UI does not pan camera
+            //https://answers.unity.com/questions/988257/eventsystemispointerovergameobject-for-mobile-devi.html
+            // fingerID is so it also warks with touch input
+            if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(fingerID)) 
+            {
+                Vector3 direction = touchStart - GetWorldPosition(groundZ);
+                cam.transform.position += direction;
+                cam.transform.position = new Vector3(camStartPos.x, cam.transform.position.y, cam.transform.position.z); 
+            }
         }
     }
 
