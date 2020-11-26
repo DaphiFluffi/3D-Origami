@@ -69,7 +69,7 @@ public class CircleGenerator : MonoBehaviour
                 // tag row object
                 row.gameObject.tag= "Row";
                 row.gameObject.layer = LayerMask.NameToLayer("Row");
-                row.AddComponent<MeshCollider>();
+                //row.AddComponent<MeshCollider>();
                 if (rows[r] == 2) //decreased row 
                 {
                     // integer divison automatically takes the first number before comma
@@ -182,8 +182,56 @@ public class CircleGenerator : MonoBehaviour
             {
                 generatedRows[i].transform.position = new Vector3(0, i, 0);
             }
+            
         }
     }
+
+    public void RowOnTop()
+    {
+        // herausfinden, wie viele Reihen es bisher gab
+        // eine Reihe mit der teilanzahl der obersten Reihe hinzufügen 
+        // je nach dem ob es eine gerade oder ungerade Reihe ist, verdrehen 
+        // TODO an der richtigen höhe spawnen!!!
+        GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
+        GameObject topRow = generatedRows[generatedRows.Length - 1];
+        int topRowIndex = generatedRows.Length;
+        bool even;
+        even = topRowIndex % 2 == 0;
+        int piecesInTopRow = topRow.transform.childCount;
+        float angleSection = Mathf.PI * 2f / piecesInTopRow;
+        GameObject row = new GameObject {name = topRowIndex + 1 + ".row"};
+        //TODO could be problematic
+        row.transform.parent = generatedCylinder.transform;
+        row.gameObject.tag= "Row";
+
+        
+        for (int a = 0; a < piecesInTopRow; a++)
+        {
+            float angle;
+            if (even) // even row starts counting at 0 degrees
+            {
+                angle = a * angleSection;
+            }
+            else // odd row starts counting at half of the angleSection
+            {
+                angle = (a * angleSection) + (angleSection / 2f);
+            }
+
+            GameObject piece = AssemblePieces(angle, 0.1f, piecesInTopRow, new Vector3(0, 0, 0), 0);
+            // naming every instantiated piece according to its respective row 
+            piece.name = a + 1 + ".piece in the " + (topRowIndex + 1) + ".row";
+            // parenting every piece to its respective row 
+            piece.transform.parent = row.transform;
+            piece.transform.position = new Vector3(0, 0.5f * (topRowIndex), 0);
+
+            //piece.transform.GetChild(0).gameObject.AddComponent<ColorOrigami>();
+            piece.AddComponent<ColorOrigami>();
+        }
+        
+    }
+
+   public void RemoveRow(){}
+
 
     /*public void InvertRows(string rowsToInvert)
     {
