@@ -31,7 +31,7 @@ public class ColorOrigami : MonoBehaviour
         }
 
         OnColorChanged.AddListener(colorManager.HowManyPiecesAreTheSameColor);
-        currentColor = GetComponent<Renderer>().material.color;
+         currentColor = GetComponent<Renderer>().material.color;
         
     }
     
@@ -45,6 +45,7 @@ public class ColorOrigami : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100))
             {
+
                 if (fcp != null && currentColor != fcp.color)
                 { 
                     OnColorChanged.Invoke(ColorUtility.ToHtmlStringRGB(GetComponent<Renderer>().material.color), ColorUtility.ToHtmlStringRGB(fcp.color));
