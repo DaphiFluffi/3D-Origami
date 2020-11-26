@@ -57,16 +57,19 @@ public class CircleGenerator : MonoBehaviour
             // parent cylinder object
             generatedCylinder = new GameObject {name = "cylinder"};
             generatedCylinder.AddComponent<CylinderRotation>();
-            
+            generatedCylinder.gameObject.layer = LayerMask.NameToLayer("All");
+
             for (int r = 0; r < rows.Length; r++)
             {
                 center.y = distance * r;
                 //parent row object
                 GameObject row = new GameObject {name = r + 1 + ".row"};
                 row.transform.parent = generatedCylinder.transform;
+
                 // tag row object
                 row.gameObject.tag= "Row";
-                
+                row.gameObject.layer = LayerMask.NameToLayer("Row");
+                row.AddComponent<MeshCollider>();
                 if (rows[r] == 2) //decreased row 
                 {
                     // integer divison automatically takes the first number before comma
@@ -160,6 +163,7 @@ public class CircleGenerator : MonoBehaviour
         spawnPosition.y += yPosition;
         // so that the pieces look towards the center 
         GameObject piece = Instantiate(pieceModel, spawnPosition, Quaternion.LookRotation((center - spawnPosition) + new Vector3(0,0.1f, 0)));
+        piece.gameObject.layer = LayerMask.NameToLayer("Piece");
         totalPieces++;
         return piece;
     }

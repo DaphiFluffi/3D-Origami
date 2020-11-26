@@ -5,6 +5,8 @@
     <e p="C:\Users\mcflu\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_3D-Origami.1577317104.00" t="ExcludeRecursive" />
     <e p="C:\Users\mcflu\git\3D-Origami" t="IncludeRecursive">
       <e p="3D-Origami.sln" t="IncludeFlat" />
+      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="FlexibleColorPicker" t="Include">
@@ -17,6 +19,11 @@
           <e p="Scripts" t="Include">
             <e p="FCP_SpriteMeshEditor.cs" t="Include" />
             <e p="FlexibleColorPicker.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Plugins" t="Include">
+          <e p="Android" t="Include">
+            <e p="AndroidManifest.xml" t="Include" />
           </e>
         </e>
         <e p="Scripts" t="Include">
@@ -39,8 +46,34 @@
             <e p="ProcessGeneratorInputs.cs" t="Include" />
             <e p="ValidateInputs.cs" t="Include" />
           </e>
+          <e p="ClampText.cs" t="Include" />
           <e p="MainMenuController.cs" t="Include" />
           <e p="PanCamera.cs" t="Include" />
+        </e>
+        <e p="Standard Assets" t="Include">
+          <e p="CrossPlatformInput" t="Include">
+            <e p="CrossPlatformInputGuidelines.txt" t="Include" />
+            <e p="Scripts" t="Include">
+              <e p="AxisTouchButton.cs" t="Include" />
+              <e p="ButtonHandler.cs" t="Include" />
+              <e p="CrossPlatformInputManager.cs" t="Include" />
+              <e p="InputAxisScrollbar.cs" t="Include" />
+              <e p="Joystick.cs" t="Include" />
+              <e p="MobileControlRig.cs" t="Include" />
+              <e p="PlatformSpecific" t="Include">
+                <e p="MobileInput.cs" t="Include" />
+                <e p="StandaloneInput.cs" t="Include" />
+              </e>
+              <e p="TiltInput.cs" t="Include" />
+              <e p="TouchPad.cs" t="Include" />
+              <e p="VirtualInput.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Editor" t="Include">
+            <e p="CrossPlatformInput" t="Include">
+              <e p="CrossPlatformInputInitialize.cs" t="Include" />
+            </e>
+          </e>
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Examples &amp; Extras" t="Include">
