@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 public class CylinderRotation : MonoBehaviour
@@ -9,7 +10,8 @@ public class CylinderRotation : MonoBehaviour
     private float startingPositionX;
     private float startingPositionY;
     private Button resetButton;
-    
+    float rotationX = 0; 
+    float rotationY = 0;
     private void ResetRotation()
     {
         transform.rotation = Quaternion.identity;
@@ -26,23 +28,37 @@ public class CylinderRotation : MonoBehaviour
         // By default they are mapped to the arrow keys.
         // The value is in the range -1 to 1
         // TODO restricted vertical rotation
-        float rotationX, rotationY;
+        
         if (SystemInfo.deviceType == DeviceType.Desktop)
         {
             rotationX = Input.GetAxis("Vertical") * rotationSpeed;
             rotationY = Input.GetAxis("Horizontal") * rotationSpeed;
-            rotationX *= Time.deltaTime;
-            rotationY *= Time.deltaTime;
-            transform.RotateAround(new Vector3(0,0,0), new Vector3(rotationX, rotationY,0), rotationSpeed * Time.deltaTime);
+            //rotationX *= Time.deltaTime;
+            //rotationY *= Time.deltaTime;
+           // transform.RotateAround(new Vector3(0,0,0), new Vector3(rotationX, rotationY,0), rotationSpeed * Time.deltaTime);
         }
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {
             //https://www.youtube.com/watch?v=XFbNTeW1d_8
             rotationX = CrossPlatformInputManager.GetAxis("Vertical") * rotationSpeed;
             rotationY = CrossPlatformInputManager.GetAxis("Horizontal") * rotationSpeed;
-            rotationX *= Time.deltaTime;
-            rotationY *= Time.deltaTime;
-            transform.RotateAround(new Vector3(0,0,0), new Vector3(rotationX, rotationY,0), rotationSpeed * Time.deltaTime);
+        }
+        
+        rotationX *= Time.deltaTime;
+        rotationY *= Time.deltaTime;
+        
+        //Generator Scene
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+           // transform.RotateAround(new Vector3(0, 0, 0), new Vector3(rotationX, rotationY, 0),
+           //     rotationSpeed * Time.deltaTime);
+            transform.Rotate(rotationX, rotationY, 0, Space.Self);
+
+        }
+        // How to fold Pieces Scene
+        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            transform.Rotate(rotationX,0, rotationY, Space.Self);
         }
         
         // reset rotation with space
