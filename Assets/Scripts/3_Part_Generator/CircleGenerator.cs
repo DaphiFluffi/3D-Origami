@@ -7,12 +7,7 @@ using UnityEngine.UIElements;
 public class CircleGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject pieceModel = default;
-    //[SerializeField] private GameObject decreasedPieceModel = default;
-    /*[SerializeField] private float rows = 4f;
-    [SerializeField] private int amountPerRow = 5;
-    [SerializeField] private bool collapsed = false;
-    [SerializeField] private int invertedRow = default;*/
-
+    
     private GameObject generatedCylinder;
     private bool isCreated;
 
@@ -22,10 +17,12 @@ public class CircleGenerator : MonoBehaviour
     {
         return totalPieces;
     }
-    /*private void Start()
+
+    public GameObject GetGeneratedCylinder()
     {
-        GenerateCylinder(rows, prefabToInstantiate, amountPerRow, invertedRow);
-    }*/
+        return generatedCylinder;
+    }
+    
 
     /// <summary> 
     ///    Spawns a cylinder with an equal amount of pieces per row
@@ -57,7 +54,7 @@ public class CircleGenerator : MonoBehaviour
             // parent cylinder object
             generatedCylinder = new GameObject {name = "cylinder"};
             generatedCylinder.AddComponent<CylinderRotation>();
-            generatedCylinder.gameObject.layer = LayerMask.NameToLayer("All");
+            generatedCylinder.gameObject.tag= "Cylinder";
 
             for (int r = 0; r < rows.Length; r++)
             {
@@ -99,7 +96,7 @@ public class CircleGenerator : MonoBehaviour
                     {
                         angle = (a * angleSection) + (angleSection / 2f);
                     }
-
+                   
                     GameObject piece;
                     
                     if (rows[r] == 1) //inverted Row
@@ -154,7 +151,8 @@ public class CircleGenerator : MonoBehaviour
         }
     }
 
-    private GameObject AssemblePieces(float angle, float radius, int amountPerRow, Vector3 center, float yPosition)
+    //TODO make this not have to be public anymoreee :( 
+    public GameObject AssemblePieces(float angle, float radius, int amountPerRow, Vector3 center, float yPosition)
     {
         radius = radius * amountPerRow; 
         // How to instantiate game objects around a point https://answers.unity.com/questions/1068513/place-8-objects-around-a-target-gameobject.html
@@ -163,7 +161,6 @@ public class CircleGenerator : MonoBehaviour
         spawnPosition.y += yPosition;
         // so that the pieces look towards the center 
         GameObject piece = Instantiate(pieceModel, spawnPosition, Quaternion.LookRotation((center - spawnPosition) + new Vector3(0,0.1f, 0)));
-        piece.gameObject.layer = LayerMask.NameToLayer("Piece");
         totalPieces++;
         return piece;
     }
@@ -186,28 +183,27 @@ public class CircleGenerator : MonoBehaviour
         }
     }
 
-    public void RowOnTop()
+    /*public void RowOnTop()
     {
         // herausfinden, wie viele Reihen es bisher gab
         // eine Reihe mit der teilanzahl der obersten Reihe hinzufügen 
         // je nach dem ob es eine gerade oder ungerade Reihe ist, verdrehen 
         // TODO an der richtigen höhe spawnen!!!
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
-        GameObject topRow = generatedRows[generatedRows.Length - 1];
         int topRowIndex = generatedRows.Length;
-        bool even;
-        even = topRowIndex % 2 == 0;
+        GameObject topRow = generatedRows[generatedRows.Length - 1];
         int piecesInTopRow = topRow.transform.childCount;
-        float angleSection = Mathf.PI * 2f / piecesInTopRow;
+        bool even = topRowIndex % 2 == 0;
         GameObject row = new GameObject {name = topRowIndex + 1 + ".row"};
         //TODO could be problematic
         row.transform.parent = generatedCylinder.transform;
         row.gameObject.tag= "Row";
-
-        
+       
         for (int a = 0; a < piecesInTopRow; a++)
         {
             float angle;
+            float angleSection = Mathf.PI * 2f / piecesInTopRow;
+
             if (even) // even row starts counting at 0 degrees
             {
                 angle = a * angleSection;
@@ -216,41 +212,43 @@ public class CircleGenerator : MonoBehaviour
             {
                 angle = (a * angleSection) + (angleSection / 2f);
             }
-
-            GameObject piece = AssemblePieces(angle, 0.1f, piecesInTopRow, new Vector3(0, 0, 0), 0);
+            GameObject piece = AssemblePieces(angle, 0.08f, piecesInTopRow, new Vector3(0 , 0.5f * topRowIndex, 0), 0);
             // naming every instantiated piece according to its respective row 
             piece.name = a + 1 + ".piece in the " + (topRowIndex + 1) + ".row";
             // parenting every piece to its respective row 
             piece.transform.parent = row.transform;
-            piece.transform.position = new Vector3(0, 0.5f * (topRowIndex), 0);
-
-            //piece.transform.GetChild(0).gameObject.AddComponent<ColorOrigami>();
+            //TODO send this to colororigami 
+            totalPieces++;
             piece.AddComponent<ColorOrigami>();
+            
         }
         
-    }
+    }*/
 
    public void RemoveRow(){}
 
 
-    /*public void InvertRows(string rowsToInvert)
+    public void InvertRows(string rowsToInvert)
     {
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         // for every row on generated Rows that has a number mentioned in rowsTOInvert[] I want to turn it around 
-
         for (int i = 0; i < generatedRows.Length; i++)
         {
             if(rowsToInvert.Contains((i+1).ToString())) //only works thanks to LINQ
             {
-                Debug.Log((i+1));
                 Transform[] children = generatedRows[i].GetComponentsInChildren<Transform>();
+                float changedRadius = 13f / 8f;
                 for (int j = 0; j < children.Length; j++)
                 {
-                    // invert back when 0 
-                    //change the radius too :( 
-                    children[j].rotation *= Quaternion.Euler(0f, 180f, 0f); //turn the piece to face inwards
+                    // TODO invert back when 0 
+                    // TODO  has to interact with height width script
+                    // turn the piece to face inwards
+                    children[j].rotation *= Quaternion.Euler(0f, 180f, 0f); 
+                    //leave the y position as it was 
+                    children[j].position = Vector3.Scale(children[j].position, new Vector3(changedRadius, 1f, changedRadius));
+
                 }
             }
         }
-    }*/
+    }
 }

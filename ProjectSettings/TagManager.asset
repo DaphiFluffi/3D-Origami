@@ -8,6 +8,7 @@ TagManager:
   - Palette
   - Content
   - Reset
+  - Cylinder
   layers:
   - Default
   - TransparentFX

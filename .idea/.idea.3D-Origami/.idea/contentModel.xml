@@ -29,7 +29,6 @@
         <e p="Scripts" t="Include">
           <e p="1_Part_HowTo" t="Include">
             <e p="InstructionsController.cs" t="Include" />
-            <e p="RotationControlls.cs" t="Include" />
             <e p="SpeedSettings.cs" t="Include" />
             <e p="TutorialController.cs" t="Include" />
           </e>
@@ -42,11 +41,13 @@
               <e p="ColorOrigami.cs" t="Include" />
               <e p="ColorToggle.cs" t="Include" />
             </e>
-            <e p="CylinderRotation.cs" t="Include" />
+            <e p="Customization.cs" t="Include" />
             <e p="Generator.cs" t="Include" />
             <e p="ProcessGeneratorInputs.cs" t="Include" />
+            <e p="Singleton.cs" t="Include" />
             <e p="ValidateInputs.cs" t="Include" />
           </e>
+          <e p="CylinderRotation.cs" t="Include" />
           <e p="MainMenuController.cs" t="Include" />
           <e p="PanCamera.cs" t="Include" />
         </e>
