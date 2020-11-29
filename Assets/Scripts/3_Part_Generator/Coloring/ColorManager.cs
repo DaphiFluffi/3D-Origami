@@ -30,13 +30,25 @@ public class ColorManager : MonoBehaviour
         //scrollView.SetActive(false);
     }
     
-    //called on Generate Button
     public void InputCallback(int totalPieces)
     {
-        usedColors.Add("FFFFFF", totalPieces);
-        //instantiate a paintPot for white
-        InstantiatePaintPot("FFFFFF");
-        SetPaintPotText(totalPieces);
+        string white = "FFFFFF";
+        //called on Generate Button
+        if (!usedColors.ContainsKey(white))
+        {
+            usedColors.Add(white, totalPieces);
+            //instantiate a paintPot for white
+            InstantiatePaintPot(white);
+            SetPaintPotText(totalPieces);
+        }
+        // called from RowOnTop Button 
+        else
+        {
+            usedColors[white] += totalPieces;
+            //find the existing paint pot with that color
+            paintPot = GameObject.Find(white).GetComponent<Image>();
+            SetPaintPotText(usedColors[white]);
+        }
     }
     
     //called every time a color changes

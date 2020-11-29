@@ -103,6 +103,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
 
         //TODO make function access not public
         generator.GenerateCylinder(rowsInfo, amountPerRow);
+       // Generator.Instance.GenerateCylinder(rowsInfo, amountPerRow);
         calculator.CalculateDimensions(rowsInfo, amountPerRow);
         widthTMP.text = "w: " + calculator.GetWidth() + " cm";
         heightTMP.text = "h: " + calculator.GetHeight() + " cm";

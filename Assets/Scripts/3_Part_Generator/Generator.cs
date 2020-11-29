@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-[SerializeField] private GameObject pieceModel = default;
-    //[SerializeField] private GameObject decreasedPieceModel = default;
-    /*[SerializeField] private float rows = 4f;
-    [SerializeField] private int amountPerRow = 5;
-    [SerializeField] private bool collapsed = false;
-    [SerializeField] private int invertedRow = default;*/
+    [SerializeField] private GameObject pieceModel = default;
 
     private GameObject generatedCylinder;
     private bool isCreated;
@@ -20,11 +15,7 @@ public class Generator : MonoBehaviour
     {
         return totalPieces;
     }
-    /*private void Start()
-    {
-        GenerateCylinder(rows, prefabToInstantiate, amountPerRow, invertedRow);
-    }*/
-
+    
     /// <summary> 
     ///    Spawns a cylinder with an equal amount of pieces per row
     ///    while the amount of rows is up to the user.
@@ -55,7 +46,6 @@ public class Generator : MonoBehaviour
             // parent cylinder object
             generatedCylinder = new GameObject {name = "cylinder"};
             generatedCylinder.AddComponent<CylinderRotation>();
-            generatedCylinder.gameObject.layer = LayerMask.NameToLayer("All");
 
             for (int r = 0; r < rows.Length; r++)
             {
@@ -63,20 +53,14 @@ public class Generator : MonoBehaviour
                 //parent row object
                 GameObject row = new GameObject {name = r + 1 + ".row"};
                 row.transform.parent = generatedCylinder.transform;
-
                 // tag row object
                 row.gameObject.tag= "Row";
-                row.gameObject.layer = LayerMask.NameToLayer("Row");
-                //row.AddComponent<MeshCollider>();
+                
+                //determine amount per row 
                 if (rows[r] == 2) //decreased row 
                 {
                     // integer divison automatically takes the first number before comma
-                    // only allow rows that are divisible by 3 
-                    int decreasedAmount = (2 * amountPerRow) / 3; 
-                    /*if (amountPerRow % 3 > 0) // not a multiple of 3 
-                    {
-                        decreasedAmount += 1;
-                    }*/
+                    int decreasedAmount = (2 * amountPerRow) / 3;
                     amountPerRow = decreasedAmount;
                 }
                 if (rows[r] == 3) //increased row 
@@ -152,6 +136,60 @@ public class Generator : MonoBehaviour
         }
     }
 
+    
+     public void GenerateBasicCylinder(int[] rows, int amountPerRow)
+    {
+        // replace the old generated Cylinder once a new one is requested to be generated
+        Destroy(generatedCylinder);
+        isCreated = false;
+        totalPieces = 0;
+        if (!isCreated) // so that only one cylinder is created
+        {
+            Vector3 center = new Vector3(0, 0, 0); 
+         
+            float angle;
+            // empirically, with this distance the pieces look like they were stacked on top of each other
+            float distance = 0.5f; 
+            
+            // parent cylinder object
+            generatedCylinder = new GameObject {name = "cylinder"};
+            generatedCylinder.AddComponent<CylinderRotation>();
+
+            for (int r = 0; r < rows.Length; r++)
+            {
+                center.y = distance * r;
+                //parent row object
+                GameObject row = new GameObject {name = r + 1 + ".row"};
+                row.transform.parent = generatedCylinder.transform;
+                // tag row object
+                row.gameObject.tag= "Row";
+                
+                for (int a = 0; a < amountPerRow; a++)
+                {
+                    float angleSection = Mathf.PI * 2f / amountPerRow;
+
+                    if (r % 2 == 0) // even row starts counting at 0 degrees
+                    {
+                        angle = a * angleSection;
+                    }
+                    else // odd row starts counting at half of the angleSection
+                    {
+                        angle = (a * angleSection) + (angleSection / 2f);
+                    }
+
+                    GameObject piece = AssemblePieces(angle, 0.08f, amountPerRow, center, 0);
+                    // naming every instantiated piece according to its respective row 
+                    piece.name = a + 1 + ".piece in the " + (r + 1) + ".row";
+                    // parenting every piece to its respective row 
+                    piece.transform.parent = row.transform;
+                    piece.AddComponent<ColorOrigami>();
+                }
+            }
+            isCreated = true;
+        }
+    }
+     
+     
     private GameObject AssemblePieces(float angle, float radius, int amountPerRow, Vector3 center, float yPosition)
     {
         radius = radius * amountPerRow; 
@@ -161,7 +199,6 @@ public class Generator : MonoBehaviour
         spawnPosition.y += yPosition;
         // so that the pieces look towards the center 
         GameObject piece = Instantiate(pieceModel, spawnPosition, Quaternion.LookRotation((center - spawnPosition) + new Vector3(0,0.1f, 0)));
-        piece.gameObject.layer = LayerMask.NameToLayer("Piece");
         totalPieces++;
         return piece;
     }
@@ -186,16 +223,14 @@ public class Generator : MonoBehaviour
 
     public void RowOnTop()
     {
-        // herausfinden, wie viele Reihen es bisher gab
         // eine Reihe mit der teilanzahl der obersten Reihe hinzufügen 
         // je nach dem ob es eine gerade oder ungerade Reihe ist, verdrehen 
         // TODO an der richtigen höhe spawnen!!!
+        // herausfinden, wie viele Reihen es bisher gab
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
-        GameObject topRow = generatedRows[generatedRows.Length - 1];
         int topRowIndex = generatedRows.Length;
-        bool even;
-        even = topRowIndex % 2 == 0;
-        int piecesInTopRow = topRow.transform.childCount;
+        bool even = topRowIndex % 2 == 0;
+        int piecesInTopRow = generatedRows[generatedRows.Length - 1].transform.childCount;
         float angleSection = Mathf.PI * 2f / piecesInTopRow;
         GameObject row = new GameObject {name = topRowIndex + 1 + ".row"};
         //TODO could be problematic
@@ -215,17 +250,15 @@ public class Generator : MonoBehaviour
                 angle = (a * angleSection) + (angleSection / 2f);
             }
 
-            GameObject piece = AssemblePieces(angle, 0.1f, piecesInTopRow, new Vector3(0, 0, 0), 0);
+            GameObject piece = AssemblePieces(angle, 1f, piecesInTopRow, new Vector3(0, 0, 0), 0);
             // naming every instantiated piece according to its respective row 
             piece.name = a + 1 + ".piece in the " + (topRowIndex + 1) + ".row";
             // parenting every piece to its respective row 
             piece.transform.parent = row.transform;
             piece.transform.position = new Vector3(0, 0.5f * (topRowIndex), 0);
-
             //piece.transform.GetChild(0).gameObject.AddComponent<ColorOrigami>();
             piece.AddComponent<ColorOrigami>();
         }
-        
     }
 
    public void RemoveRow(){}
