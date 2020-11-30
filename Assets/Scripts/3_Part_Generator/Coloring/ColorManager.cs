@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Debug = UnityEngine.Debug;
 
 public class ColorManager : MonoBehaviour
 {
@@ -16,14 +14,10 @@ public class ColorManager : MonoBehaviour
     
     private Dictionary<string, int> usedColors;
     
-    private int hashWhite;
-    private int amount;
     private int totalAmount;
     void Start()
     {
-        // TODO why? when it used to be <Color,int> it did not work 
-        // I would have had to override Equals() function
-        // for dictionaries with complex keys
+       
         usedColors = new Dictionary<string, int>();
         content = GameObject.FindGameObjectWithTag("Content");
         scrollView = GameObject.FindGameObjectWithTag("Palette");
@@ -41,7 +35,7 @@ public class ColorManager : MonoBehaviour
             InstantiatePaintPot(white);
             SetPaintPotText(totalPieces);
         }
-        // called from RowOnTop Button 
+        // called from AddRow and RemoveRow Button 
         else
         {
             usedColors[white] += totalPieces;

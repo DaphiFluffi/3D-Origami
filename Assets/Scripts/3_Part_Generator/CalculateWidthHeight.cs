@@ -23,7 +23,6 @@ public class CalculateWidthHeight : MonoBehaviour
         width = 3.4f + (0.05f * amountPerRow);
         height = 2f + 0.5f * (rows.Length - 1); 
         
-        //TODO should I allow a minimum of 2 rows
         // if we have an inverted row in the first row and the model does not only consist of one row
         if (rows[0] == 1 && rows[rows.Length -1] != 1)
         {
