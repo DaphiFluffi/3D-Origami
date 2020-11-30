@@ -15,7 +15,7 @@ public class PanCamera : MonoBehaviour
     void Awake()
     {
         camStartPos = Camera.main.transform.position;
-        #if !UNITY_EDITOR
+        #if !UNITY_EDITOR && !_UNITY_WEBGL
              fingerID = 0;
         #endif
     }
