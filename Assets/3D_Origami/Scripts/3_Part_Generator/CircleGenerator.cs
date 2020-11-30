@@ -50,11 +50,7 @@ public class CircleGenerator : MonoBehaviour
                 {
                     // integer divison automatically takes the first number before comma
                     // only allow rows that are divisible by 3 
-                    int decreasedAmount = (2 * amountPerRow) / 3; 
-                    /*if (amountPerRow % 3 > 0) // not a multiple of 3 
-                    {
-                        decreasedAmount += 1;
-                    }*/
+                    int decreasedAmount = (2 * amountPerRow) / 3;
                     amountPerRow = decreasedAmount;
                 }
                 if (rows[r] == 3) //increased row 
@@ -78,12 +74,7 @@ public class CircleGenerator : MonoBehaviour
                    
                     GameObject piece;
                     
-                    if (rows[r] == 1) //inverted Row
-                    {
-                        piece = AssemblePieces(angle, 0.13f, amountPerRow, center, 0);
-                        piece.transform.rotation *= Quaternion.Euler(0f, 180f, 0f); //turn the piece to face inwards
-                    }
-                    else if (rows[r] == 2) //decreased row
+                    if (rows[r] == 2) //decreased row
                     {
                         // yPosition was added so that the decreased row faces inwards slightly
                         // that way the tips dont overlap with the row on top 
