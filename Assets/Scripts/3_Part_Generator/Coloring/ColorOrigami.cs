@@ -5,14 +5,12 @@ using UnityEngine.Events;
 [System.Serializable]
 public class ColorEvent : UnityEvent<string, string>
 {
-    //Color before and after
+    //Color Hex before and after
 }
 
 public class ColorOrigami : MonoBehaviour
 {
-    // ich müsste hier simulieren, dass wenn die teile generiert werden alle weiß sind 
-    //TODO can this be private?
-    public ColorEvent OnColorChanged;
+    private ColorEvent OnColorChanged;
     private FlexibleColorPicker fcp;
     private Color currentColor;
     private ColorManager colorManager;
@@ -31,7 +29,7 @@ public class ColorOrigami : MonoBehaviour
         }
 
         OnColorChanged.AddListener(colorManager.HowManyPiecesAreTheSameColor);
-         currentColor = GetComponent<Renderer>().material.color;
+        currentColor = GetComponent<Renderer>().material.color;
         
     }
     

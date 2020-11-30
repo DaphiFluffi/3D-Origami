@@ -42,9 +42,7 @@
               <e p="ColorToggle.cs" t="Include" />
             </e>
             <e p="Customization.cs" t="Include" />
-            <e p="Generator.cs" t="Include" />
             <e p="ProcessGeneratorInputs.cs" t="Include" />
-            <e p="Singleton.cs" t="Include" />
             <e p="ValidateInputs.cs" t="Include" />
           </e>
           <e p="CylinderRotation.cs" t="Include" />
