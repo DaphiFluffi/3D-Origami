@@ -9,6 +9,7 @@ public class Customization : MonoBehaviour
     private ColorManager colorManager;
     private CircleGenerator generator;
     private int extraPieces;
+    
     void Awake()
     {
         colorManager = FindObjectOfType<ColorManager>();
@@ -42,6 +43,7 @@ public class Customization : MonoBehaviour
     
     public void RowOnTop()
     {
+        //TODO validations kinda fail 
         extraPieces = 0;
         //TODO somehow make this not be a repetition of GenerateCylinder()
         //TODO communicate with Height/Width Script
@@ -89,7 +91,7 @@ public class Customization : MonoBehaviour
     {
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         int topRowIndex = generatedRows.Length -1 ;
-        GameObject topRow = generatedRows[generatedRows.Length - 1];
+        GameObject topRow = generatedRows[topRowIndex];
         int piecesInTopRow = topRow.transform.childCount;
         Destroy(generatedRows[topRowIndex]);
         OnAddRemove.Invoke(- piecesInTopRow);
