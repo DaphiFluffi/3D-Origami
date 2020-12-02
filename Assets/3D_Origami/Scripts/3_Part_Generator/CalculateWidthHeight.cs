@@ -1,54 +1,55 @@
 ﻿using System.Linq;
 using UnityEngine;
-
+using TMPro;
 public class CalculateWidthHeight : MonoBehaviour
 {
     private float width;
     private float height;
-
-    public float GetWidth()
+    [SerializeField] private TMP_Text widthTMP = default;
+    [SerializeField] private TMP_Text heightTMP = default;
+    
+    public void CalculateDimensions(int topRowIndex, int amountPerRow)
     {
-        return width; 
-    }
-
-    public float GetHeight()
-    {
-        return height; 
+        width = 3.4f + (0.05f * amountPerRow);
+        height = 2f + 0.5f * (topRowIndex);
+        widthTMP.text = "w: " + width + " cm";
+        heightTMP.text = "h: " + height + " cm";
     }
     
-    public void CalculateDimensions(int[] rows, int amountPerRow)
+    public void CalculateDimensions(bool addOrRemove)
     {
-        // for normal rows 
-        // width is not affected by inverted rows
-        width = 3.4f + (0.05f * amountPerRow);
-        height = 2f + 0.5f * (rows.Length - 1); 
-        
+        //true = add
+        if (addOrRemove)
+        {
+            height += 0.5f;
+        }
+        else
+        {
+            height -= 0.5f;
+        }
+        heightTMP.text = "h: " + height + " cm";
+    }
+
+    public void CalculateDimensions(bool[] invertedInfo)
+    {
         // if we have an inverted row in the first row and the model does not only consist of one row
-        if (rows[0] == 1 && rows[rows.Length -1] != 1)
+        if (invertedInfo[0])
         {
             height -= 0.5f;
         }
         else
         {
             // if there are inverted rows at the top 
-            if (rows.Contains(1) && rows[rows.Length - 1] == 1 && rows[rows.Length - 2] == 1)
+            if (invertedInfo[1])
             {
                 height += 0.5f;
             }
-
-            int index = 0;
-            for (int i = 0; i < rows.Length; i++)
+        
+            if (invertedInfo[2])
             {
-                if (rows[i] == 1)
-                {
-                    index++;
-                    //if the entire model is out of inverted rows 
-                    if (index == rows.Length)
-                    {
-                        height -= 0.5f; 
-                    }
-                }
+                height -= 0.5f; 
             }
         }
+        heightTMP.text = "h: " + height + " cm";
     }
 }

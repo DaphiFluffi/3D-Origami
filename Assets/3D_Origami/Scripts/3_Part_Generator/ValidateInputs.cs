@@ -13,10 +13,12 @@ public class ValidateInputs : MonoBehaviour
     [SerializeField] private Button generateButton = default; 
     [SerializeField] private GameObject errorPanel = default;
     private TMP_Text errorText;
-
+    private Color panelColor;
+    private GameObject[] generatedRows;
     void Awake()
     {
         errorText = errorPanel.transform.Find("ErrorMessage").GetComponent<TMP_Text>();
+        panelColor = errorPanel.GetComponent<Image>().color;
         errorPanel.SetActive(false);
     }
     
@@ -38,6 +40,37 @@ public class ValidateInputs : MonoBehaviour
             generateButton.enabled = true;
             generateButton.GetComponent<Image>().color = Color.white; 
         }
+    }
+
+    private void ShowErrorMessage(string errorDescription)
+    {
+        errorPanel.SetActive(true);
+        errorText.text = errorDescription;
+    }
+
+    private void HideErrorMessage()
+    {
+        errorPanel.SetActive(false);
+    }
+    
+    public void CheckAdd()
+    {
+        generatedRows= GameObject.FindGameObjectsWithTag("Row");
+        if (generatedRows.Length == 30)
+        {
+            ShowErrorMessage("There can be a maximum of 30 rows.");
+        }
+        Invoke("HideErrorMessage", 3f);
+    }
+
+    public void CheckRemove()
+    {
+        generatedRows = GameObject.FindGameObjectsWithTag("Row");
+        if (generatedRows.Length == 2)
+        {
+            ShowErrorMessage("There can be a minimum of 2 rows.");
+        }
+        Invoke("HideErrorMessage", 3f);
     }
 
     private void InputFieldsCantBeEmpty(string inputString)
@@ -63,13 +96,13 @@ public class ValidateInputs : MonoBehaviour
     {
         InputFieldsCantBeEmpty(rowString);
         int rowInt = int.Parse(rowString);
-        if (rowInt < 1 || rowInt > 30)
+        if (rowInt < 2 || rowInt > 30)
         {
-            ShowErrorMessage("Rows have a minimum value of 1 and a maximum of 30.", true);
+            ShowErrorMessage("Rows have a minimum value of 2 and a maximum of 30.", true);
         }
         else
         {
-            ShowErrorMessage("Rows have a minimum value of 1 and a maximum of 30.", false);
+            ShowErrorMessage("Rows have a minimum value of 2 and a maximum of 30.", false);
         }
         if (rowInt == 1)
         {
@@ -151,6 +184,18 @@ public class ValidateInputs : MonoBehaviour
         else
         {
          ShowErrorMessage(" Please type in the rows' numbers separated by commas.", true);
+        }
+    }
+
+    public void CheckDecreasedInput(string decreasedString)
+    {
+        if (decreasedString.Contains("1"))
+        {
+            ShowErrorMessage("First row cannot be decreased.", true);
+        }
+        else
+        {
+            ShowErrorMessage("First row cannot be decreased.", false);
         }
     }
 }
