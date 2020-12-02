@@ -312,7 +312,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000076293945, y: -10.3194475}
+  m_AnchoredPosition: {x: 0.000076293945, y: -10.319452}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.15, y: 0.85}
 --- !u!114 &46924575
@@ -742,15 +742,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rowsInput: {fileID: 401162607}
   amountPerRowInput: {fileID: 1014887753}
-  origamiObject: {fileID: 1711409596}
   whereToAddDecreasedRow: {fileID: 1769947812}
   whereToAddIncreasedRow: {fileID: 2144849690}
-  widthTMP: {fileID: 39630777}
-  heightTMP: {fileID: 1500505036}
   collapsed: {fileID: 864616231}
-  OnNewCylinder:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!224 &182706319 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2048520411927395847, guid: f678df2965129e64c99660f410a07a37,
@@ -2732,6 +2726,7 @@ GameObject:
   - component: {fileID: 672810653}
   - component: {fileID: 672810655}
   - component: {fileID: 672810654}
+  - component: {fileID: 672810656}
   m_Layer: 5
   m_Name: HeightWidthPanel
   m_TagString: Untagged
@@ -2797,6 +2792,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672810652}
   m_CullTransparentMesh: 0
+--- !u!114 &672810656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672810652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c7197bbbc5ac24aa7c6f724155ac9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  widthTMP: {fileID: 39630777}
+  heightTMP: {fileID: 1500505036}
 --- !u!1 &703355620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3709,16 +3718,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818348322}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1038885137}
-  m_RootOrder: 12
+  m_Father: {fileID: 899598720}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 149, y: -127.93}
+  m_AnchoredPosition: {x: -175, y: 34.27001}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &818348324
@@ -3764,7 +3773,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1711409601}
+      - m_Target: {fileID: 147669141}
+        m_MethodName: CheckAddAndRemove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 899598723}
         m_MethodName: RowOnTop
         m_Mode: 1
         m_Arguments:
@@ -4211,7 +4231,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1711409601}
+      - m_Target: {fileID: 899598723}
         m_MethodName: CollapseCylinder
         m_Mode: 0
         m_Arguments:
@@ -4234,6 +4254,7 @@ GameObject:
   - component: {fileID: 899598720}
   - component: {fileID: 899598722}
   - component: {fileID: 899598721}
+  - component: {fileID: 899598723}
   m_Layer: 5
   m_Name: CustomizationPanel
   m_TagString: Untagged
@@ -4256,6 +4277,8 @@ RectTransform:
   - {fileID: 864616230}
   - {fileID: 1786144376}
   - {fileID: 859274372}
+  - {fileID: 818348323}
+  - {fileID: 1046776984}
   m_Father: {fileID: 1038885137}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4301,6 +4324,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899598719}
   m_CullTransparentMesh: 0
+--- !u!114 &899598723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899598719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dda07b82e3a8b41946456044de9c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &981036668
 GameObject:
   m_ObjectHideFlags: 0
@@ -4540,8 +4575,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1780124095}
   m_HandleRect: {fileID: 1780124094}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.8499998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4869,8 +4904,6 @@ RectTransform:
   - {fileID: 643055139}
   - {fileID: 747153096}
   - {fileID: 182706319}
-  - {fileID: 818348323}
-  - {fileID: 1046776984}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5063,16 +5096,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046776983}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1038885137}
-  m_RootOrder: 13
+  m_Father: {fileID: 899598720}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 149, y: -192.06}
+  m_AnchoredPosition: {x: -175, y: -29.859985}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1046776985
@@ -5118,7 +5151,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1711409601}
+      - m_Target: {fileID: 147669141}
+        m_MethodName: CheckAddAndRemove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 899598723}
         m_MethodName: RemoveRow
         m_Mode: 1
         m_Arguments:
@@ -6632,9 +6676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1711409597}
   - component: {fileID: 1711409599}
-  - component: {fileID: 1711409598}
   - component: {fileID: 1711409600}
-  - component: {fileID: 1711409601}
   m_Layer: 0
   m_Name: OrigamiGenerator
   m_TagString: Untagged
@@ -6656,18 +6698,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1711409598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711409596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c7197bbbc5ac24aa7c6f724155ac9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1711409599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6696,21 +6726,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintPotPrefab: {fileID: 5642125426136234285, guid: f2b19867edb81e4468924bdc597e2fc3,
     type: 3}
---- !u!114 &1711409601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711409596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62dda07b82e3a8b41946456044de9c49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnAddRemove:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1769947810
 GameObject:
   m_ObjectHideFlags: 0
@@ -7069,7 +7084,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1711409601}
+      - m_Target: {fileID: 899598723}
         m_MethodName: InvertRows
         m_Mode: 0
         m_Arguments:

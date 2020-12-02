@@ -11,17 +11,12 @@ public class ProcessGeneratorInputs : MonoBehaviour
 {
     [SerializeField] private TMP_InputField rowsInput = default;
     [SerializeField] private TMP_InputField amountPerRowInput = default;
-    [SerializeField] private GameObject origamiObject = default;
-   // [SerializeField] private TMP_InputField whereToAddInvertedRow = default;
     [SerializeField] private TMP_InputField whereToAddDecreasedRow = default;
     [SerializeField] private TMP_InputField whereToAddIncreasedRow = default;
-    [SerializeField] private TMP_Text widthTMP = default;
-    [SerializeField] private TMP_Text heightTMP = default;
     [SerializeField] private Toggle collapsed = default;
    
-    public IntEvent OnNewCylinder;
+    private IntEvent OnNewCylinder;
     private ColorManager colorManager;
-
     
     private CircleGenerator generator;
     private CalculateWidthHeight calculator;
@@ -32,8 +27,8 @@ public class ProcessGeneratorInputs : MonoBehaviour
     
     void Awake()
     {
-        generator = origamiObject.GetComponent<CircleGenerator>();
-        calculator = origamiObject.GetComponent<CalculateWidthHeight>();
+        generator = FindObjectOfType<CircleGenerator>();
+        calculator = FindObjectOfType<CalculateWidthHeight>();
         // generates the most basic, but stable, base 3D Origami model
         // prevents false input exception
         rowsInput.text = "3";
@@ -95,9 +90,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
 
         //TODO make function access not public
         generator.GenerateCylinder(rowsInfo, amountPerRow);
-        calculator.CalculateDimensions(rowsInfo, amountPerRow);
-        widthTMP.text = "w: " + calculator.GetWidth() + " cm";
-        heightTMP.text = "h: " + calculator.GetHeight() + " cm";
+        calculator.CalculateDimensions(rowsInfo.Length - 1, amountPerRow);
         //sends totalPieces to ColorManager after Cylinder was generated
         OnNewCylinder.Invoke(generator.GetTotalPieces());
     }
