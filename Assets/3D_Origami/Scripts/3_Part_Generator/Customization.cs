@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Customization : MonoBehaviour
@@ -111,45 +113,69 @@ public class Customization : MonoBehaviour
     public void InvertRows(string rowsToInvert)
     {
         bool[] invertedInfo = new bool[3];
+        List<int> alreadyInvertedRows = new List<int>();
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         // for every row on generated Rows that has a number mentioned in rowsTOInvert[] I want to turn it around 
-        int index = 0; 
-        for (int i = 0; i < generatedRows.Length; i++)
+        int index = 0;
+       /* if (rowsToInvert.Contains("0"))
         {
-            if(rowsToInvert.Contains((i+1).ToString())) //only works thanks to LINQ
+            // TODO invert back when 0 
+            Debug.Log("contains 0");
+            for (int i = 0; i < alreadyInvertedRows.Count; i++)
             {
-                index++;
-                Transform[] children = generatedRows[i].GetComponentsInChildren<Transform>();
-                if (i + 1 == 1)
+                Debug.Log(alreadyInvertedRows[i]);
+                Transform[] oldChildren = generatedRows[alreadyInvertedRows[i]].GetComponentsInChildren<Transform>();
+                for (int j = 0; j < oldChildren.Length; j++)
                 {
-                    //very first row is inverted
-                    invertedInfo[0] = true; 
-                }
-
-                if (i + 1 == generatedRows.Length)
-                {
-                    // top most row is inverted
-                    invertedInfo[1] = true;
-                }
-
-                if (index == generatedRows.Length)
-                {
-                    // all rows are inverted
-                    invertedInfo[2] = true;
-                }
-                
-                for (int j = 0; j < children.Length; j++)
-                {
-                    // TODO invert back when 0 
-                   
                     // turn the piece to face inwards
-                    children[j].rotation *= Quaternion.Euler(0f, 180f, 0f); 
+                    oldChildren[j].rotation *= Quaternion.Euler(0f, 180f, 0f);
                     //leave the y position as it was 
-                    children[j].position = Vector3.Scale(children[j].position, new Vector3(13f / 8f, 1, 13f / 8f));
-
+                    oldChildren[j].position = Vector3.Scale(oldChildren[j].position, new Vector3(8f/13f, 1, 8f/13f));
                 }
             }
         }
-        calculator.CalculateDimensions(invertedInfo);
-    }
+        else
+        {*/
+            for (int i = 0; i < generatedRows.Length; i++)
+            {
+                if (rowsToInvert.Contains((i + 1).ToString())) //only works thanks to LINQ
+                {
+                    alreadyInvertedRows.Add(i + 1);
+                    index++;
+                    Transform[] children = generatedRows[i].GetComponentsInChildren<Transform>();
+                    if (i + 1 == 1)
+                    {
+                        //very first row is inverted
+                        invertedInfo[0] = true;
+                    }
+
+                    if (i + 1 == generatedRows.Length)
+                    {
+                        // top most row is inverted
+                        invertedInfo[1] = true;
+                    }
+
+                    if (index == generatedRows.Length)
+                    {
+                        // all rows are inverted
+                        invertedInfo[2] = true;
+                    }
+
+                    for (int j = 0; j < children.Length; j++)
+                    {
+                        // turn the piece to face inwards
+                        children[j].rotation *= Quaternion.Euler(0f, 180f, 0f);
+                        //leave the y position as it was 
+                        children[j].position = Vector3.Scale(children[j].position, new Vector3(13f / 8f, 1, 13f / 8f));
+
+                    }
+                }
+            }
+            for (int b = 0; b < alreadyInvertedRows.Count; b++)
+            {
+                Debug.Log(alreadyInvertedRows[b]);
+            }
+            calculator.CalculateDimensions(invertedInfo);
+        }
+    //}
 }
