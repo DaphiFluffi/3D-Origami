@@ -13,6 +13,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
     [SerializeField] private TMP_InputField amountPerRowInput = default;
     [SerializeField] private TMP_InputField whereToAddDecreasedRow = default;
     [SerializeField] private TMP_InputField whereToAddIncreasedRow = default;
+    [SerializeField] private TMP_InputField whereToAddInvertedRow = default;
     [SerializeField] private Toggle collapsed = default;
    
     private IntEvent OnNewCylinder;
@@ -20,6 +21,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
     
     private CircleGenerator generator;
     private CalculateWidthHeight calculator;
+    private Customization customization;
     private int howManyRows;
     private int[] rowsInfo;
     private int amountPerRow;
@@ -29,6 +31,8 @@ public class ProcessGeneratorInputs : MonoBehaviour
     {
         generator = FindObjectOfType<CircleGenerator>();
         calculator = FindObjectOfType<CalculateWidthHeight>();
+        customization = FindObjectOfType<Customization>();
+        customization.gameObject.SetActive(false);
         // generates the most basic, but stable, base 3D Origami model
         // prevents false input exception
         rowsInput.text = "3";
@@ -52,6 +56,7 @@ public class ProcessGeneratorInputs : MonoBehaviour
     public void OnSubmit()
     {
         collapsed.isOn = true;
+        whereToAddInvertedRow.text = "0";
         howManyRows = int.Parse(rowsInput.text);
         amountPerRow = int.Parse(amountPerRowInput.text);
         
@@ -91,6 +96,8 @@ public class ProcessGeneratorInputs : MonoBehaviour
         //TODO make function access not public
         generator.GenerateCylinder(rowsInfo, amountPerRow);
         calculator.CalculateDimensions(rowsInfo.Length - 1, amountPerRow);
+        // customization is disacled until Generate Button is pressed 
+        customization.gameObject.SetActive(true);
         //sends totalPieces to ColorManager after Cylinder was generated
         OnNewCylinder.Invoke(generator.GetTotalPieces());
     }

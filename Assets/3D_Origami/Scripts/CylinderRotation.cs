@@ -62,7 +62,7 @@ public class CylinderRotation : MonoBehaviour
         }
         
         // reset rotation with space
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Return))
         {
             ResetRotation();
         }

@@ -9,7 +9,7 @@ public class ColorManager : MonoBehaviour
     //private ProcessGeneratorInputs processGeneratorInputs;
     
     private GameObject content = default;
-    private GameObject scrollView = default;
+    //private GameObject scrollView = default;
     private Image paintPot;
     
     private Dictionary<string, int> usedColors;
@@ -17,11 +17,10 @@ public class ColorManager : MonoBehaviour
     private int totalAmount;
     void Start()
     {
-       
         usedColors = new Dictionary<string, int>();
         content = GameObject.FindGameObjectWithTag("Content");
-        scrollView = GameObject.FindGameObjectWithTag("Palette");
-        //scrollView.SetActive(false);
+       /* scrollView = GameObject.FindGameObjectWithTag("Palette");
+        scrollView.SetActive(false);*/
     }
     
     public void InputCallback(int totalPieces)

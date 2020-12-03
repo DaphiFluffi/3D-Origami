@@ -14,15 +14,19 @@ public class ColorOrigami : MonoBehaviour
     private FlexibleColorPicker fcp;
     private Color currentColor;
     private ColorManager colorManager;
+    private ColorToggle colorToggle;
     
-    void Awake()
+   /* void Awake()
     {
         colorManager = FindObjectOfType<ColorManager>();
         fcp = FindObjectOfType<Canvas>().GetComponentInChildren<FlexibleColorPicker>(true);
-    }
+    }*/
 
     void Start()
     {
+        colorManager = FindObjectOfType<ColorManager>();
+        colorToggle = FindObjectOfType<ColorToggle>();
+        fcp = FindObjectOfType<Canvas>().GetComponentInChildren<FlexibleColorPicker>(true);
         if (OnColorChanged == null)
         {
             OnColorChanged = new ColorEvent();
@@ -30,7 +34,6 @@ public class ColorOrigami : MonoBehaviour
 
         OnColorChanged.AddListener(colorManager.HowManyPiecesAreTheSameColor);
         currentColor = GetComponent<Renderer>().material.color;
-        
     }
     
     //https://answers.unity.com/questions/856790/click-gameobject-to-change-color.html
