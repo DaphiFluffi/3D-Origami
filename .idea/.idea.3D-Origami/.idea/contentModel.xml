@@ -33,6 +33,9 @@
             <e p="MainMenuController.cs" t="Include" />
             <e p="PanCamera.cs" t="Include" />
           </e>
+          <e p="Textures" t="Include">
+            <e p="StandardCullOFF.shader" t="Include" />
+          </e>
         </e>
         <e p="FlexibleColorPicker" t="Include">
           <e p="ExampleScene" t="Include">
