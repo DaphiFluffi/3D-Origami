@@ -9,6 +9,7 @@ TagManager:
   - Content
   - Reset
   - Cylinder
+  - FCP
   layers:
   - Default
   - TransparentFX
