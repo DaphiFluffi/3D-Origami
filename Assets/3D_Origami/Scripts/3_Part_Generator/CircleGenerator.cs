@@ -33,7 +33,7 @@ public class CircleGenerator : MonoBehaviour
             // parent cylinder object
             generatedCylinder = new GameObject {name = "cylinder"};
             generatedCylinder.AddComponent<CylinderRotation>();
-            generatedCylinder.gameObject.tag= "Cylinder";
+            generatedCylinder.gameObject.tag = "Cylinder";
 
             for (int r = 0; r < rows.Length; r++)
             {
@@ -91,7 +91,15 @@ public class CircleGenerator : MonoBehaviour
                         piece.transform.localScale -= new Vector3(0.4f, 0, 0);
                         if (r + 1 < rows.Length)
                         {
-                            rows[r + 1] = 4;
+                            if (rows[r + 1] == 2)
+                            {
+                                // for decreased row on top of increased row
+                                rows[r + 1] = 2;
+                            }
+                            else
+                            {
+                                rows[r + 1] = 4;
+                            }
                         }
                     }
                     else if (rows[r] == 4)
