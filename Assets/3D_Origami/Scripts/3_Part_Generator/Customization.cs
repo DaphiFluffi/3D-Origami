@@ -12,13 +12,14 @@ public class Customization : MonoBehaviour
     private CircleGenerator generator;
     private int extraPieces;
     private CalculateWidthHeight calculator;
-
+    private List<int> alreadyInvertedRows;
     void Awake()
     {
         colorManager = FindObjectOfType<ColorManager>();
         calculator = FindObjectOfType<CalculateWidthHeight>();
-
         generator = FindObjectOfType<CircleGenerator>();
+        alreadyInvertedRows = new List<int>();
+        
         if (OnAddRemove == null)
         {
             OnAddRemove = new IntEvent();
@@ -113,34 +114,16 @@ public class Customization : MonoBehaviour
     public void InvertRows(string rowsToInvert)
     {
         bool[] invertedInfo = new bool[3];
-        List<int> alreadyInvertedRows = new List<int>();
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
-        // for every row on generated Rows that has a number mentioned in rowsTOInvert[] I want to turn it around 
+        // for every row on generated Rows that has a number mentioned in rowsToInvert[] I want to turn it around 
         int index = 0;
-       /* if (rowsToInvert.Contains("0"))
+        if (!rowsToInvert.Contains("0"))
         {
-            // TODO invert back when 0 
-            Debug.Log("contains 0");
-            for (int i = 0; i < alreadyInvertedRows.Count; i++)
-            {
-                Debug.Log(alreadyInvertedRows[i]);
-                Transform[] oldChildren = generatedRows[alreadyInvertedRows[i]].GetComponentsInChildren<Transform>();
-                for (int j = 0; j < oldChildren.Length; j++)
-                {
-                    // turn the piece to face inwards
-                    oldChildren[j].rotation *= Quaternion.Euler(0f, 180f, 0f);
-                    //leave the y position as it was 
-                    oldChildren[j].position = Vector3.Scale(oldChildren[j].position, new Vector3(8f/13f, 1, 8f/13f));
-                }
-            }
-        }
-        else
-        {*/
             for (int i = 0; i < generatedRows.Length; i++)
             {
                 if (rowsToInvert.Contains((i + 1).ToString())) //only works thanks to LINQ
                 {
-                    alreadyInvertedRows.Add(i + 1);
+                    alreadyInvertedRows.Add(i);
                     index++;
                     Transform[] children = generatedRows[i].GetComponentsInChildren<Transform>();
                     if (i + 1 == 1)
@@ -171,11 +154,40 @@ public class Customization : MonoBehaviour
                     }
                 }
             }
-            for (int b = 0; b < alreadyInvertedRows.Count; b++)
-            {
-                Debug.Log(alreadyInvertedRows[b]);
-            }
-            calculator.CalculateDimensions(invertedInfo);
         }
-    //}
+        else
+        {
+            // re-invert all rows if the input is 0 
+            foreach(int rowIndex in alreadyInvertedRows)
+            {
+                if (rowIndex == 1)
+                {
+                    //very first row is inverted
+                    invertedInfo[0] = false;
+                }
+
+                if (rowIndex == generatedRows.Length)
+                {
+                    // top most row is inverted
+                    invertedInfo[1] = false;
+                }
+
+                if (index == generatedRows.Length)
+                {
+                    // all rows are inverted
+                    invertedInfo[2] = false;
+                }
+                Transform[] oldChildren = generatedRows[rowIndex].GetComponentsInChildren<Transform>();
+                 for (int j = 0; j < oldChildren.Length; j++)
+                 {
+                     // turn the piece to face inwards
+                     oldChildren[j].rotation *= Quaternion.Euler(0f, 180f, 0f);
+                     //leave the y position as it was 
+                     oldChildren[j].position = Vector3.Scale(oldChildren[j].position, new Vector3(8f/13f, 1, 8f/13f));
+                 }
+            }
+            alreadyInvertedRows.Clear();
+        }
+        calculator.CalculateDimensions(invertedInfo);
+    }
 }
