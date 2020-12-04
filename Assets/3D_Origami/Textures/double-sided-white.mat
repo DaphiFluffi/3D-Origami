@@ -8,9 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: double-sided-white
-  m_Shader: {fileID: 4800000, guid: 63a90426d42b698448966291201d6716, type: 3}
-  m_ShaderKeywords: _DETAILSOURCE_SPECULARALPHA _PROJECTION_UVPROJECTION _SOURCE_SPECULARALPHA
-    _TRIPLANARSPACEPROJECTION_OBJECTSPACE _USEAOFROMMAINPROPERTIES_ON _USEEMISSIONFROMMAINPROPERTIES_ON
+  m_Shader: {fileID: 4800000, guid: 99f3a8e38bda7ea41b6684471de53813, type: 3}
+  m_ShaderKeywords: _CHANNELSELECTIONMASK_RED _DETAILSOURCE_SPECULARALPHA _PROJECTION_UVPROJECTION
+    _SOURCE_SPECULARALPHA _TRIPLANARSPACEPROJECTION_OBJECTSPACE _USEAOFROMMAINPROPERTIES_ON
+    _USEEMISSIONFROMMAINPROPERTIES_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -74,6 +75,7 @@ Material:
     - _BlendmodeOverlay: 0
     - _Brightness: 1
     - _BumpScale: 1
+    - _ChannelSelectionMask: 0
     - _ContrastDetailMap: 0
     - _Cull: 2
     - _Cutoff: 0.5

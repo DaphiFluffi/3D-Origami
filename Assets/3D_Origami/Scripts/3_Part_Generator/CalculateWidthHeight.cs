@@ -30,26 +30,48 @@ public class CalculateWidthHeight : MonoBehaviour
         heightTMP.text = "h: " + height + " cm";
     }
 
+    //TODO rework this
     public void CalculateDimensions(bool[] invertedInfo)
     {
         // if we have an inverted row in the first row and the model does not only consist of one row
         if (invertedInfo[0])
         {
             height -= 0.5f;
+            Debug.Log("first" + height);
         }
         else
         {
-            // if there are inverted rows at the top 
-            if (invertedInfo[1])
-            {
-                height += 0.5f;
-            }
-        
-            if (invertedInfo[2])
-            {
-                height -= 0.5f; 
-            }
+            height += 0.5f;
+            Debug.Log("first false" + height);
         }
+
+        // if there are inverted rows at the top 
+        if (invertedInfo[1])
+        {
+            height += 0.5f;
+            Debug.Log("top" + height);
+        }
+        else
+        {
+            height -= 0.5f;
+            Debug.Log("top false" + height);
+
+        }
+        
+        // all rows are inverted
+        if (invertedInfo[2])
+        {
+            height -= 0.5f; 
+            Debug.Log("all" + height);
+
+        }
+        else
+        {
+            height += 0.5f;
+            Debug.Log("all false" + height);
+
+        }
+        
         heightTMP.text = "h: " + height + " cm";
     }
 }

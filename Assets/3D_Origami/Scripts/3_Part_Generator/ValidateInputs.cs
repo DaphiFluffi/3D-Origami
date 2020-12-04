@@ -47,11 +47,6 @@ public class ValidateInputs : MonoBehaviour
         errorPanel.SetActive(true);
         errorText.text = errorDescription;
     }
-
-    private void HideErrorMessage()
-    {
-        errorPanel.SetActive(false);
-    }
     
     public void CheckAdd()
     {
@@ -60,7 +55,6 @@ public class ValidateInputs : MonoBehaviour
         {
             ShowErrorMessage("There can be a maximum of 30 rows.");
         }
-        Invoke("HideErrorMessage", 3f);
     }
 
     public void CheckRemove()
@@ -70,7 +64,6 @@ public class ValidateInputs : MonoBehaviour
         {
             ShowErrorMessage("There can be a minimum of 2 rows.");
         }
-        Invoke("HideErrorMessage", 3f);
     }
 
     private void InputFieldsCantBeEmpty(string inputString)
@@ -148,25 +141,33 @@ public class ValidateInputs : MonoBehaviour
         }
     }
     
-    public void CheckInvertedAndDecreasedInput(string invertedOrDecreasedString)
+    public void CheckIncreasedAndDecreasedInput(string increasedOrDecreasedString)
     {
+        //TODO first row cannot be decreased
+        if (increasedOrDecreasedString.Contains("1"))
+        {
+            ShowErrorMessage("First row cannot be de- or increased.", true);
+        }
+        else
+        {
+            ShowErrorMessage("First row cannot be de- or increased.", false);
+        }
+        generatedRows= GameObject.FindGameObjectsWithTag("Row");
         // https://stackoverflow.com/questions/17472580/regular-expression-to-allow-comma-and-space-delimited-number-list
         // only matches series of natural numbers with commas in between
         // @ is to skip over the escape character "\"
         Regex rgx = new Regex(@"^[\d,\s]+$");
-        if(rgx.IsMatch(invertedOrDecreasedString))
+        if(rgx.IsMatch(increasedOrDecreasedString))
         {
             ShowErrorMessage("Please type in the rows' numbers separated by commas.", false);
             // https://stackoverflow.com/questions/47646090/int-parse-is-not-working-with-string-value-system-formatexception-input-string
             try
             {
                 int rows = int.Parse(rowsInput.text);
-                //TODO TryParse does not work with arrays(?)
-                int[] invertedArray = Array.ConvertAll<string, int>(invertedOrDecreasedString.Split(','), int.Parse);
-                //TODO first row cannot be decreased
-                for(int i = 0; i < invertedArray.Length; i++)
+                int[] increasedOrDecreasedArray = Array.ConvertAll<string, int>(increasedOrDecreasedString.Split(','), int.Parse);
+                for(int i = 0; i < increasedOrDecreasedArray.Length; i++)
                 {
-                    if (invertedArray[i] > rows)
+                    if (increasedOrDecreasedArray[i] > rows)
                     {
                         ShowErrorMessage("You cannot access a row that has not been generated.", true);
                     }
@@ -186,16 +187,41 @@ public class ValidateInputs : MonoBehaviour
          ShowErrorMessage(" Please type in the rows' numbers separated by commas.", true);
         }
     }
-
-    public void CheckDecreasedInput(string decreasedString)
+    
+    public void CheckInvertedInput(string invertedString)
     {
-        if (decreasedString.Contains("1"))
+        generatedRows = GameObject.FindGameObjectsWithTag("Row");
+        // https://stackoverflow.com/questions/17472580/regular-expression-to-allow-comma-and-space-delimited-number-list
+        // only matches series of natural numbers with commas in between
+        // @ is to skip over the escape character "\"
+        Regex rgx = new Regex(@"^[\d,\s]+$");
+        if(rgx.IsMatch(invertedString))
         {
-            ShowErrorMessage("First row cannot be decreased.", true);
+            ShowErrorMessage("Please type in the rows' numbers separated by commas.", false);
+            // https://stackoverflow.com/questions/47646090/int-parse-is-not-working-with-string-value-system-formatexception-input-string
+            try
+            {
+                int[] invertedArray = Array.ConvertAll<string, int>(invertedString.Split(','), int.Parse);
+                for(int i = 0; i < invertedArray.Length; i++)
+                {
+                    if (invertedArray[i] > generatedRows.Length)
+                    {
+                        ShowErrorMessage("You cannot access a row that has not been generated.", true);
+                    }
+                    else
+                    {
+                        ShowErrorMessage("You cannot access a row that has not been generated.", false);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
         else
         {
-            ShowErrorMessage("First row cannot be decreased.", false);
+         ShowErrorMessage(" Please type in the rows' numbers separated by commas.", true);
         }
     }
 }
