@@ -28,6 +28,7 @@
               <e p="Customization.cs" t="Include" />
               <e p="OkBtn.cs" t="Include" />
               <e p="ProcessGeneratorInputs.cs" t="Include" />
+              <e p="ValidateCustomization.cs" t="Include" />
               <e p="ValidateInputs.cs" t="Include" />
             </e>
             <e p="CylinderRotation.cs" t="Include" />

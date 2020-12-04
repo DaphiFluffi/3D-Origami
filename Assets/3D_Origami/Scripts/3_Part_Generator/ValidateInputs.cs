@@ -13,70 +13,41 @@ public class ValidateInputs : MonoBehaviour
     [SerializeField] private Button generateButton = default; 
     [SerializeField] private GameObject errorPanel = default;
     private TMP_Text errorText;
-    private Color panelColor;
-    private GameObject[] generatedRows;
     void Awake()
     {
         errorText = errorPanel.transform.Find("ErrorMessage").GetComponent<TMP_Text>();
-        panelColor = errorPanel.GetComponent<Image>().color;
         errorPanel.SetActive(false);
     }
     
-    private void ShowErrorMessage(string errorDescription, bool enable)
-    {
-        if (enable)
-        {
-            errorPanel.SetActive(true);
-            errorText.text = errorDescription + "\nPlease change your input accordingly.";
-            // disable "Generate" Button
-            generateButton.enabled = false;
-            generateButton.GetComponent<Image>().color = Color.gray;
-        }
-        else
-        {
-            // hide error panel
-            errorPanel.SetActive(false);
-            // re-enable "Generate" Button
-            generateButton.enabled = true;
-            generateButton.GetComponent<Image>().color = Color.white; 
-        }
-    }
-
     private void ShowErrorMessage(string errorDescription)
     {
         errorPanel.SetActive(true);
         errorText.text = errorDescription;
+        // disable "Generate" Button
+        generateButton.enabled = false;
+        generateButton.GetComponent<Image>().color = Color.gray;
+    }
+
+    private void HideErrorMessage()
+    {
+        // hide error panel
+        errorPanel.SetActive(false);
+        // re-enable "Generate" Button
+        generateButton.enabled = true;
+        generateButton.GetComponent<Image>().color = Color.white; 
     }
     
-    public void CheckAdd()
-    {
-        generatedRows= GameObject.FindGameObjectsWithTag("Row");
-        if (generatedRows.Length == 30)
-        {
-            ShowErrorMessage("There can be a maximum of 30 rows.");
-        }
-    }
-
-    public void CheckRemove()
-    {
-        generatedRows = GameObject.FindGameObjectsWithTag("Row");
-        if (generatedRows.Length == 2)
-        {
-            ShowErrorMessage("There can be a minimum of 2 rows.");
-        }
-    }
-
     private void InputFieldsCantBeEmpty(string inputString)
     {
         try
         {
             if(string.IsNullOrEmpty(inputString))
             {
-                ShowErrorMessage("Please provide values for all input fields.", true);
+                ShowErrorMessage("Please provide values for all input fields.");
             }
             else
             {
-                ShowErrorMessage("Please provide values for all input fields.", false);
+                HideErrorMessage();
             }
         }
         catch (Exception e)
@@ -91,11 +62,11 @@ public class ValidateInputs : MonoBehaviour
         int rowInt = int.Parse(rowString);
         if (rowInt < 2 || rowInt > 30)
         {
-            ShowErrorMessage("Rows have a minimum value of 2 and a maximum of 30.", true);
+            ShowErrorMessage("Rows have a minimum value of 2 and a maximum of 30.");
         }
         else
         {
-            ShowErrorMessage("Rows have a minimum value of 2 and a maximum of 30.", false);
+            HideErrorMessage();
         }
         if (rowInt == 1)
         {
@@ -117,24 +88,19 @@ public class ValidateInputs : MonoBehaviour
         int amountInt = int.Parse(amountString);
         if (amountInt < 9 || amountInt > 50)
         {
-            ShowErrorMessage("At least 9 and at most 50 pieces per row are required.", true);
-        }
-        else
-        {
-            ShowErrorMessage("At least 9 and at most 50 pieces per row are required.", false);
+            ShowErrorMessage("At least 9 and at most 50 pieces per row are required.");
         }
         // only allow decreasing for rows that are multiples of 3
-        if (amountInt % 3 > 0)
+        else if (amountInt % 3 > 0)
         {
-            //TODO this error message always dominates the other one 
-           // ShowErrorMessage("You can only use decrease in rows that are multiples of 3.");
+            ShowErrorMessage("You can only use decrease rows that are multiples of 3.");
             whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.gray;
             whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.gray;
             whereToAddDecreasedRow.enabled = false; 
         }
         else
         {
-           // errorPanel.SetActive(false);
+            HideErrorMessage();
             whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.white;
             whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.white;
             whereToAddDecreasedRow.enabled = true; 
@@ -143,23 +109,13 @@ public class ValidateInputs : MonoBehaviour
     
     public void CheckIncreasedAndDecreasedInput(string increasedOrDecreasedString)
     {
-        //TODO first row cannot be decreased
-        if (increasedOrDecreasedString.Contains("1"))
-        {
-            ShowErrorMessage("First row cannot be de- or increased.", true);
-        }
-        else
-        {
-            ShowErrorMessage("First row cannot be de- or increased.", false);
-        }
-        generatedRows= GameObject.FindGameObjectsWithTag("Row");
         // https://stackoverflow.com/questions/17472580/regular-expression-to-allow-comma-and-space-delimited-number-list
         // only matches series of natural numbers with commas in between
         // @ is to skip over the escape character "\"
         Regex rgx = new Regex(@"^[\d,\s]+$");
         if(rgx.IsMatch(increasedOrDecreasedString))
         {
-            ShowErrorMessage("Please type in the rows' numbers separated by commas.", false);
+            HideErrorMessage();
             // https://stackoverflow.com/questions/47646090/int-parse-is-not-working-with-string-value-system-formatexception-input-string
             try
             {
@@ -169,13 +125,18 @@ public class ValidateInputs : MonoBehaviour
                 {
                     if (increasedOrDecreasedArray[i] > rows)
                     {
-                        ShowErrorMessage("You cannot access a row that has not been generated.", true);
+                        ShowErrorMessage("You cannot access a row that has not been generated.");
+                    }
+                    else if (increasedOrDecreasedArray[i] == 1)
+                    {
+                        ShowErrorMessage("First row cannot be de- or increased.");
                     }
                     else
                     {
-                        ShowErrorMessage("You cannot access a row that has not been generated.", false);
+                        HideErrorMessage();
                     }
                 }
+                
             }
             catch (Exception e)
             {
@@ -184,44 +145,7 @@ public class ValidateInputs : MonoBehaviour
         }
         else
         {
-         ShowErrorMessage(" Please type in the rows' numbers separated by commas.", true);
-        }
-    }
-    
-    public void CheckInvertedInput(string invertedString)
-    {
-        generatedRows = GameObject.FindGameObjectsWithTag("Row");
-        // https://stackoverflow.com/questions/17472580/regular-expression-to-allow-comma-and-space-delimited-number-list
-        // only matches series of natural numbers with commas in between
-        // @ is to skip over the escape character "\"
-        Regex rgx = new Regex(@"^[\d,\s]+$");
-        if(rgx.IsMatch(invertedString))
-        {
-            ShowErrorMessage("Please type in the rows' numbers separated by commas.", false);
-            // https://stackoverflow.com/questions/47646090/int-parse-is-not-working-with-string-value-system-formatexception-input-string
-            try
-            {
-                int[] invertedArray = Array.ConvertAll<string, int>(invertedString.Split(','), int.Parse);
-                for(int i = 0; i < invertedArray.Length; i++)
-                {
-                    if (invertedArray[i] > generatedRows.Length)
-                    {
-                        ShowErrorMessage("You cannot access a row that has not been generated.", true);
-                    }
-                    else
-                    {
-                        ShowErrorMessage("You cannot access a row that has not been generated.", false);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-        else
-        {
-         ShowErrorMessage(" Please type in the rows' numbers separated by commas.", true);
+         ShowErrorMessage(" Please type in the rows' numbers separated by commas.");
         }
     }
 }
