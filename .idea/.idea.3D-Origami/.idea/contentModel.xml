@@ -46,6 +46,7 @@
             <e p="StandardCullOFF.shader" t="Include" />
           </e>
         </e>
+        <e p="aspect.cs" t="Include" />
         <e p="FlexibleColorPicker" t="Include">
           <e p="ExampleScene" t="Include">
             <e p="FCP_ExampleScript.cs" t="Include" />
