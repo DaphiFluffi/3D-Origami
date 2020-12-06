@@ -37,6 +37,7 @@
               </e>
               <e p="ProcessGeneratorInputs.cs" t="Include" />
             </e>
+            <e p="AlwaysOnCamera.cs" t="Include" />
             <e p="CylinderRotation.cs" t="Include" />
             <e p="MainMenuController.cs" t="Include" />
             <e p="PanCamera.cs" t="Include" />

@@ -20,13 +20,6 @@ public class PanCamera : MonoBehaviour
         #endif
     }
 
-    void Start()
-    {
-        // prevents phone screen from tutning off 
-        // https://answers.unity.com/questions/46204/stop-mobile-screens-turning-off.html
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-    }
-    
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
