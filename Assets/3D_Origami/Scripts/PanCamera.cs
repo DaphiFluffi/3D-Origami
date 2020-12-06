@@ -32,7 +32,7 @@ public class PanCamera : MonoBehaviour
             //https://answers.unity.com/questions/822273/how-to-prevent-raycast-when-clicking-46-ui.html?childToView=862598#answer-862598
             // prevent raycasts when hovering over UI elements so that using the UI does not pan camera
             //https://answers.unity.com/questions/988257/eventsystemispointerovergameobject-for-mobile-devi.html
-            // fingerID is so it also warks with touch input
+            // fingerID is so it also works with touch input
             if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(fingerID)) 
             {
                 Vector3 direction = touchStart - GetWorldPosition(groundZ);
