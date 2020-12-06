@@ -31,6 +31,10 @@
                 <e p="ValidateCustomization.cs" t="Include" />
                 <e p="ValidateInputs.cs" t="Include" />
               </e>
+              <e p="Export" t="Include">
+                <e p="Done.cs" t="Include" />
+                <e p="ScreenshotHandler.cs" t="Include" />
+              </e>
               <e p="ProcessGeneratorInputs.cs" t="Include" />
             </e>
             <e p="CylinderRotation.cs" t="Include" />
@@ -67,7 +71,6 @@
               <e p="CrossPlatformInputManager.cs" t="Include" />
               <e p="InputAxisScrollbar.cs" t="Include" />
               <e p="Joystick.cs" t="Include" />
-              <e p="MobileControlRig.cs" t="Include" />
               <e p="PlatformSpecific" t="Include">
                 <e p="MobileInput.cs" t="Include" />
                 <e p="StandaloneInput.cs" t="Include" />
