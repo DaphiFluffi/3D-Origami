@@ -37,39 +37,36 @@ public class CalculateWidthHeight : MonoBehaviour
         if (invertedInfo[0])
         {
             height -= 0.5f;
-            Debug.Log("first" + height);
+            Debug.Log("unterste -0.5f");
         }
         else
         {
             height += 0.5f;
-            Debug.Log("first false" + height);
+            Debug.Log("nicht unterste +0.5f");
         }
 
         // if there are inverted rows at the top 
         if (invertedInfo[1])
         {
             height += 0.5f;
-            Debug.Log("top" + height);
+            Debug.Log("oberste +0.5f");
         }
         else
         {
             height -= 0.5f;
-            Debug.Log("top false" + height);
-
+            Debug.Log("nicht oberste -0.5f");
         }
         
         // all rows are inverted
         if (invertedInfo[2])
         {
             height -= 0.5f; 
-            Debug.Log("all" + height);
-
+            Debug.Log("alle -0.5f");
         }
         else
         {
             height += 0.5f;
-            Debug.Log("all false" + height);
-
+            Debug.Log("nicht alle +0.5f");
         }
         
         heightTMP.text = "height: " + height + " cm";
