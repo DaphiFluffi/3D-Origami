@@ -1,0 +1,16 @@
+Font: Origami Making  Style: Regular
+Point Size: 53   SP/PD Ratio: 9,4%
+
+Characters included: 95/99
+Missing characters: 4
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+ID: 37	Hex: 25	Char [%]
+ID: 8203	Hex: 200B	Char [​]
+ID: 8230	Hex: 2026	Char […]
+ID: 9633	Hex: 25A1	Char [□]
+
+Characters excluded from packing:
+----------------------------------------

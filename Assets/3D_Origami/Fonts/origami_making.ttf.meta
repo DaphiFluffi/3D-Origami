@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 982bba5d1b31b7447aa556a761ea369c
+guid: 079560f84c8c7d94fa7bdd7d3251032f
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: ORIGAMI
+  fontName: Origami Making
   fontNames:
-  - ORIGAMI
+  - Origami Making
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
