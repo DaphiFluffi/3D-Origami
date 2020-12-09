@@ -161,6 +161,7 @@ public class Customization : MonoBehaviour
         }
         else
         {
+            Array.Clear(invertedInfo, 0, invertedInfo.Length);
             // re-invert all rows if the input is 0 
             foreach(int rowIndex in alreadyInvertedRows)
             {
