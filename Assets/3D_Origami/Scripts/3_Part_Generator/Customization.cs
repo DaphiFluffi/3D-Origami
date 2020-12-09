@@ -131,7 +131,7 @@ public class Customization : MonoBehaviour
             {
                 if (rowsToInvert.Contains((i + 1).ToString())) //only works thanks to LINQ
                 {
-                    alreadyInvertedRows.Add(i);
+                    alreadyInvertedRows.Add(i + 1);
                     index++;
                     Transform[] children = generatedRows[i].GetComponentsInChildren<Transform>();
                     if (i + 1 == 1)
