@@ -121,18 +121,19 @@ public class Customization : MonoBehaviour
 
     public void InvertRows(string rowsToInvert)
     {
+        // holds information about the types of inverted rows for the width heig calculation
         bool[] invertedInfo = new bool[3];
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         // for every row on generated Rows that has a number mentioned in rowsToInvert[] I want to turn it around 
-        int index = 0;
         if (!rowsToInvert.Contains("0"))
         {
+            // invert
+            invertedInfo[2] = true; 
             for (int i = 0; i < generatedRows.Length; i++)
             {
                 if (rowsToInvert.Contains((i + 1).ToString())) //only works thanks to LINQ
                 {
                     alreadyInvertedRows.Add(i + 1);
-                    index++;
                     Transform[] children = generatedRows[i].GetComponentsInChildren<Transform>();
                     if (i + 1 == 1)
                     {
@@ -146,12 +147,6 @@ public class Customization : MonoBehaviour
                         invertedInfo[1] = true;
                     }
 
-                    if (index == generatedRows.Length)
-                    {
-                        // all rows are inverted
-                        invertedInfo[2] = true;
-                    }
-
                     for (int j = 0; j < children.Length; j++)
                     {
                         // turn the piece to face inwards
@@ -162,30 +157,38 @@ public class Customization : MonoBehaviour
                     }
                 }
             }
+            calculator.CalculateDimensions(invertedInfo);
         }
         else
         {
             // re-invert all rows if the input is 0 
             foreach(int rowIndex in alreadyInvertedRows)
             {
-                if (rowIndex == 1)
+                // revert 
+                invertedInfo[2] = false;
+                if (alreadyInvertedRows.Count != generatedRows.Length)
                 {
-                    //very first row is inverted
-                    invertedInfo[0] = false;
-                }
+                    if (rowIndex == 1)
+                    {
+                        //very first row is not inverted anymore inverted
+                        invertedInfo[0] = false;
+                    }
+                    else
+                    {
+                        invertedInfo[0] = true;
+                    }
 
-                if (rowIndex == generatedRows.Length)
-                {
-                    // top most row is inverted
-                    invertedInfo[1] = false;
+                    if (rowIndex == generatedRows.Length)
+                    {
+                        // top most row is inverted
+                        invertedInfo[1] = false;
+                    }
+                    else
+                    {
+                        invertedInfo[1] = true;
+                    }
                 }
-
-                if (index == generatedRows.Length)
-                {
-                    // all rows are inverted
-                    invertedInfo[2] = false;
-                }
-                Transform[] oldChildren = generatedRows[rowIndex].GetComponentsInChildren<Transform>();
+                Transform[] oldChildren = generatedRows[rowIndex - 1].GetComponentsInChildren<Transform>();
                  for (int j = 0; j < oldChildren.Length; j++)
                  {
                      // turn the piece to face inwards
@@ -195,7 +198,8 @@ public class Customization : MonoBehaviour
                  }
             }
             alreadyInvertedRows.Clear();
+            calculator.CalculateDimensions(invertedInfo);
+
         }
-        calculator.CalculateDimensions(invertedInfo);
     }
 }

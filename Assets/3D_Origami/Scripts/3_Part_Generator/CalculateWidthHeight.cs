@@ -30,45 +30,46 @@ public class CalculateWidthHeight : MonoBehaviour
         heightTMP.text = "height: " + height + " cm";
     }
 
-    //TODO rework this
     public void CalculateDimensions(bool[] invertedInfo)
     {
-        // if we have an inverted row in the first row and the model does not only consist of one row
-        if (invertedInfo[0])
-        {
-            height -= 0.5f;
-            Debug.Log("unterste -0.5f");
-        }
-        else
-        {
-            height += 0.5f;
-            Debug.Log("nicht unterste +0.5f");
-        }
-
-        // if there are inverted rows at the top 
-        if (invertedInfo[1])
-        {
-            height += 0.5f;
-            Debug.Log("oberste +0.5f");
-        }
-        else
-        {
-            height -= 0.5f;
-            Debug.Log("nicht oberste -0.5f");
-        }
-        
-        // all rows are inverted
+        // inverting rows
         if (invertedInfo[2])
         {
-            height -= 0.5f; 
-            Debug.Log("alle -0.5f");
+            Debug.Log("INvert");
+
+            // if we have an inverted row in the first row 
+            if (invertedInfo[0])
+            {
+                height -= 0.5f;
+                Debug.Log("unterste -0.5f");
+            }
+
+            // if there are inverted rows at the top 
+            if (invertedInfo[1])
+            {
+                height += 0.5f;
+                Debug.Log("oberste +0.5f");
+            }
         }
+        // reverting rows
         else
         {
-            height += 0.5f;
-            Debug.Log("nicht alle +0.5f");
+            Debug.Log("revert");
+            // revert first row
+            if (!invertedInfo[0])
+            {
+                height += 0.5f;
+                Debug.Log("nicht unterste +0.5f");
+            }
+
+            // revert inverted row on top 
+            if (!invertedInfo[1])
+            {
+                height -= 0.5f;
+                Debug.Log("nicht oberste -0.5f");
+            }
         }
-        
+
         heightTMP.text = "height: " + height + " cm";
     }
 }
