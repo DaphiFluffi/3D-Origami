@@ -12,8 +12,8 @@ public class CalculateWidthHeight : MonoBehaviour
     {
         width = 3.4f + (0.05f * amountPerRow);
         height = 2f + 0.5f * (topRowIndex);
-        widthTMP.text = "w: " + width + " cm";
-        heightTMP.text = "h: " + height + " cm";
+        widthTMP.text = "width: " + width + " cm";
+        heightTMP.text = "height: " + height + " cm";
     }
     
     public void CalculateDimensions(bool addOrRemove)
@@ -27,7 +27,7 @@ public class CalculateWidthHeight : MonoBehaviour
         {
             height -= 0.5f;
         }
-        heightTMP.text = "h: " + height + " cm";
+        heightTMP.text = "height: " + height + " cm";
     }
 
     //TODO rework this
@@ -72,6 +72,6 @@ public class CalculateWidthHeight : MonoBehaviour
 
         }
         
-        heightTMP.text = "h: " + height + " cm";
+        heightTMP.text = "height: " + height + " cm";
     }
 }

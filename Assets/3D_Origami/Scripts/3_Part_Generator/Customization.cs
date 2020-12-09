@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class Customization : MonoBehaviour
 {
+    [SerializeField] private TMP_InputField rowsInput = default;
+    private int rows;
     private GameObject currentCylinder;
     private IntEvent OnAddRemove;
     private ColorManager colorManager;
@@ -15,11 +18,12 @@ public class Customization : MonoBehaviour
     private List<int> alreadyInvertedRows;
     void Awake()
     {
+        rows =  int.Parse(rowsInput.text);
         colorManager = FindObjectOfType<ColorManager>();
         calculator = FindObjectOfType<CalculateWidthHeight>();
         generator = FindObjectOfType<CircleGenerator>();
         alreadyInvertedRows = new List<int>();
-        
+
         if (OnAddRemove == null)
         {
             OnAddRemove = new IntEvent();
@@ -49,6 +53,8 @@ public class Customization : MonoBehaviour
     public void RowOnTop()
     {
         extraPieces = 0;
+        rows++;
+        rowsInput.text = rows.ToString();
         // get current Rows
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         if (generatedRows.Length != 30)
@@ -98,6 +104,8 @@ public class Customization : MonoBehaviour
     
     public void RemoveRow()
     {
+        rows--;
+        rowsInput.text = rows.ToString();
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         int topRowIndex = generatedRows.Length -1 ;
         GameObject topRow = generatedRows[topRowIndex];
