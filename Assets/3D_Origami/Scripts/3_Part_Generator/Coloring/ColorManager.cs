@@ -43,6 +43,18 @@ public class ColorManager : MonoBehaviour
             SetPaintPotText(usedColors[white]);
         }
     }
+
+    public void RemoveRowCallback(string[] totalPieces)
+    {
+        for (int i = 0; i < totalPieces.Length; i++)
+        {
+            Debug.Log(totalPieces[i]);
+            usedColors[totalPieces[i]] -= 1;
+            //find the existing paint pot with that color
+            paintPot = GameObject.Find(totalPieces[i]).GetComponent<Image>();
+            SetPaintPotText(usedColors[totalPieces[i]]);
+        }
+    }
     
     //called every time a color changes
     public void HowManyPiecesAreTheSameColor(string beforeColor, string afterColor)
