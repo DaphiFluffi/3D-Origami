@@ -98,6 +98,8 @@ public class ProcessGeneratorInputs : MonoBehaviour
         calculator.CalculateDimensions(rowsInfo.Length - 1, amountPerRow);
         // customization is disacled until Generate Button is pressed 
         customization.gameObject.SetActive(true);
+        // reset list of already inverted Rows with new cylinder
+        customization.alreadyInvertedRows.Clear();
         //sends totalPieces to ColorManager after Cylinder was generated
         OnNewCylinder.Invoke(generator.GetTotalPieces());
     }
