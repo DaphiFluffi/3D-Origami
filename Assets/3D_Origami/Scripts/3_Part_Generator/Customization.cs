@@ -25,6 +25,7 @@ public class Customization : MonoBehaviour
         generator = FindObjectOfType<CircleGenerator>();
         alreadyInvertedRows = new List<int>();
 
+        //TODO callback not necessary right? 
         if (OnAddRemove == null)
         {
             OnAddRemove = new IntEvent();
@@ -125,7 +126,6 @@ public class Customization : MonoBehaviour
                 //Debug.Log(color[i]);
             }
             Destroy(generatedRows[topRowIndex]);
-            //TODO callback not necessary right? 
             //remove colors as well
             colorManager.RemoveRowCallback(color);
             calculator.CalculateDimensions(false);
