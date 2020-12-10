@@ -35,8 +35,10 @@ public class Customization : MonoBehaviour
     public void CollapseCylinder(bool collapse)
     {
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
+        Vector3 pos;
         for (int i = 1; i < generatedRows.Length; i++)
         {
+            pos = generatedRows[i].transform.position;
             if (collapse)
             {
                 generatedRows[i].transform.position = new Vector3(0, 0, 0);
@@ -45,6 +47,7 @@ public class Customization : MonoBehaviour
             {
                 generatedRows[i].transform.position = new Vector3(0, i, 0);
             }
+
         }
     }
     
@@ -67,6 +70,7 @@ public class Customization : MonoBehaviour
             // parent new row to current Cylinder object
             currentCylinder = GameObject.FindGameObjectWithTag("Cylinder");
             row.transform.parent = currentCylinder.transform;
+            Debug.Log(topRow.transform.position);
             row.gameObject.tag = "Row";
             
             for (int a = 0; a < piecesInTopRow; a++)
@@ -122,6 +126,7 @@ public class Customization : MonoBehaviour
     public void InvertRows(string rowsToInvert)
     {
         // holds information about the types of inverted rows for the width heig calculation
+        //initialized to everything being false
         bool[] invertedInfo = new bool[3];
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         // for every row on generated Rows that has a number mentioned in rowsToInvert[] I want to turn it around 
@@ -140,13 +145,13 @@ public class Customization : MonoBehaviour
                         //very first row is inverted
                         invertedInfo[0] = true;
                     }
-
+                    
                     if (i + 1 == generatedRows.Length)
                     {
                         // top most row is inverted
                         invertedInfo[1] = true;
                     }
-
+                    
                     for (int j = 0; j < children.Length; j++)
                     {
                         // turn the piece to face inwards
@@ -159,35 +164,34 @@ public class Customization : MonoBehaviour
             }
             calculator.CalculateDimensions(invertedInfo);
         }
-        else
+        else 
+        // re-invert all rows if the input is 0 
         {
-            Array.Clear(invertedInfo, 0, invertedInfo.Length);
-            // re-invert all rows if the input is 0 
-            foreach(int rowIndex in alreadyInvertedRows)
+            // initialize the array to be true everywhere
+            for (int i = 0; i < 3; i++)
             {
-                // revert 
-                invertedInfo[2] = false;
-                if (alreadyInvertedRows.Count != generatedRows.Length)
-                {
-                    if (rowIndex == 1)
-                    {
-                        //very first row is not inverted anymore inverted
-                        invertedInfo[0] = false;
-                    }
-                    else
-                    {
-                        invertedInfo[0] = true;
-                    }
+                invertedInfo[i] = true;
+            }
+            // gives CalculateHeightWidth Script the Info to revert
+            invertedInfo[2] = false;
 
-                    if (rowIndex == generatedRows.Length)
-                    {
-                        // top most row is inverted
-                        invertedInfo[1] = false;
-                    }
-                    else
-                    {
-                        invertedInfo[1] = true;
-                    }
+            // https://stackoverflow.com/questions/604831/collection-was-modified-enumeration-operation-may-not-execute
+            foreach(int rowIndex in alreadyInvertedRows.ToList())
+            {
+                Debug.Log("rowIndex " + rowIndex);
+                alreadyInvertedRows.Remove(rowIndex);
+                // revert 
+                if (rowIndex == 1)
+                {
+                    //very first row is not inverted anymore
+                    invertedInfo[0] = false;
+                    Debug.Log("//very first row is not inverted anymore");
+                }
+                if (rowIndex == generatedRows.Length)
+                {
+                    // top most row is inverted
+                    invertedInfo[1] = false;
+                    Debug.Log("// top most row is NOT inverted");
                 }
                 Transform[] oldChildren = generatedRows[rowIndex - 1].GetComponentsInChildren<Transform>();
                  for (int j = 0; j < oldChildren.Length; j++)
@@ -198,9 +202,11 @@ public class Customization : MonoBehaviour
                      oldChildren[j].position = Vector3.Scale(oldChildren[j].position, new Vector3(8f/13f, 1, 8f/13f));
                  }
             }
-            alreadyInvertedRows.Clear();
             calculator.CalculateDimensions(invertedInfo);
 
         }
+        
+        Debug.Log("alreadyInvertedRows.Count " + alreadyInvertedRows.Count);
+
     }
 }
