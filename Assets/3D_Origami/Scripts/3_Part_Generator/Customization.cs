@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.UNetWeaver;
 using UnityEngine;
 
 public class Customization : MonoBehaviour
@@ -113,12 +114,20 @@ public class Customization : MonoBehaviour
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         int topRowIndex = generatedRows.Length -1 ;
         GameObject topRow = generatedRows[topRowIndex];
-        int piecesInTopRow = topRow.transform.childCount;
+        int amountOfPiecesInTopRow = topRow.transform.childCount;
         // allow to only remove pieces until two rows remain 
         if (topRowIndex != 1)
         {
+            string[] color = new string[amountOfPiecesInTopRow]; 
+            for (int i = 0; i < amountOfPiecesInTopRow; i++)
+            {
+                color[i] = ColorUtility.ToHtmlStringRGB(generatedRows[topRowIndex].transform.GetChild(i).GetComponent<Renderer>().material.color);
+                //Debug.Log(color[i]);
+            }
             Destroy(generatedRows[topRowIndex]);
-            OnAddRemove.Invoke(- piecesInTopRow);
+            //TODO callback not necessary right? 
+            //remove colors as well
+            colorManager.RemoveRowCallback(color);
             calculator.CalculateDimensions(false);
         }
     }
