@@ -53,6 +53,12 @@ public class ColorManager : MonoBehaviour
             //find the existing paint pot with that color
             paintPot = GameObject.Find(totalPieces[i]).GetComponent<Image>();
             SetPaintPotText(usedColors[totalPieces[i]]);
+            if (usedColors[totalPieces[i]] == 0)
+            {
+                usedColors.Remove(totalPieces[i]);
+                Destroy(paintPot.gameObject);
+            }
+
         }
     }
     
