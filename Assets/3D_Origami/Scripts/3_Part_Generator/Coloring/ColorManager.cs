@@ -48,7 +48,7 @@ public class ColorManager : MonoBehaviour
     {
         for (int i = 0; i < totalPieces.Length; i++)
         {
-            Debug.Log(totalPieces[i]);
+//            Debug.Log(totalPieces[i]);
             usedColors[totalPieces[i]] -= 1;
             //find the existing paint pot with that color
             paintPot = GameObject.Find(totalPieces[i]).GetComponent<Image>();
