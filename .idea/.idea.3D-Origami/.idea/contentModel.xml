@@ -9,6 +9,44 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="3D_Origami" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="1_Part_HowTo" t="Include">
+              <e p="InstructionsController.cs" t="Include" />
+              <e p="SpeedSettings.cs" t="Include" />
+              <e p="TutorialController.cs" t="Include" />
+            </e>
+            <e p="3_Part_Generator" t="Include">
+              <e p="CalculateWidthHeight.cs" t="Include" />
+              <e p="CircleGenerator.cs" t="Include" />
+              <e p="Coloring" t="Include">
+                <e p="AccessColorAgain.cs" t="Include" />
+                <e p="ColorManager.cs" t="Include" />
+                <e p="ColorOrigami.cs" t="Include" />
+                <e p="ColorToggle.cs" t="Include" />
+              </e>
+              <e p="Customization.cs" t="Include" />
+              <e p="ErrorPanel" t="Include">
+                <e p="OkBtn.cs" t="Include" />
+                <e p="ValidateCustomization.cs" t="Include" />
+                <e p="ValidateInputs.cs" t="Include" />
+              </e>
+              <e p="Export" t="Include">
+                <e p="Done.cs" t="Include" />
+                <e p="ScreenshotHandler.cs" t="Include" />
+              </e>
+              <e p="ProcessGeneratorInputs.cs" t="Include" />
+            </e>
+            <e p="AlwaysOnCamera.cs" t="Include" />
+            <e p="CylinderRotation.cs" t="Include" />
+            <e p="MainMenuController.cs" t="Include" />
+            <e p="PanCamera.cs" t="Include" />
+          </e>
+          <e p="Textures" t="Include">
+            <e p="StandardCullOFF.shader" t="Include" />
+          </e>
+        </e>
+        <e p="aspect.cs" t="Include" />
         <e p="FlexibleColorPicker" t="Include">
           <e p="ExampleScene" t="Include">
             <e p="FCP_ExampleScript.cs" t="Include" />
@@ -26,30 +64,6 @@
             <e p="AndroidManifest.xml" t="Include" />
           </e>
         </e>
-        <e p="Scripts" t="Include">
-          <e p="1_Part_HowTo" t="Include">
-            <e p="InstructionsController.cs" t="Include" />
-            <e p="RotationControlls.cs" t="Include" />
-            <e p="SpeedSettings.cs" t="Include" />
-            <e p="TutorialController.cs" t="Include" />
-          </e>
-          <e p="3_Part_Generator" t="Include">
-            <e p="CalculateWidthHeight.cs" t="Include" />
-            <e p="CircleGenerator.cs" t="Include" />
-            <e p="Coloring" t="Include">
-              <e p="AccessColorAgain.cs" t="Include" />
-              <e p="ColorManager.cs" t="Include" />
-              <e p="ColorOrigami.cs" t="Include" />
-              <e p="ColorToggle.cs" t="Include" />
-            </e>
-            <e p="CylinderRotation.cs" t="Include" />
-            <e p="ProcessGeneratorInputs.cs" t="Include" />
-            <e p="ValidateInputs.cs" t="Include" />
-          </e>
-          <e p="ClampText.cs" t="Include" />
-          <e p="MainMenuController.cs" t="Include" />
-          <e p="PanCamera.cs" t="Include" />
-        </e>
         <e p="Standard Assets" t="Include">
           <e p="CrossPlatformInput" t="Include">
             <e p="CrossPlatformInputGuidelines.txt" t="Include" />
@@ -59,7 +73,6 @@
               <e p="CrossPlatformInputManager.cs" t="Include" />
               <e p="InputAxisScrollbar.cs" t="Include" />
               <e p="Joystick.cs" t="Include" />
-              <e p="MobileControlRig.cs" t="Include" />
               <e p="PlatformSpecific" t="Include">
                 <e p="MobileInput.cs" t="Include" />
                 <e p="StandaloneInput.cs" t="Include" />

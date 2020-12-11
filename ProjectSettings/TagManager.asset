@@ -8,6 +8,8 @@ TagManager:
   - Palette
   - Content
   - Reset
+  - Cylinder
+  - FCP
   layers:
   - Default
   - TransparentFX
@@ -18,10 +20,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
+  - Piece
+  - Row
+  - All
+  - BackgroundImage
   - 
   - 
   - 
