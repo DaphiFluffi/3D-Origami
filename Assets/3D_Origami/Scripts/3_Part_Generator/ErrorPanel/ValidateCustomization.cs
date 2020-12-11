@@ -34,6 +34,10 @@ public class ValidateCustomization : MonoBehaviour
         {
             ShowErrorMessage("There can be a maximum of 30 rows.");
         }
+        else
+        {
+            HideErrorMessage();
+        }
     }
 
     public void CheckRemove()
@@ -42,6 +46,10 @@ public class ValidateCustomization : MonoBehaviour
         if (generatedRows.Length == 2)
         {
             ShowErrorMessage("There can be a minimum of 2 rows.");
+        }
+        else
+        {
+            HideErrorMessage();
         }
     }
     

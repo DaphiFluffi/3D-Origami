@@ -110,8 +110,13 @@ public class Customization : MonoBehaviour
     
     public void RemoveRow()
     {
-        rows--;
-        rowsInput.text = rows.ToString();
+        // a minumum of 2 rows is needed
+        if (rows != 2)
+        {
+            rows--;
+            rowsInput.text = rows.ToString();
+        }
+
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         int topRowIndex = generatedRows.Length -1 ;
         GameObject topRow = generatedRows[topRowIndex];
