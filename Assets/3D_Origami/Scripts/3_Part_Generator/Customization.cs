@@ -37,10 +37,13 @@ public class Customization : MonoBehaviour
     public void CollapseCylinder(bool collapse)
     {
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
-        Vector3 pos;
+        // reset rotaion on collapse
+        currentCylinder = GameObject.FindGameObjectWithTag("Cylinder");
+        currentCylinder.transform.rotation = Quaternion.identity;
+
         for (int i = 1; i < generatedRows.Length; i++)
         {
-            pos = generatedRows[i].transform.position;
+
             if (collapse)
             {
                 generatedRows[i].transform.position = new Vector3(0, 0, 0);
@@ -106,6 +109,7 @@ public class Customization : MonoBehaviour
             }
             // if the cylinder has been rotated, generate the row with the same rotation 
             row.transform.rotation = currentCylinder.transform.rotation;
+            //TODO geht auch nit collapsed = true wenn da bei collapsed gesetzt wird
             // in case of collapsed mode
             if (topRow.transform.position != Vector3.zero)
             {
