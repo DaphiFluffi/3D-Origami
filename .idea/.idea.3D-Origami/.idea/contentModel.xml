@@ -36,6 +36,12 @@
                 <e p="ScreenshotHandler.cs" t="Include" />
               </e>
               <e p="ProcessGeneratorInputs.cs" t="Include" />
+              <e p="Tooltip" t="Include">
+                <e p="FadeAnimation.cs" t="Include" />
+                <e p="Tooltip.cs" t="Include" />
+                <e p="TooltipSystem.cs" t="Include" />
+                <e p="TooltipTrigger.cs" t="Include" />
+              </e>
             </e>
             <e p="AlwaysOnCamera.cs" t="Include" />
             <e p="CylinderRotation.cs" t="Include" />
