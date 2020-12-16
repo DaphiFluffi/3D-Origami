@@ -9,10 +9,15 @@ public class MainMenuController : MonoBehaviour
    {
       SceneManager.LoadScene(1);
    }
-
-   public void OnPart3Click()
+   
+   public void OnPart2Click()
    {
       SceneManager.LoadScene(2);
+   }
+   
+   public void OnPart3Click()
+   {
+      SceneManager.LoadScene(3);
    }
 
    public void BackToMenu()
