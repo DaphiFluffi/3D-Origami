@@ -1884,7 +1884,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 493445965}
-        m_MethodName: OnSubMenuClick
+        m_MethodName: OnPart2Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

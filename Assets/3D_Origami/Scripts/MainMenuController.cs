@@ -9,12 +9,7 @@ public class MainMenuController : MonoBehaviour
    {
       SceneManager.LoadScene(1);
    }
-
-   public void OnSubMenuClick()
-   {
-      SceneManager.LoadScene(4);
-   }
-
+   
    public void OnPart2Click()
    {
       SceneManager.LoadScene(2);
