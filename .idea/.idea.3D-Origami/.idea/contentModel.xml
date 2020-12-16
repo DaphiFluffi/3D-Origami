@@ -17,6 +17,7 @@
               <e p="TutorialController.cs" t="Include" />
             </e>
             <e p="2_Part_Stacking" t="Include">
+              <e p="SubMenuSelection.cs" t="Include" />
               <e p="VideoController.cs" t="Include" />
             </e>
             <e p="3_Part_Generator" t="Include">
