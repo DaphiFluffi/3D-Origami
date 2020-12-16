@@ -27,8 +27,5 @@ public class VideoController : MonoBehaviour
             videoPlayer.url = "file://C:/Users/mcflu/Documents/Daphna/HTW Berlin - Internationale Medieninformatik/5. Semester HTW/Bachelorarbeit/Videoschnitt_Bachelorarbeit/"+currentTutorial+"/1_"+ currentTutorial+".MP4";
             Debug.Log(videoPlayer.url);
         }
-        
     }
-    
-   
 }
