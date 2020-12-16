@@ -37,10 +37,13 @@ public class Customization : MonoBehaviour
     public void CollapseCylinder(bool collapse)
     {
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
-        Vector3 pos;
+        // reset rotaion on collapse
+        currentCylinder = GameObject.FindGameObjectWithTag("Cylinder");
+        currentCylinder.transform.rotation = Quaternion.identity;
+
         for (int i = 1; i < generatedRows.Length; i++)
         {
-            pos = generatedRows[i].transform.position;
+
             if (collapse)
             {
                 generatedRows[i].transform.position = new Vector3(0, 0, 0);
@@ -58,8 +61,13 @@ public class Customization : MonoBehaviour
     public void RowOnTop()
     {
         extraPieces = 0;
-        rows++;
-        rowsInput.text = rows.ToString();
+        // enforce the maximum of 30 rows
+        if (rows < 30)
+        {
+            rows++;
+            rowsInput.text = rows.ToString();
+        }
+
         // get current Rows
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
         if (generatedRows.Length != 30)
@@ -72,7 +80,7 @@ public class Customization : MonoBehaviour
             // parent new row to current Cylinder object
             currentCylinder = GameObject.FindGameObjectWithTag("Cylinder");
             row.transform.parent = currentCylinder.transform;
-            Debug.Log(topRow.transform.position);
+//            Debug.Log(topRow.transform.position);
             row.gameObject.tag = "Row";
             
             for (int a = 0; a < piecesInTopRow; a++)
@@ -101,6 +109,12 @@ public class Customization : MonoBehaviour
             }
             // if the cylinder has been rotated, generate the row with the same rotation 
             row.transform.rotation = currentCylinder.transform.rotation;
+            //TODO geht auch nit collapsed = true wenn da bei collapsed gesetzt wird
+            // in case of collapsed mode
+            if (topRow.transform.position != Vector3.zero)
+            {
+                row.transform.position = topRow.transform.position + new Vector3(0,1,0);
+            }
 
             // sending the change in piece amount to ColorManager Script
             OnAddRemove.Invoke(extraPieces);
@@ -110,7 +124,7 @@ public class Customization : MonoBehaviour
     
     public void RemoveRow()
     {
-        // a minumum of 2 rows is needed
+        // a minimum of 2 rows is needed
         if (rows != 2)
         {
             rows--;
