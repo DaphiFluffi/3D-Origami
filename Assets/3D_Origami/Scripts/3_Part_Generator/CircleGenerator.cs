@@ -33,6 +33,9 @@ public class CircleGenerator : MonoBehaviour
             // parent cylinder object
             generatedCylinder = new GameObject {name = "cylinder"};
             generatedCylinder.AddComponent<CylinderRotation>();
+            generatedCylinder.AddComponent<MeshCollider>();
+            generatedCylinder.AddComponent<MeshFilter>();
+
             generatedCylinder.gameObject.tag = "Cylinder";
 
             for (int r = 0; r < rows.Length; r++)
