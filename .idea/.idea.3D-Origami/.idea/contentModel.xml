@@ -37,6 +37,8 @@
               </e>
               <e p="Export" t="Include">
                 <e p="Done.cs" t="Include" />
+                <e p="MeshCombine.cs" t="Include" />
+                <e p="ObjExporter.cs" t="Include" />
                 <e p="ScreenshotHandler.cs" t="Include" />
               </e>
               <e p="ProcessGeneratorInputs.cs" t="Include" />
@@ -56,7 +58,6 @@
             <e p="StandardCullOFF.shader" t="Include" />
           </e>
         </e>
-        <e p="aspect.cs" t="Include" />
         <e p="FlexibleColorPicker" t="Include">
           <e p="ExampleScene" t="Include">
             <e p="FCP_ExampleScript.cs" t="Include" />
