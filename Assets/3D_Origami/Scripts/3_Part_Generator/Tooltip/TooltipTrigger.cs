@@ -16,7 +16,7 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        StopCoroutine(Delay(2f));
+        StopAllCoroutines();
         TooltipSystem.Hide();
     }
 

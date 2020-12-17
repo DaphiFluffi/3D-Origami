@@ -43,7 +43,6 @@
               </e>
               <e p="ProcessGeneratorInputs.cs" t="Include" />
               <e p="Tooltip" t="Include">
-                <e p="FadeAnimation.cs" t="Include" />
                 <e p="Tooltip.cs" t="Include" />
                 <e p="TooltipSystem.cs" t="Include" />
                 <e p="TooltipTrigger.cs" t="Include" />

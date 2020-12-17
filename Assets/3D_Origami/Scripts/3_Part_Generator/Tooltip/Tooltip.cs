@@ -47,7 +47,7 @@ public class Tooltip : MonoBehaviour
         }
         else
         {
-            StopCoroutine(FadeImageIn());
+            StopAllCoroutines();
         }
 
         Vector2 position = Input.mousePosition;
@@ -58,6 +58,7 @@ public class Tooltip : MonoBehaviour
         transform.position = position;
     }
 
+    //todo quelle: unity doku 
     IEnumerator FadeImageIn()
     {
         // loop over 1 second
@@ -68,5 +69,4 @@ public class Tooltip : MonoBehaviour
             yield return null;
         }
     }
-
 }

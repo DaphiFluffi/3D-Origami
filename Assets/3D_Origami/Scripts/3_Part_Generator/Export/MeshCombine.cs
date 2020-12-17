@@ -42,7 +42,7 @@ public class MeshCombine : MonoBehaviour
             };
             combines[filterRenderer.sharedMaterial.name].Add(ci);
 
-            Destroy(filterRenderer);
+            //Destroy(filterRenderer);
         }
 
         foreach (Material m in namedMaterials.Values)
