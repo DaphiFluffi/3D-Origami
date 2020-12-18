@@ -37,11 +37,8 @@
                 <e p="ValidateInputs.cs" t="Include" />
               </e>
               <e p="Export" t="Include">
-                <e p="ColladaExporter.cs" t="Include" />
                 <e p="Done.cs" t="Include" />
                 <e p="MeshCombine.cs" t="Include" />
-                <e p="ObjExporter.cs" t="Include" />
-                <e p="ScreenshotHandler.cs" t="Include" />
               </e>
               <e p="ProcessGeneratorInputs.cs" t="Include" />
               <e p="Tooltip" t="Include">
@@ -69,19 +66,6 @@
           <e p="Scripts" t="Include">
             <e p="FCP_SpriteMeshEditor.cs" t="Include" />
             <e p="FlexibleColorPicker.cs" t="Include" />
-          </e>
-        </e>
-        <e p="IMI_Hilfspaket" t="Include">
-          <e p="Scripts" t="Include">
-            <e p="FBXExporterInRunTime.cs" t="Include" />
-          </e>
-          <e p="UnityFBXExporter" t="Include">
-            <e p="Editor" t="Include">
-              <e p="ExporterMenu.cs" t="Include" />
-            </e>
-            <e p="FBXExporter.cs" t="Include" />
-            <e p="FBXUnityMaterialGetter.cs" t="Include" />
-            <e p="FBXUnityMeshGetter.cs" t="Include" />
           </e>
         </e>
         <e p="Plugins" t="Include">
@@ -182,6 +166,14 @@
           <e p="Sprites" t="Include">
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
+        </e>
+        <e p="UnityFBXExporter" t="Include">
+          <e p="Editor" t="Include">
+            <e p="ExporterMenu.cs" t="Include" />
+          </e>
+          <e p="FBXExporter.cs" t="Include" />
+          <e p="FBXUnityMaterialGetter.cs" t="Include" />
+          <e p="FBXUnityMeshGetter.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
