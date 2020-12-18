@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 //https://forum.unity.com/threads/combine-children-apply-mesh-collider-to-parent.9001/
@@ -8,8 +9,7 @@ using UnityEngine;
 
 public class MeshCombine : MonoBehaviour
 {
-// Start is called before the first frame update
-    public void DokuCombine()
+    /*public void DokuCombine()
     {
         //https://grrava.blogspot.com/2014/08/combine-meshes-in-unity.html
         Matrix4x4 myTransform = transform.worldToLocalMatrix;
@@ -60,25 +60,17 @@ public class MeshCombine : MonoBehaviour
             arenderer.material = m;
         }
     
-    }
+    }*/
 
-    public void Combine()
+    //https://www.youtube.com/watch?v=wYAlky1aZn4
+    public Mesh Combine()
     {
-        Quaternion OldRot = transform.rotation;
-        Vector3 OldPos = transform.position;
-
-        transform.rotation = Quaternion.identity;
-        transform.position = Vector3.zero;
-
-
-
         MeshFilter[] filters = GetComponentsInChildren<MeshFilter>();
 
         Debug.Log(name + " is combining " + filters.Length + " meshes!");
 
         Mesh finalMesh = new Mesh ();
-        GetComponent<MeshCollider>().sharedMesh = null;
-        GetComponent< MeshCollider>().sharedMesh= finalMesh;
+//        GetComponent<MeshCollider>().sharedMesh= finalMesh;
 
         CombineInstance[] combiners = new CombineInstance[filters.Length];
 
@@ -94,21 +86,13 @@ public class MeshCombine : MonoBehaviour
             combiners[a].transform = filters[a].transform.localToWorldMatrix;
         }
 
-        finalMesh.CombineMeshes (combiners);
-
-
-        GetComponent<MeshFilter>().sharedMesh = finalMesh;
-
-
-
-        transform.rotation = OldRot;
-        transform.position = OldPos;
-
-
-        for (int a = 0; a < transform.childCount; a++)
-        {
-            transform.GetChild(a).gameObject.SetActive(false);
-        }
+        finalMesh.CombineMeshes(combiners);
+        finalMesh.name = "cylinderMesh";
+        
+        // Serialisierung des Mesh assets
+        // AssetDatabase.CreateAsset(finalMesh, "Assets/cylinder.asset"); 
+        // AssetDatabase.SaveAssets();
+        return finalMesh;
     }
 
 }
