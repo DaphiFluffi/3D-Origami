@@ -6,6 +6,7 @@
     <e p="C:\Users\mcflu\git\3D-Origami" t="IncludeRecursive">
       <e p="3D-Origami.sln" t="IncludeFlat" />
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -36,6 +37,7 @@
                 <e p="ValidateInputs.cs" t="Include" />
               </e>
               <e p="Export" t="Include">
+                <e p="ColladaExporter.cs" t="Include" />
                 <e p="Done.cs" t="Include" />
                 <e p="MeshCombine.cs" t="Include" />
                 <e p="ObjExporter.cs" t="Include" />
@@ -67,6 +69,19 @@
           <e p="Scripts" t="Include">
             <e p="FCP_SpriteMeshEditor.cs" t="Include" />
             <e p="FlexibleColorPicker.cs" t="Include" />
+          </e>
+        </e>
+        <e p="IMI_Hilfspaket" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="FBXExporterInRunTime.cs" t="Include" />
+          </e>
+          <e p="UnityFBXExporter" t="Include">
+            <e p="Editor" t="Include">
+              <e p="ExporterMenu.cs" t="Include" />
+            </e>
+            <e p="FBXExporter.cs" t="Include" />
+            <e p="FBXUnityMaterialGetter.cs" t="Include" />
+            <e p="FBXUnityMeshGetter.cs" t="Include" />
           </e>
         </e>
         <e p="Plugins" t="Include">

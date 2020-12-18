@@ -1,54 +1,78 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEditor;
+using UnityFBXExporter;
+
 
 public class Done : MonoBehaviour
 {
-    public RawImage image;
-
-    public void TakeScreenshot()
-    {
-        //https://forum.unity.com/threads/generating-sprites-dynamically-from-png-or-jpeg-files-in-c.343735/
-        //ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height); 
-
-        /* var sprite = Resources.Load<Sprite>("/Resources/CameraScreenshot");
-         image.GetComponent<SpriteRenderer>().sprite = sprite;*/
-
-        /* TextureImporter importer = AssetImporter.GetAtPath("/CameraScreenshot") as TextureImporter;
-         if (importer == null) {
-             Debug.LogError("Could not TextureImport from path: " + "/CameraScreenshot");
-         }else {
-             importer.textureType = TextureImporterType.Sprite;
-             importer.spriteImportMode = SpriteImportMode.Single;
-             importer.SaveAndReimport();
-         }*/
-    }
-
+    [Tooltip("Click here to export objectToExport as .fbx with materials.")]
+    [SerializeField]
+    bool exportFBX;
+    //[Tooltip("Root object of what will be exported as .fbx file.")]
+   // [SerializeField]
+    GameObject objectToExport;
+    FBXExporter fBXExporter;
     private GameObject objMeshToExport;
-
-    //https://stackoverflow.com/questions/46733430/convert-mesh-to-stl-obj-fbx-in-runtime
-    public void ExportOBJ()
+    private GameObject cylinder;
+    [SerializeField] private Material doubleSided;
+    private Mesh finalMesh;
+    
+    private void Start()
     {
-        objMeshToExport = GameObject.FindGameObjectWithTag("Cylinder");
-        objMeshToExport.AddComponent<MeshCombine>();
-        objMeshToExport.GetComponent<MeshCombine>().DokuCombine();
-        //only works in Editor, obstructs Build
+        fBXExporter = new FBXExporter();
+    }
+    
+    /*public void Combine()
+    {
+        cylinder = GameObject.FindGameObjectWithTag("Cylinder");
+        finalMesh = cylinder.GetComponent<MeshCombine>().Combine();
+        GameObject go = new GameObject();
+        go.AddComponent<MeshCollider>();
+        go.AddComponent<MeshFilter>();
+        go.AddComponent<MeshCombine>();
+        go.GetComponent<MeshFilter>().sharedMesh = finalMesh;
+        go.GetComponent<MeshRenderer>().material = doubleSided;
+       // Instantiate(go);
+    }*/
+    
+    public void Convert()
+    {
+        //if(exportFBX)
+        //{
+        exportFBX = false;
         
-      //  AssetDatabase.CreateAsset(objMeshToExport, "Assets/hyperboloid.asset"); //Serialisierung des Mesh assets
-        // AssetDatabase.SaveAssets();
-        
-        string localPath = "Assets/cylinderrrr.prefab";
+        cylinder = GameObject.FindGameObjectWithTag("Cylinder");
+       // finalMesh = cylinder.GetComponent<MeshCombine>().Combine();
+       /* GameObject go = new GameObject();
+        go.AddComponent<MeshCollider>();
+        go.AddComponent<MeshFilter>();
+        go.AddComponent<MeshCombine>();
+        go.GetComponent<MeshFilter>().sharedMesh = finalMesh;*/
+        cylinder.GetComponent<MeshRenderer>().material = doubleSided;
+     
+        objectToExport = cylinder;
+        if(objectToExport == null)
+        {
+            Debug.LogError($"Please assign an object to export as an .fbx file.", this);
+            return;
+        }
 
-        // Make sure the file name is unique, in case an existing Prefab has the same name.
-        localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+        string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name + ".fbx", "fbx");
+        Debug.Log(path);
+        FBXExporter.ExportGameObjToFBX(objectToExport, path, true, true);
+        //}
+    }
+    
+    //https://stackoverflow.com/questions/46733430/convert-mesh-to-stl-obj-fbx-in-runtime
+   /* public void ExportOBJ()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "data");
+       // path = Path.Combine(path, "carmodel" + ".obj");
+        path = Path.Combine(path, "carmodel" + ".dae");
 
-        // Create the new Prefab.
-        PrefabUtility.SaveAsPrefabAssetAndConnect(objMeshToExport, localPath, InteractionMode.UserAction);
-       /* string path = Path.Combine(Application.persistentDataPath, "data");
-        path = Path.Combine(path, "carmodel" + ".obj");
         Debug.Log(path);
 
         //Create Directory if it does not exist
@@ -56,9 +80,13 @@ public class Done : MonoBehaviour
         {
             Directory.CreateDirectory(Path.GetDirectoryName(path));
         }
-
         MeshFilter meshFilter = objMeshToExport.GetComponent<MeshFilter>();
-        ObjExporter.MeshToFile(meshFilter, path);*/
-    }
-
+        Mesh myMesh = meshFilter.sharedMesh;
+       // ObjExporter.MeshToFile(meshFilter, path);
+        
+        ColladaExporter export = new ColladaExporter(path, true);
+        export.AddGeometry("MyMeshId", myMesh);
+        export.AddGeometryToScene("MyMeshId", "MyMeshName");
+        export.Save();
+    }*/
 }

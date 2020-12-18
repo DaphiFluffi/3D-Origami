@@ -8,7 +8,8 @@ using System.Text;
 public class ObjExporter {
  
     public static string MeshToString(MeshFilter mf) {
-        Mesh m = mf.mesh;
+        Mesh m = mf.sharedMesh;
+        Debug.Log(m.name); //clylinderMesh
         Material[] mats = mf.GetComponent<Renderer>().sharedMaterials;
  
         StringBuilder sb = new StringBuilder();
@@ -25,6 +26,7 @@ public class ObjExporter {
         foreach(Vector3 v in m.uv) {
             sb.Append($"vt {v.x} {v.y}\n");
         }
+        Debug.Log(m.subMeshCount);
         for (int material=0; material < m.subMeshCount; material ++) {
             sb.Append("\n");
             sb.Append("usemtl ").Append(mats[material].name).Append("\n");
