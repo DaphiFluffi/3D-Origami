@@ -34,17 +34,9 @@ public class Done : MonoBehaviour
         //string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name + ".fbx", "fbx");
        // Debug.Log(path);
        
-       /*string path = Path.Combine(Application.persistentDataPath, "data");
-       path = Path.Combine(path, "3D_Origami_Model" + ".fbx");
-
-       //Create Directory if it does not exist
-       if (!Directory.Exists(Path.GetDirectoryName(path)))
-       {
-           Directory.CreateDirectory(Path.GetDirectoryName(path));
-       }*/
-        //string Path =  WebGLFileSaver.SaveFile("hello", "cylinder", "octet-stream");
+       WebGLFileSaver.SaveFile(FBXExporter.MeshToString(objectToExport, null, true, true), "cylinder.fbx", "application/octet-stream");
        //JS_FileSystem_Sync();
-       FBXExporter.ExportGameObjToFBX(objectToExport, "C:/Users/cylinder.fbx", true, true);
+       //FBXExporter.ExportGameObjToFBX(objectToExport, path, true, true);
       
 
     }
