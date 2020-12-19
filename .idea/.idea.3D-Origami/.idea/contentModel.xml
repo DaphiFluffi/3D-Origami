@@ -72,6 +72,22 @@
             <e p="AndroidManifest.xml" t="Include" />
           </e>
         </e>
+        <e p="StandaloneFileBrowser" t="Include">
+          <e p="IStandaloneFileBrowser.cs" t="Include" />
+          <e p="Sample" t="Include">
+            <e p="BasicSample.cs" t="Include" />
+            <e p="CanvasSampleOpenFileImage.cs" t="Include" />
+            <e p="CanvasSampleOpenFileText.cs" t="Include" />
+            <e p="CanvasSampleOpenFileTextMultiple.cs" t="Include" />
+            <e p="CanvasSampleSaveFileImage.cs" t="Include" />
+            <e p="CanvasSampleSaveFileText.cs" t="Include" />
+          </e>
+          <e p="StandaloneFileBrowser.cs" t="Include" />
+          <e p="StandaloneFileBrowserEditor.cs" t="Include" />
+          <e p="StandaloneFileBrowserLinux.cs" t="Include" />
+          <e p="StandaloneFileBrowserMac.cs" t="Include" />
+          <e p="StandaloneFileBrowserWindows.cs" t="Include" />
+        </e>
         <e p="Standard Assets" t="Include">
           <e p="CrossPlatformInput" t="Include">
             <e p="CrossPlatformInputGuidelines.txt" t="Include" />
@@ -173,6 +189,9 @@
           <e p="FBXExporter.cs" t="Include" />
           <e p="FBXUnityMaterialGetter.cs" t="Include" />
           <e p="FBXUnityMeshGetter.cs" t="Include" />
+        </e>
+        <e p="WebGLFileSaverForUnity" t="Include">
+          <e p="WebGLFileSaver.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
