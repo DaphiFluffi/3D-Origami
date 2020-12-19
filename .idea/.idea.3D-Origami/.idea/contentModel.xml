@@ -38,7 +38,6 @@
               </e>
               <e p="Export" t="Include">
                 <e p="Done.cs" t="Include" />
-                <e p="MeshCombine.cs" t="Include" />
               </e>
               <e p="ProcessGeneratorInputs.cs" t="Include" />
               <e p="Tooltip" t="Include">
