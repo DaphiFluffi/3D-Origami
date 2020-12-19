@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.IO;
+using System.Runtime.InteropServices;
+using SFB;
+using UnityEngine;
 using UnityEditor;
 using UnityFBXExporter;
-
 
 public class Done : MonoBehaviour
 {
@@ -10,12 +13,12 @@ public class Done : MonoBehaviour
     FBXExporter fBXExporter;
     private GameObject cylinder;
     [SerializeField] private Material doubleSided = default;
-
-    private void Start()
-    {
-        fBXExporter = new FBXExporter();
+    //[DllImport("__Internal")] private static extern void JS_FileSystem_Sync();
+	void Start()
+	{
+		fBXExporter = new FBXExporter();
     }
-    
+
     public void Convert()
     {
         cylinder = GameObject.FindGameObjectWithTag("Cylinder");
@@ -28,8 +31,21 @@ public class Done : MonoBehaviour
             return;
         }
 
-        string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name + ".fbx", "fbx");
+        //string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name + ".fbx", "fbx");
        // Debug.Log(path);
-        FBXExporter.ExportGameObjToFBX(objectToExport, path, true, true);
+       
+       /*string path = Path.Combine(Application.persistentDataPath, "data");
+       path = Path.Combine(path, "3D_Origami_Model" + ".fbx");
+
+       //Create Directory if it does not exist
+       if (!Directory.Exists(Path.GetDirectoryName(path)))
+       {
+           Directory.CreateDirectory(Path.GetDirectoryName(path));
+       }*/
+        //string Path =  WebGLFileSaver.SaveFile("hello", "cylinder", "octet-stream");
+       //JS_FileSystem_Sync();
+       FBXExporter.ExportGameObjToFBX(objectToExport, "C:/Users/cylinder.fbx", true, true);
+      
+
     }
 }
