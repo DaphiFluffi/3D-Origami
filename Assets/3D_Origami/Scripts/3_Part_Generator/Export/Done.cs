@@ -5,6 +5,7 @@ using UnityFBXExporter;
 
 public class Done : MonoBehaviour
 {
+    // uses fbx exporter package by https://github.com/KellanHiggins/UnityFBXExporter
     GameObject objectToExport;
     FBXExporter fBXExporter;
     private GameObject cylinder;
@@ -28,7 +29,7 @@ public class Done : MonoBehaviour
         }
 
         string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name + ".fbx", "fbx");
-        Debug.Log(path);
+       // Debug.Log(path);
         FBXExporter.ExportGameObjToFBX(objectToExport, path, true, true);
     }
 }
