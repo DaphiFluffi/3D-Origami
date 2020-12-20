@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 using UnityEditor;
 using UnityFBXExporter;
+using SimpleFileBrowser;
 
 public class Done : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class Done : MonoBehaviour
 		fBXExporter = new FBXExporter();
     }*/
 
+    void Start()
+    {
+        FileBrowser.SetDefaultFilter( ".fbx" );
+    }
+
     public void Convert()
     {
         cylinder = GameObject.FindGameObjectWithTag("Cylinder");
@@ -29,14 +35,20 @@ public class Done : MonoBehaviour
             return;
         }*/
 
+       string content = FBXExporter.MeshToString(objectToExport, null, true, true);
+
         #if UNITY_EDITOR
             string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name + ".fbx", "fbx");
             FBXExporter.ExportGameObjToFBX(objectToExport, path, true, true);
         #elif UNITY_WEBGL
-            string content = FBXExporter.MeshToString(objectToExport, null, true, true);
             WebGLFileSaver.SaveFile(content, "cylinder.fbx", "application/octet-stream");
-        #elif UNITY_STANDALONE
-        #elif UNITY_ANDROID	
+        #elif UNITY_STANDALONE || UNITY_ANDROID	
+        // https://forum.unity.com/threads/simple-file-browser-open-source.441908/page-7#post-6642685
+           FileBrowser.ShowSaveDialog( ( paths ) =>
+           {
+               string targetPath = paths[0];
+               FileBrowserHelpers.WriteTextToFile(targetPath, content);
+           }, null, FileBrowser.PickMode.Files, false, "C:\\", "object.fbx", "Save As", "Save" );
         #endif
     }
 }
