@@ -44,14 +44,14 @@ public class CylinderRotation : MonoBehaviour
         GUIrotatationY *= Time.deltaTime;
 
         //Generator Scene
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             transform.Rotate(rotationX, rotationY, 0, Space.Self);
             transform.Rotate(GUIrotatationX, GUIrotatationY, 0, Space.Self);
         }
         
         // How to fold Pieces Scene
-        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             transform.Rotate(rotationX,0, rotationY, Space.Self);
             transform.Rotate(GUIrotatationX,0, GUIrotatationY, Space.Self);

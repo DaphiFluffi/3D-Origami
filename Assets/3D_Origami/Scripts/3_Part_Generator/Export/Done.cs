@@ -1,29 +1,39 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEditor;
+using UnityFBXExporter;
 
 public class Done : MonoBehaviour
 {
-    public RawImage image;
+    // uses fbx exporter package by https://github.com/KellanHiggins/UnityFBXExporter
+    GameObject objectToExport;
+    //FBXExporter fBXExporter;
+    private GameObject cylinder;
+    [SerializeField] private Material doubleSided = default;
+    //[DllImport("__Internal")] private static extern void JS_FileSystem_Sync();
+	/*void Start()
+	{
+		fBXExporter = new FBXExporter();
+    }*/
 
-    public void TakeScreenshot()
+    public void Convert()
     {
-        //https://forum.unity.com/threads/generating-sprites-dynamically-from-png-or-jpeg-files-in-c.343735/
-        //ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height); 
+        cylinder = GameObject.FindGameObjectWithTag("Cylinder");
+        cylinder.GetComponent<MeshRenderer>().material = doubleSided;
+     
+        objectToExport = cylinder;
+        if(objectToExport == null)
+        {
+            Debug.LogError($"Please assign an object to export as an .fbx file.", this);
+            return;
+        }
 
-        /* var sprite = Resources.Load<Sprite>("/Resources/CameraScreenshot");
-         image.GetComponent<SpriteRenderer>().sprite = sprite;*/
-
-        /* TextureImporter importer = AssetImporter.GetAtPath("/CameraScreenshot") as TextureImporter;
-         if (importer == null) {
-             Debug.LogError("Could not TextureImport from path: " + "/CameraScreenshot");
-         }else {
-             importer.textureType = TextureImporterType.Sprite;
-             importer.spriteImportMode = SpriteImportMode.Single;
-             importer.SaveAndReimport();
-         }*/
+        //string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name + ".fbx", "fbx");
+       // Debug.Log(path);
+       string content = FBXExporter.MeshToString(objectToExport, null, true, true);
+       WebGLFileSaver.SaveFile(content, "cylinder.fbx", "application/octet-stream");
+       //JS_FileSystem_Sync();
+       //FBXExporter.ExportGameObjToFBX(objectToExport, path, true, true);
     }
-    
 }
