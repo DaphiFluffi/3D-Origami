@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.IO;
-using System.Runtime.InteropServices;
-using SFB;
 using UnityEngine;
 using UnityEditor;
 using UnityFBXExporter;
@@ -10,14 +8,14 @@ public class Done : MonoBehaviour
 {
     // uses fbx exporter package by https://github.com/KellanHiggins/UnityFBXExporter
     GameObject objectToExport;
-    FBXExporter fBXExporter;
+    //FBXExporter fBXExporter;
     private GameObject cylinder;
     [SerializeField] private Material doubleSided = default;
     //[DllImport("__Internal")] private static extern void JS_FileSystem_Sync();
-	void Start()
+	/*void Start()
 	{
 		fBXExporter = new FBXExporter();
-    }
+    }*/
 
     public void Convert()
     {
@@ -33,11 +31,9 @@ public class Done : MonoBehaviour
 
         //string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name + ".fbx", "fbx");
        // Debug.Log(path);
-       
-       WebGLFileSaver.SaveFile(FBXExporter.MeshToString(objectToExport, null, true, true), "cylinder.fbx", "application/octet-stream");
+       string content = FBXExporter.MeshToString(objectToExport, null, true, true);
+       WebGLFileSaver.SaveFile(content, "cylinder.fbx", "application/octet-stream");
        //JS_FileSystem_Sync();
        //FBXExporter.ExportGameObjToFBX(objectToExport, path, true, true);
-      
-
     }
 }
