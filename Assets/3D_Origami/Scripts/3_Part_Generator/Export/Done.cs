@@ -23,17 +23,20 @@ public class Done : MonoBehaviour
         cylinder.GetComponent<MeshRenderer>().material = doubleSided;
      
         objectToExport = cylinder;
-        if(objectToExport == null)
+       /* if(objectToExport == null)
         {
             Debug.LogError($"Please assign an object to export as an .fbx file.", this);
             return;
-        }
+        }*/
 
-        //string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name + ".fbx", "fbx");
-       // Debug.Log(path);
-       string content = FBXExporter.MeshToString(objectToExport, null, true, true);
-       WebGLFileSaver.SaveFile(content, "cylinder.fbx", "application/octet-stream");
-       //JS_FileSystem_Sync();
-       //FBXExporter.ExportGameObjToFBX(objectToExport, path, true, true);
+        #if UNITY_EDITOR
+            string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name + ".fbx", "fbx");
+            FBXExporter.ExportGameObjToFBX(objectToExport, path, true, true);
+        #elif UNITY_WEBGL
+            string content = FBXExporter.MeshToString(objectToExport, null, true, true);
+            WebGLFileSaver.SaveFile(content, "cylinder.fbx", "application/octet-stream");
+        #elif UNITY_STANDALONE
+        #elif UNITY_ANDROID	
+        #endif
     }
 }
