@@ -6,6 +6,7 @@
     <e p="C:\Users\mcflu\git\3D-Origami" t="IncludeRecursive">
       <e p="3D-Origami.sln" t="IncludeFlat" />
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -37,11 +38,9 @@
               </e>
               <e p="Export" t="Include">
                 <e p="Done.cs" t="Include" />
-                <e p="ScreenshotHandler.cs" t="Include" />
               </e>
               <e p="ProcessGeneratorInputs.cs" t="Include" />
               <e p="Tooltip" t="Include">
-                <e p="FadeAnimation.cs" t="Include" />
                 <e p="Tooltip.cs" t="Include" />
                 <e p="TooltipSystem.cs" t="Include" />
                 <e p="TooltipTrigger.cs" t="Include" />
@@ -56,7 +55,6 @@
             <e p="StandardCullOFF.shader" t="Include" />
           </e>
         </e>
-        <e p="aspect.cs" t="Include" />
         <e p="FlexibleColorPicker" t="Include">
           <e p="ExampleScene" t="Include">
             <e p="FCP_ExampleScript.cs" t="Include" />
@@ -73,6 +71,22 @@
           <e p="Android" t="Include">
             <e p="AndroidManifest.xml" t="Include" />
           </e>
+        </e>
+        <e p="StandaloneFileBrowser" t="Include">
+          <e p="IStandaloneFileBrowser.cs" t="Include" />
+          <e p="Sample" t="Include">
+            <e p="BasicSample.cs" t="Include" />
+            <e p="CanvasSampleOpenFileImage.cs" t="Include" />
+            <e p="CanvasSampleOpenFileText.cs" t="Include" />
+            <e p="CanvasSampleOpenFileTextMultiple.cs" t="Include" />
+            <e p="CanvasSampleSaveFileImage.cs" t="Include" />
+            <e p="CanvasSampleSaveFileText.cs" t="Include" />
+          </e>
+          <e p="StandaloneFileBrowser.cs" t="Include" />
+          <e p="StandaloneFileBrowserEditor.cs" t="Include" />
+          <e p="StandaloneFileBrowserLinux.cs" t="Include" />
+          <e p="StandaloneFileBrowserMac.cs" t="Include" />
+          <e p="StandaloneFileBrowserWindows.cs" t="Include" />
         </e>
         <e p="Standard Assets" t="Include">
           <e p="CrossPlatformInput" t="Include">
@@ -167,6 +181,17 @@
           <e p="Sprites" t="Include">
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
+        </e>
+        <e p="UnityFBXExporter" t="Include">
+          <e p="Editor" t="Include">
+            <e p="ExporterMenu.cs" t="Include" />
+          </e>
+          <e p="FBXExporter.cs" t="Include" />
+          <e p="FBXUnityMaterialGetter.cs" t="Include" />
+          <e p="FBXUnityMeshGetter.cs" t="Include" />
+        </e>
+        <e p="WebGLFileSaverForUnity" t="Include">
+          <e p="WebGLFileSaver.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

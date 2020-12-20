@@ -17,7 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/3D_Origami/Scenes/Generator.unity
     guid: c503c965d275a2d40ac9a5b636cbdd63
-  - enabled: 1
-    path: Assets/3D_Origami/Scenes/Stacking_Menu.unity
-    guid: 4cf03d7c40bab2e449a993c0a9bf7ddd
   m_configObjects: {}
