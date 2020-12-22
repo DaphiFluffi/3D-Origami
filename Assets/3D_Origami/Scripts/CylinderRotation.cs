@@ -11,17 +11,17 @@ public class CylinderRotation : MonoBehaviour
     private float startingPositionY;
     private Button resetButton;
     private float rotationX, rotationY, GUIrotatationX, GUIrotatationY = 0;
-    
-    private void ResetRotation()
-    {
-        transform.rotation = Quaternion.identity;
-    }
+    private int currentSceneIndex;
+    private Quaternion startRotation; 
     
     void Start()
     {
         resetButton = GameObject.FindGameObjectWithTag("Reset").GetComponent<Button>();
         resetButton.onClick.AddListener(ResetRotation);
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        startRotation = transform.rotation;
     }
+    
     void Update()
     {
         // Get the horizontal and vertical axis.
@@ -42,19 +42,18 @@ public class CylinderRotation : MonoBehaviour
         GUIrotatationX *= Time.deltaTime;
         GUIrotatationY *= Time.deltaTime;
 
-        //Generator Scene
-        if (SceneManager.GetActiveScene().buildIndex == 3)
+        switch (currentSceneIndex)
         {
-            transform.Rotate(rotationX, rotationY, 0, Space.Self);
-            transform.Rotate(GUIrotatationX, GUIrotatationY, 0, Space.Self);
-        }
-        
-        // How to fold Pieces Scene
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            Debug.Log("happens");
-            transform.Rotate(rotationX,0, rotationY, Space.Self);
-            transform.Rotate(GUIrotatationX,0, GUIrotatationY, Space.Self);
+            // How to fold Pieces Scene
+            case 1:
+                transform.Rotate(rotationX,0, rotationY, Space.Self);
+                transform.Rotate(GUIrotatationX,0, GUIrotatationY, Space.Self);
+                break;
+            //Generator Scene
+            case 3:
+                transform.Rotate(rotationX, rotationY, 0, Space.Self);
+                transform.Rotate(GUIrotatationX, GUIrotatationY, 0, Space.Self);
+                break;
         }
         
         // reset rotation with space
@@ -63,4 +62,10 @@ public class CylinderRotation : MonoBehaviour
             ResetRotation();
         }
     }
+    
+    private void ResetRotation()
+    {
+        transform.rotation = startRotation;
+    }
+
 }
