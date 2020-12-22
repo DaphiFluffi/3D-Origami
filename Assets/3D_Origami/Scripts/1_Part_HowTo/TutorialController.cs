@@ -26,7 +26,7 @@ public class TutorialController : MonoBehaviour
         PauseOrUnpauseAnimation();
     }
 
-    void FixedUpdate() // don't show previous button at the first step, don't show next button at the last step 
+    void Update() // don't show previous button at the first step, don't show next button at the last step 
     {
         if (_index == 0)
         {
