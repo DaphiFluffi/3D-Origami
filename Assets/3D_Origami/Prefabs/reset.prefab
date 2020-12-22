@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 987252933611674890}
   - component: {fileID: 987252933611674891}
   - component: {fileID: 987252933611674888}
+  - component: {fileID: 8068587436767380101}
   m_Layer: 5
   m_Name: reset
   m_TagString: Reset
@@ -118,3 +119,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8068587436767380101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987252933611674886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32911cafeea5a64bbfc69f85d49a92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: Reset Rotation

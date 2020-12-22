@@ -16,4 +16,5 @@
             <meta-data android:name="android.max_aspect" android:value="2.1" />
         </activity>
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="replace"/>
 </manifest>
