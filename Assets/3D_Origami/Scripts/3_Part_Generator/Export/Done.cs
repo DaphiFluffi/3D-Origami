@@ -20,6 +20,7 @@ public class Done : MonoBehaviour
 
     void Start()
     {
+        FileBrowser.SetFilters( true, new FileBrowser.Filter( ".fbx", ".fbx" ));
         FileBrowser.SetDefaultFilter( ".fbx" );
     }
 
@@ -48,7 +49,8 @@ public class Done : MonoBehaviour
            {
                string targetPath = paths[0];
                FileBrowserHelpers.WriteTextToFile(targetPath, content);
-           }, null, FileBrowser.PickMode.Files, false, "C:\\", "object.fbx", "Save As", "Save" );
+           }, null, FileBrowser.PickMode.Files, false, "C:\\", "3D_Origami_Model_", "Save As", "Save" );
         #endif
     }
+    
 }
