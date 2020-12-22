@@ -327,7 +327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000076293945, y: -10.319458}
+  m_AnchoredPosition: {x: 0.000076293945, y: -10.319452}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.15, y: 0.85}
 --- !u!114 &46924575
@@ -376,25 +376,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46924573}
   m_CullTransparentMesh: 0
---- !u!1 &58933455 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2048520413100683600, guid: f678df2965129e64c99660f410a07a37,
-    type: 3}
-  m_PrefabInstance: {fileID: 2048520411841453704}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &58933461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58933455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32911cafeea5a64bbfc69f85d49a92b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: Rotate Down
 --- !u!1 &81871390
 GameObject:
   m_ObjectHideFlags: 0
@@ -5611,25 +5592,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014887752}
   m_CullTransparentMesh: 0
---- !u!1 &1026711261 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2048520413065882766, guid: f678df2965129e64c99660f410a07a37,
-    type: 3}
-  m_PrefabInstance: {fileID: 2048520411841453704}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1026711267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026711261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32911cafeea5a64bbfc69f85d49a92b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: Rotate Left
 --- !u!1 &1038885133
 GameObject:
   m_ObjectHideFlags: 0
@@ -6940,44 +6902,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: "Height and Width of model relative to \na piece of 1/64 of a DIN A4 piece
     of paper"
---- !u!1 &1538563828 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2048520413182337580, guid: f678df2965129e64c99660f410a07a37,
-    type: 3}
-  m_PrefabInstance: {fileID: 2048520411841453704}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1538563834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1538563828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32911cafeea5a64bbfc69f85d49a92b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: Rotate Up
---- !u!1 &1548504491 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2048520411839916009, guid: f678df2965129e64c99660f410a07a37,
-    type: 3}
-  m_PrefabInstance: {fileID: 2048520411841453704}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1548504497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548504491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32911cafeea5a64bbfc69f85d49a92b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: Rotate Right
 --- !u!1 &1567944683
 GameObject:
   m_ObjectHideFlags: 0
@@ -7506,25 +7430,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintPotPrefab: {fileID: 5642125426136234285, guid: f2b19867edb81e4468924bdc597e2fc3,
     type: 3}
---- !u!1 &1754019997 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 987252933611674886, guid: 98bf84d865e1ede4b83e360185bd075a,
-    type: 3}
-  m_PrefabInstance: {fileID: 987252933016583105}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1754020001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1754019997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32911cafeea5a64bbfc69f85d49a92b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: Reset Rotation
 --- !u!1 &1769947810
 GameObject:
   m_ObjectHideFlags: 0
@@ -9495,12 +9400,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 987252933611674891, guid: 98bf84d865e1ede4b83e360185bd075a,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: cd223bf3ace2e31458b5ca743bf841d8,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98bf84d865e1ede4b83e360185bd075a, type: 3}
 --- !u!1001 &2048520411841453704
@@ -9520,12 +9419,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2.7
       objectReference: {fileID: 0}
-    - target: {fileID: 2048520411839916011, guid: f678df2965129e64c99660f410a07a37,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7c7b0df4225dab2438faf9b5fd37e348,
-        type: 3}
     - target: {fileID: 2048520411927395846, guid: f678df2965129e64c99660f410a07a37,
         type: 3}
       propertyPath: m_Name
@@ -9571,12 +9464,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 161.64001
       objectReference: {fileID: 0}
-    - target: {fileID: 2048520413065882752, guid: f678df2965129e64c99660f410a07a37,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: be2b9c801371ad14c82d328945455f89,
-        type: 3}
     - target: {fileID: 2048520413065882767, guid: f678df2965129e64c99660f410a07a37,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -9597,12 +9484,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2.7
       objectReference: {fileID: 0}
-    - target: {fileID: 2048520413100683602, guid: f678df2965129e64c99660f410a07a37,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7916586a004f93941ba18d33d4bbc5af,
-        type: 3}
     - target: {fileID: 2048520413182337581, guid: f678df2965129e64c99660f410a07a37,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -9613,12 +9494,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2.7
       objectReference: {fileID: 0}
-    - target: {fileID: 2048520413182337582, guid: f678df2965129e64c99660f410a07a37,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f5c158a19ef67d9488e55f336d95db15,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f678df2965129e64c99660f410a07a37, type: 3}
 --- !u!1001 &6227565784457918912

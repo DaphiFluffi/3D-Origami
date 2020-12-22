@@ -27,7 +27,6 @@ public class CylinderRotation : MonoBehaviour
         // Get the horizontal and vertical axis.
         // By default they are mapped to the arrow keys.
         // The value is in the range -1 to 1
-        // TODO restricted vertical rotation
         
         // rotation works with WSAD and Arrow Keys
         rotationX = Input.GetAxis("Vertical") * rotationSpeed;
@@ -51,8 +50,9 @@ public class CylinderRotation : MonoBehaviour
         }
         
         // How to fold Pieces Scene
-        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        if (SceneManager.GetActiveScene().buildIndex == 2)
         {
+            Debug.Log("happens");
             transform.Rotate(rotationX,0, rotationY, Space.Self);
             transform.Rotate(GUIrotatationX,0, GUIrotatationY, Space.Self);
         }
