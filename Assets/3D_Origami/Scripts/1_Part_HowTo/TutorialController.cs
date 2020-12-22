@@ -7,6 +7,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private GameObject[] folds = new GameObject[7];
     [SerializeField] private Button pauseButton = default;
     [SerializeField] private Button nextButton = default;
+    [SerializeField] private Button nextSceneButton = default;
     [SerializeField] private Button previousButton = default;
     [SerializeField] private Sprite Unpause = default;
     [SerializeField] private Sprite Pause = default;
@@ -34,6 +35,7 @@ public class TutorialController : MonoBehaviour
         else if (_index == folds.Length - 1)
         {
             nextButton.gameObject.SetActive(false);
+            nextSceneButton.gameObject.SetActive(true);
         }
         else
         {
@@ -117,7 +119,11 @@ public class TutorialController : MonoBehaviour
     
     private void UnpauseAnimation()
     {
-        folds[_index].GetComponent<Animator>().speed = 1f; //unpauseAnimation
+        //if there is an animator
+        if (folds[_index].GetComponent<Animator>() != null)
+        {
+            folds[_index].GetComponent<Animator>().speed = 1f; //unpauseAnimation
+        }
         pauseButton.image.overrideSprite = Pause; //"Pause";
         _paused = false;
     }
