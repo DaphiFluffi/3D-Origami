@@ -14,7 +14,7 @@ public class VideoSelection : MonoBehaviour
     private string currentTutorial;
     private string stepsInCurrentTutorial;
 
-    [SerializeField] private TextMeshProUGUI tutorialIndicator;
+    [SerializeField] private TextMeshProUGUI tutorialIndicator = default;
     // --- Video ---
     [SerializeField] private GameObject VideoCanvas = default;
     [SerializeField] private GameObject SelectionCanvas = default;
