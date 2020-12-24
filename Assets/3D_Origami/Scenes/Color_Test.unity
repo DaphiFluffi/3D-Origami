@@ -1335,9 +1335,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 135115989}
   m_Direction: 2
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4255,7 +4255,6 @@ MonoBehaviour:
   Unpause: {fileID: 21300000, guid: ab3febfd35d580b42a78edf32dd87369, type: 3}
   Pause: {fileID: 21300000, guid: bbdc38e9e3fe75745908022f92b11952, type: 3}
   progressBar: {fileID: 1944263913}
-  speedSettingsSlider: {fileID: 455852587}
 --- !u!4 &1778053711
 Transform:
   m_ObjectHideFlags: 0
@@ -4299,7 +4298,7 @@ Animator:
   m_GameObject: {fileID: 1783161056}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 283d7046f422ef243b86c39fd089f516, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
