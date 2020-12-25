@@ -327,7 +327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000076293945, y: -10.319469}
+  m_AnchoredPosition: {x: 0.000076293945, y: -10.31947}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.15, y: 0.85}
 --- !u!114 &46924575
@@ -929,7 +929,6 @@ GameObject:
   - component: {fileID: 172891019}
   - component: {fileID: 172891018}
   - component: {fileID: 172891017}
-  - component: {fileID: 172891016}
   m_Layer: 5
   m_Name: ok
   m_TagString: Untagged
@@ -957,19 +956,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000011444092, y: -83}
   m_SizeDelta: {x: 54.638794, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &172891016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172891014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b1426aee95bf984f97fbfbe4e0d790c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  errorPanel: {fileID: 838415672}
 --- !u!114 &172891017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,8 +999,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 172891016}
-        m_MethodName: HideErrorPanel
+      - m_Target: {fileID: 147669141}
+        m_MethodName: HideInfoMessage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1608,7 +1594,6 @@ GameObject:
   - component: {fileID: 315961841}
   - component: {fileID: 315961840}
   - component: {fileID: 315961843}
-  - component: {fileID: 315961844}
   - component: {fileID: 315961845}
   m_Layer: 0
   m_Name: Main Camera
@@ -1697,18 +1682,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 315961841}
   groundZ: 0
---- !u!114 &315961844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315961839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e382b21e7fb2614caa602f4fedec19a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &315961845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3135,7 +3108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 41.649902, y: -58.342003}
+  m_AnchoredPosition: {x: 41.65039, y: -58.342003}
   m_SizeDelta: {x: 219.96204, y: 85.79643}
   m_Pivot: {x: 0.1, y: 0.8}
 --- !u!114 &643055140
@@ -5274,7 +5247,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1780124094}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.8499994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6978,7 +6951,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -129.98001, y: 94.684}
+  m_AnchoredPosition: {x: -129.98047, y: 94.684}
   m_SizeDelta: {x: 216.91757, y: 271.73273}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1602881316
@@ -7549,7 +7522,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 147669141}
-        m_MethodName: CheckIncreasedAndDecreasedInput
+        m_MethodName: CheckDecreasedInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9228,7 +9201,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 147669141}
-        m_MethodName: CheckIncreasedAndDecreasedInput
+        m_MethodName: CheckIncreasedInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9457,12 +9430,12 @@ PrefabInstance:
     - target: {fileID: 2048520411927395847, guid: f678df2965129e64c99660f410a07a37,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 75.12399
+      value: 75.12402
       objectReference: {fileID: 0}
     - target: {fileID: 2048520411927395847, guid: f678df2965129e64c99660f410a07a37,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 161.64001
+      value: 161.63965
       objectReference: {fileID: 0}
     - target: {fileID: 2048520413065882767, guid: f678df2965129e64c99660f410a07a37,
         type: 3}
