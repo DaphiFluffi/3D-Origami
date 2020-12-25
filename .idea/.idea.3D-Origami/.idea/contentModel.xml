@@ -31,7 +31,6 @@
               </e>
               <e p="Customization.cs" t="Include" />
               <e p="ErrorPanel" t="Include">
-                <e p="OkBtn.cs" t="Include" />
                 <e p="ValidateCustomization.cs" t="Include" />
                 <e p="ValidateInputs.cs" t="Include" />
               </e>
