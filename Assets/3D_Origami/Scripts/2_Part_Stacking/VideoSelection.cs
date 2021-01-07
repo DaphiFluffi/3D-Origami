@@ -34,6 +34,9 @@ public class VideoSelection : MonoBehaviour
     // ---Progress --
     [SerializeField] private Slider progressBar = default;
 
+    // --- Links -- 
+    [SerializeField] private YoutubePlayer.YoutubePlayer youtubePlayer = default;
+    [SerializeField] private string[] links = default; 
     private void Start()
     {
         videoUrlTemplate =
@@ -54,6 +57,14 @@ public class VideoSelection : MonoBehaviour
         var regex = new Regex(Regex.Escape(clipIndex.ToString()));
         videoUrlTemplate = regex.Replace(videoUrlTemplate, "(videoIndex)", 1);
 
+    }
+
+    private void ChangeYouTubeVideo(int clipIndex)
+    {
+        //Debug.Log(links[clipIndex]);
+        // prepare new url
+        youtubePlayer.youtubeUrl = links[clipIndex];
+        youtubePlayer.PlayVideoAsync(youtubePlayer.youtubeUrl);
     }
 
     public void BackToSelection()
@@ -78,18 +89,29 @@ public class VideoSelection : MonoBehaviour
         {
             VideoCanvas.SetActive(true);
             //setting all values depending on tutorial
+            // play the first tutorial on button click
             clipIndexInCurrentTutorial = 1;
+            // set current Tutorial name
             currentTutorial = tutorialName;
+            // put tutorial name into right hand corner
             tutorialIndicator.text = currentTutorial;
+            // how many clips are in the current tutorial
             int howManyClips = ClipAmountInTutorial();
             progressBar.maxValue = howManyClips;
+           
             instructions = SetOfInstructions();
-            //TODO which Instructions to show
+            //which Instructions to show
             instructionsText.text = instructions[0];
 
+            // --Videos from Desktop
            // videoPlayer.url = "file://C:/Users/mcflu/Documents/Daphna/HTW Berlin - Internationale Medieninformatik/5. Semester HTW/Bachelorarbeit/Videoschnitt_Bachelorarbeit/"+currentTutorial+"/(videoIndex)_"+ currentTutorial+".MP4";
-            videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
-            ChangeVideo("1");
+           // videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
+            // ChangeVideo("1");
+            
+            // -- Videos from YouTube
+            // get the links to the videos of the current tutorial 
+            links = YoutubeLinks();
+            ChangeYouTubeVideo(0);
         }
     }
     
@@ -100,7 +122,7 @@ public class VideoSelection : MonoBehaviour
         switch (currentTutorial)
         {
             case "Base":
-                clipAmount = 3;
+                clipAmount = 4;
                 break;
             case "Bottom":
                 clipAmount = 3;
@@ -122,6 +144,53 @@ public class VideoSelection : MonoBehaviour
         return clipAmount;
     }
 
+    private string[] YoutubeLinks()
+    {
+        string[] links = new string[7];
+        switch (currentTutorial)
+        {
+            case "Base":
+                links[0] = "https://youtu.be/xHba9yOWJsE";
+                links[1] = "https://youtu.be/b2KZcL-LYt0";
+                links[2] = "https://youtu.be/b5U3RclJTgU";
+                links[3] = "https://youtu.be/H7NwpXZepi4";
+            break;
+            case "Bottom":
+                links[0] = "https://youtu.be/TCkRnTQkXh8";
+                links[1] = "https://youtu.be/W9OrpC8sBdU";
+                links[2] = "https://youtu.be/dWfi3CpUCkg";
+                break;
+            case "Decreased":
+                links[0] = "https://youtu.be/u9oFJarwdeY";
+                links[1] = "https://youtu.be/HCiM2FWo81A";
+                links[2] = "https://youtu.be/j8tqbGWzMbU";
+                links[3] = "https://youtu.be/dQEFyGnoajU";
+                links[4] = "https://youtu.be/IIuQsIv92EA";
+                links[5] = "https://youtu.be/Ap0QX9XsMTM";
+                links[6] = "https://youtu.be/BTz4PhwCINg";
+            break;
+            case "Increased": 
+                links[0] = "https://youtu.be/WkHtyIo87lY";
+               links[1] = "https://youtu.be/ZaXUHYALOF8";
+               links[2] = "https://youtu.be/2apg-_DNUMI";
+               links[3] = "https://youtu.be/rw7gFay7n3w";
+               links[4] = "https://youtu.be/7P4z4B8XyaE";
+            break;
+            case "Inverted":
+                links[0] = "https://youtu.be/k6npNPvaNVM#";
+                links[1] = "https://youtu.be/XEn2Yge8Qpg";
+                links[2] = "https://youtu.be/UVSnPdpOlgU";
+                links[3] = "https://youtu.be/RILQuwRhLa0";
+                links[4] = "https://youtu.be/QrJraj_FaFQ";
+            break;
+            case "Normal":
+                links[0] = "https://youtu.be/__1mlkwVXXM";
+                links[1] = "https://youtu.be/6ClWJ0TAXu4";
+            break;
+        }
+
+        return links;
+    }
     private string[] SetOfInstructions()
     {
         string[] instructions = new string[7];
@@ -129,9 +198,10 @@ public class VideoSelection : MonoBehaviour
         switch (currentTutorial)
         {
             case "Base":
-                instructions[0] = "1. Take two of your stacks and connect them as shown.";
-                instructions[1] = "2. Continue all the way around.";
-                instructions[2] = "3. Squeeze the finished product into a cup shape.";
+                instructions[0] = "1. Take 3 pieces and connect them to make one stack.";
+                instructions[1] = "2. Take two of your stacks and connect them as shown.";
+                instructions[2] = "3. Continue all the way around.";
+                instructions[3] = "4. Squeeze the finished product into a cup shape.";
                 break;
             case "Bottom":
                 instructions[0] = "1. Flip your model on its side.";
@@ -149,7 +219,7 @@ public class VideoSelection : MonoBehaviour
                 break;
             case "Increased":
                 instructions[0] = "1. Put one pocket of your piece over 1 tip.";
-                instructions[1] = "2. To make your model more stable, glue down incresed rows.";
+                instructions[1] = "2. To make your model more stable, glue down increased rows.";
                 instructions[2] = "3. Continue like this all the way around. \n At the end, the amount of pieces has doubled.";
                 instructions[3] = "4. Putting on a normal row above also increases stability.";
                 instructions[4] = "5. This technique is used to create curved objects.";
@@ -157,7 +227,7 @@ public class VideoSelection : MonoBehaviour
             case "Inverted":
                 instructions[0] = "1. Turn every piece to face inwards \n and put one piece over two tips.";
                 instructions[1] = "2. Continue all the way around";
-                instructions[2] = "3. Notice, that when applying an new row above it, \n the inverted row is covered completely.";
+                instructions[2] = "3. Notice, that when applying a new row above it, \n the inverted row is covered completely.";
                 instructions[3] = "4. Continue applying a normal row on top.";
                 instructions[4] = "5. This technique is used to visibly separate two \n parts of a model, e.g. head and body.";
                 break;
@@ -176,7 +246,10 @@ public class VideoSelection : MonoBehaviour
         if (clipIndexInCurrentTutorial < ClipAmountInTutorial())
         {
             clipIndexInCurrentTutorial += 1;
-            ChangeVideo(clipIndexInCurrentTutorial.ToString());
+            // youtube
+            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
+            // desktop
+            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
             progressBar.value = clipIndexInCurrentTutorial;
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
         }
@@ -187,7 +260,10 @@ public class VideoSelection : MonoBehaviour
         if (clipIndexInCurrentTutorial > 1)
         {
             clipIndexInCurrentTutorial -= 1;
-            ChangeVideo(clipIndexInCurrentTutorial.ToString());
+            // youtube
+            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
+            // desktop
+            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
             progressBar.value = clipIndexInCurrentTutorial;
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
         }
