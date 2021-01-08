@@ -14,12 +14,12 @@
           <e p="Scripts" t="Include">
             <e p="1_Part_HowTo" t="Include">
               <e p="InstructionsController.cs" t="Include" />
-              <e p="SpeedSettings.cs" t="Include" />
+              <e p="ShowHideUI.cs" t="Include" />
               <e p="TutorialController.cs" t="Include" />
             </e>
             <e p="2_Part_Stacking" t="Include">
-              <e p="SubMenuSelection.cs" t="Include" />
-              <e p="VideoController.cs" t="Include" />
+              <e p="LoadingCircle.cs" t="Include" />
+              <e p="VideoSelection.cs" t="Include" />
             </e>
             <e p="3_Part_Generator" t="Include">
               <e p="CalculateWidthHeight.cs" t="Include" />
@@ -32,7 +32,6 @@
               </e>
               <e p="Customization.cs" t="Include" />
               <e p="ErrorPanel" t="Include">
-                <e p="OkBtn.cs" t="Include" />
                 <e p="ValidateCustomization.cs" t="Include" />
                 <e p="ValidateInputs.cs" t="Include" />
               </e>
@@ -71,22 +70,34 @@
           <e p="Android" t="Include">
             <e p="AndroidManifest.xml" t="Include" />
           </e>
-        </e>
-        <e p="StandaloneFileBrowser" t="Include">
-          <e p="IStandaloneFileBrowser.cs" t="Include" />
-          <e p="Sample" t="Include">
-            <e p="BasicSample.cs" t="Include" />
-            <e p="CanvasSampleOpenFileImage.cs" t="Include" />
-            <e p="CanvasSampleOpenFileText.cs" t="Include" />
-            <e p="CanvasSampleOpenFileTextMultiple.cs" t="Include" />
-            <e p="CanvasSampleSaveFileImage.cs" t="Include" />
-            <e p="CanvasSampleSaveFileText.cs" t="Include" />
+          <e p="SimpleFileBrowser" t="Include">
+            <e p="Android" t="Include">
+              <e p="FBCallbackHelper.cs" t="Include" />
+              <e p="FBDirectoryReceiveCallbackAndroid.cs" t="Include" />
+              <e p="FBPermissionCallbackAndroid.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="FBPostProcessBuild.cs" t="Include" />
+            </e>
+            <e p="README.txt" t="Include" />
+            <e p="Scripts" t="Include">
+              <e p="FileBrowser.cs" t="Include" />
+              <e p="FileBrowserContextMenu.cs" t="Include" />
+              <e p="FileBrowserCursorHandler.cs" t="Include" />
+              <e p="FileBrowserDeleteConfirmationPanel.cs" t="Include" />
+              <e p="FileBrowserHelpers.cs" t="Include" />
+              <e p="FileBrowserItem.cs" t="Include" />
+              <e p="FileBrowserMovement.cs" t="Include" />
+              <e p="FileBrowserQuickLink.cs" t="Include" />
+              <e p="FileBrowserRenamedItem.cs" t="Include" />
+              <e p="NonDrawingGraphic.cs" t="Include" />
+              <e p="SimpleRecycledListView" t="Include">
+                <e p="IListViewAdapter.cs" t="Include" />
+                <e p="ListItem.cs" t="Include" />
+                <e p="RecycledListView.cs" t="Include" />
+              </e>
+            </e>
           </e>
-          <e p="StandaloneFileBrowser.cs" t="Include" />
-          <e p="StandaloneFileBrowserEditor.cs" t="Include" />
-          <e p="StandaloneFileBrowserLinux.cs" t="Include" />
-          <e p="StandaloneFileBrowserMac.cs" t="Include" />
-          <e p="StandaloneFileBrowserWindows.cs" t="Include" />
         </e>
         <e p="Standard Assets" t="Include">
           <e p="CrossPlatformInput" t="Include">
@@ -196,6 +207,8 @@
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
+      <e p="SimpleFileBrowser.Editor.csproj" t="IncludeRecursive" />
+      <e p="SimpleFileBrowser.Runtime.csproj" t="IncludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
   </component>
