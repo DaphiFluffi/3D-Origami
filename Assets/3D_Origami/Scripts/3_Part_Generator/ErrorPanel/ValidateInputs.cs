@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
@@ -13,10 +14,22 @@ public class ValidateInputs : MonoBehaviour
     [SerializeField] private Button generateButton = default; 
     [SerializeField] private GameObject errorPanel = default;
     private TMP_Text errorText;
+    private Image errorBackground;
+    private int[] increasedArray;
+    private int[] decreasedArray;
+
     void Awake()
     {
         errorText = errorPanel.transform.Find("ErrorMessage").GetComponent<TMP_Text>();
         errorPanel.SetActive(false);
+        errorBackground = errorPanel.GetComponent<Image>();
+    }
+
+    private void ShowInfoMessage(string infoDescription)
+    {
+        errorPanel.SetActive(true);
+        errorBackground.color = new Color32 (201,251,173, 255);
+        errorText.text = infoDescription;
     }
     
     private void ShowErrorMessage(string errorDescription)
@@ -26,6 +39,13 @@ public class ValidateInputs : MonoBehaviour
         // disable "Generate" Button
         generateButton.enabled = false;
         generateButton.GetComponent<Image>().color = Color.gray;
+    }
+    
+    public void HideInfoMessage()
+    {
+        errorBackground.color = Color.white;
+        // hide error panel
+        errorPanel.SetActive(false);
     }
 
     private void HideErrorMessage()
@@ -68,18 +88,6 @@ public class ValidateInputs : MonoBehaviour
         {
             HideErrorMessage();
         }
-        if (rowInt == 1)
-        {
-            whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.gray;
-            whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.gray;
-            whereToAddDecreasedRow.enabled = false; 
-        }
-        else
-        {
-            whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.white;
-            whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.white;
-            whereToAddDecreasedRow.enabled = true; 
-        }
     }
     
     public void CheckAmountInput(string amountString)
@@ -93,13 +101,14 @@ public class ValidateInputs : MonoBehaviour
         // only allow decreasing for rows that are multiples of 3
         else if (amountInt % 3 > 0)
         {
-            ShowErrorMessage("You can only use decrease rows that are multiples of 3.");
+            ShowInfoMessage("You can only decrease rows that are multiples of 3.");
             whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.gray;
             whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.gray;
             whereToAddDecreasedRow.enabled = false; 
         }
         else
         {
+            HideInfoMessage();
             HideErrorMessage();
             whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.white;
             whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.white;
@@ -107,7 +116,7 @@ public class ValidateInputs : MonoBehaviour
         }
     }
     
-    public void CheckIncreasedAndDecreasedInput(string increasedOrDecreasedString)
+    private void CheckIncreasedAndDecreasedInput(string increasedOrDecreasedString)
     {
         // https://stackoverflow.com/questions/17472580/regular-expression-to-allow-comma-and-space-delimited-number-list
         // only matches series of natural numbers with commas in between
@@ -147,5 +156,51 @@ public class ValidateInputs : MonoBehaviour
         {
          ShowErrorMessage(" Please type in the rows' numbers separated by commas.");
         }
+    }
+
+    public void CheckIncreasedInput(string increasedString)
+    {
+        CheckIncreasedAndDecreasedInput(increasedString);
+        int[] increasedArray =  Array.ConvertAll<string, int>(increasedString.Split(','), int.Parse);
+        this.increasedArray = increasedArray;
+        if (decreasedArray != null)
+        {
+            CheckDoubleInput();
+        }
+    }
+    
+    public void CheckDecreasedInput(string decreasedString)
+    {
+        CheckIncreasedAndDecreasedInput(decreasedString);
+        int[] decreasedArray =  Array.ConvertAll<string, int>(decreasedString.Split(','), int.Parse);
+        this.decreasedArray = decreasedArray;
+        if (increasedArray != null)
+        {
+            CheckDoubleInput();
+        }
+    }
+
+    private void CheckDoubleInput()
+    {
+        // https://stackoverflow.com/questions/55215016/unity-how-to-compare-contents-of-two-arrays-regardless-of-order
+        // 0 and 0 does not count as doubles
+        // check if there is equal items
+        if (increasedArray.Intersect(decreasedArray).Any() && increasedArray[0] != 0 && decreasedArray[0] != 0) 
+        {
+            // the intersection
+            var equalItems = increasedArray.Intersect(decreasedArray);
+            //https://stackoverflow.com/questions/5079867/c-sharp-ienumerable-print-out
+            string errorString = String.Join(",", equalItems);
+            //TODO text ändern NICHT so abgeben
+            //ShowErrorMessage("Wer das liest ist doof! (Hi Tobias). Die Lotto Zahl(en): " + errorString);
+            ShowErrorMessage("The row(s) no." + errorString + " cannot be increased and decreased at the same time.");
+
+        }
+        //TODO brauche ich das?
+        /* else
+        {
+            HideErrorMessage();
+        }*/
+        
     }
 }

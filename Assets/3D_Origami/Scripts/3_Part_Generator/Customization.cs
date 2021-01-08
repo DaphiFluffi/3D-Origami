@@ -36,22 +36,18 @@ public class Customization : MonoBehaviour
     public void CollapseCylinder(bool collapse)
     {
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
-        // reset rotaion on collapse
-        currentCylinder = GameObject.FindGameObjectWithTag("Cylinder");
-        currentCylinder.transform.rotation = Quaternion.identity;
-
+        
         for (int i = 1; i < generatedRows.Length; i++)
         {
-
             if (collapse)
             {
                 generatedRows[i].transform.position = new Vector3(0, 0, 0);
             }
             else
             {
-                generatedRows[i].transform.position = new Vector3(0, i, 0);
+                // just position does not produce the desired outcome
+                generatedRows[i].transform.localPosition = new Vector3(0,  i, 0);
             }
-
         }
     }
     

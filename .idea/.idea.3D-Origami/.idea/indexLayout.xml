@@ -3,6 +3,7 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
+      <Path>Library/PackageCache/com.ibicha.youtube-player@1.1.0</Path>
       <Path>Library/PackageCache/com.unity.ads@3.4.7</Path>
       <Path>Library/PackageCache/com.unity.analytics@3.3.5</Path>
       <Path>Library/PackageCache/com.unity.collab-proxy@1.2.16</Path>
@@ -10,6 +11,7 @@
       <Path>Library/PackageCache/com.unity.ide.rider@1.1.4</Path>
       <Path>Library/PackageCache/com.unity.ide.vscode@1.2.1</Path>
       <Path>Library/PackageCache/com.unity.multiplayer-hlapi@1.0.6</Path>
+      <Path>Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0</Path>
       <Path>Library/PackageCache/com.unity.purchasing@2.0.6</Path>
       <Path>Library/PackageCache/com.unity.test-framework@1.1.16</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@2.0.1</Path>
@@ -24,6 +26,7 @@
       <Path>.idea</Path>
       <Path>Builds</Path>
       <Path>Library</Path>
+      <Path>Temp</Path>
       <Path>obj</Path>
     </explicitExcludes>
   </component>

@@ -1,5 +1,13 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "iBicha",
+      "url": "https://registry.npmjs.com",
+      "scopes": [ "com.ibicha" ]
+    }
+  ],
   "dependencies": {
+    "com.ibicha.youtube-player": "1.1.0",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.ads": "3.4.7",
