@@ -46,7 +46,14 @@ public class VideoSelection : MonoBehaviour
     {
         videoUrlTemplate =
             //"file://C:/Users/mcflu/Desktop/Videoschnitt_Bachelorarbeit/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
-        "Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
+            //"Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
+
+            //https://github.com/git-lfs/git-lfs/issues/1342
+            //trying Github LFS workaround to accces my large video files (Please work)
+            //"https://media.githubusercontent.com/media/DaphiFluffi/3D_Origami/beta/Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
+            //"https://github.com/DaphiFluffi/3D-Origami/blob/gh-pages/Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4?raw=true";
+            "https://github.com/DaphiFluffi/3D-Origami/raw/main//Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
+
         VideoCanvas.SetActive(false);
         progressBar.value = 1; // indicate that we are at step 1
 
