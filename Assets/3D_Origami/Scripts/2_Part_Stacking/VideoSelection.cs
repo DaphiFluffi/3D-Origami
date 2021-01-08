@@ -33,6 +33,11 @@ public class VideoSelection : MonoBehaviour
     
     // ---Progress --
     [SerializeField] private Slider progressBar = default;
+    
+    // --- Navigation ---
+    [SerializeField] private Button nextButton = default; 
+    [SerializeField] private Button previousButton = default; 
+    [SerializeField] private Button backToLibButton = default; 
 
     // --- Links -- 
     [SerializeField] private YoutubePlayer.YoutubePlayer youtubePlayer = default;
@@ -42,10 +47,42 @@ public class VideoSelection : MonoBehaviour
         videoUrlTemplate =
             "file://C:/Users/mcflu/Desktop/Videoschnitt_Bachelorarbeit/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
         VideoCanvas.SetActive(false);
+        // reset url 
+        videoPlayer.url = "";
+        youtubePlayer.youtubeUrl = "";
         progressBar.value = 1; // indicate that we are at step 1
 
         paused = true; // if it is set as true in the beginning, the PauseAnimation() method flips it to false
         PauseOrUnpauseClip();
+
+        clipIndexInCurrentTutorial = 0;
+    }
+    
+    void Update() // don't show previous button at the first step, don't show next button at the last step 
+    {
+        if (VideoCanvas.activeInHierarchy)
+        {
+            Debug.Log(clipIndexInCurrentTutorial);
+            if (clipIndexInCurrentTutorial == 0)
+            {
+                previousButton.gameObject.SetActive(false);
+                Debug.Log("first clip");
+            }
+            else if (clipIndexInCurrentTutorial == ClipAmountInTutorial())
+            {
+                nextButton.gameObject.SetActive(false);
+                backToLibButton.gameObject.SetActive(true);
+                Debug.Log("last clip");
+
+            }
+            else
+            {
+                previousButton.gameObject.SetActive(true);
+                nextButton.gameObject.SetActive(true);
+                backToLibButton.gameObject.SetActive(false);
+                Debug.Log("middle");
+            }
+        }
     }
     
     private void ChangeVideo(string clipIndex)
@@ -89,6 +126,9 @@ public class VideoSelection : MonoBehaviour
         {
             VideoCanvas.SetActive(true);
             //setting all values depending on tutorial
+            // reset video url 
+            videoPlayer.url = "";
+            youtubePlayer.youtubeUrl = ""; 
             // play the first tutorial on button click
             clipIndexInCurrentTutorial = 1;
             // set current Tutorial name
@@ -111,6 +151,7 @@ public class VideoSelection : MonoBehaviour
             // -- Videos from YouTube
             // get the links to the videos of the current tutorial 
             links = YoutubeLinks();
+            
             ChangeYouTubeVideo(0);
         }
     }
