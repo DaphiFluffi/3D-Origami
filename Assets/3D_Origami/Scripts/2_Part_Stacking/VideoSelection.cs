@@ -39,17 +39,15 @@ public class VideoSelection : MonoBehaviour
     [SerializeField] private Button previousButton = default; 
     [SerializeField] private Button backToLibButton = default; 
 
-    // --- Links -- 
-    [SerializeField] private YoutubePlayer.YoutubePlayer youtubePlayer = default;
-    [SerializeField] private string[] links = default; 
+    // --- Links/YouTube -- 
+   // [SerializeField] private YoutubePlayer.YoutubePlayer youtubePlayer = default;
+    //[SerializeField] private string[] links = default; 
     private void Start()
     {
         videoUrlTemplate =
-            "file://C:/Users/mcflu/Desktop/Videoschnitt_Bachelorarbeit/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
+            //"file://C:/Users/mcflu/Desktop/Videoschnitt_Bachelorarbeit/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
+        "Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
         VideoCanvas.SetActive(false);
-        // reset url 
-        videoPlayer.url = "";
-        youtubePlayer.youtubeUrl = "";
         progressBar.value = 1; // indicate that we are at step 1
 
         paused = true; // if it is set as true in the beginning, the PauseAnimation() method flips it to false
@@ -96,13 +94,13 @@ public class VideoSelection : MonoBehaviour
 
     }
 
-    private void ChangeYouTubeVideo(int clipIndex)
+    /*private void ChangeYouTubeVideo(int clipIndex)
     {
         //Debug.Log(links[clipIndex]);
         // prepare new url
         youtubePlayer.youtubeUrl = links[clipIndex];
         youtubePlayer.PlayVideoAsync(youtubePlayer.youtubeUrl);
-    }
+    }*/
 
     public void BackToSelection()
     {
@@ -126,9 +124,7 @@ public class VideoSelection : MonoBehaviour
         {
             VideoCanvas.SetActive(true);
             //setting all values depending on tutorial
-            // reset video url 
-            videoPlayer.url = "";
-            youtubePlayer.youtubeUrl = ""; 
+            
             // play the first tutorial on button click
             clipIndexInCurrentTutorial = 1;
             // set current Tutorial name
@@ -145,14 +141,15 @@ public class VideoSelection : MonoBehaviour
 
             // --Videos from Desktop
            // videoPlayer.url = "file://C:/Users/mcflu/Documents/Daphna/HTW Berlin - Internationale Medieninformatik/5. Semester HTW/Bachelorarbeit/Videoschnitt_Bachelorarbeit/"+currentTutorial+"/(videoIndex)_"+ currentTutorial+".MP4";
-           // videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
-            // ChangeVideo("1");
+            
+           videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
+             ChangeVideo("1");
             
             // -- Videos from YouTube
             // get the links to the videos of the current tutorial 
-            links = YoutubeLinks();
+            //links = YoutubeLinks();
             
-            ChangeYouTubeVideo(0);
+            //ChangeYouTubeVideo(0);
         }
     }
     
@@ -185,7 +182,7 @@ public class VideoSelection : MonoBehaviour
         return clipAmount;
     }
 
-    private string[] YoutubeLinks()
+    /*private string[] YoutubeLinks()
     {
         string[] links = new string[7];
         switch (currentTutorial)
@@ -231,7 +228,7 @@ public class VideoSelection : MonoBehaviour
         }
 
         return links;
-    }
+    }*/
     private string[] SetOfInstructions()
     {
         string[] instructions = new string[7];
@@ -288,9 +285,9 @@ public class VideoSelection : MonoBehaviour
         {
             clipIndexInCurrentTutorial += 1;
             // youtube
-            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
+            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
             // desktop
-            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
+            ChangeVideo(clipIndexInCurrentTutorial.ToString());
             progressBar.value = clipIndexInCurrentTutorial;
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
         }
@@ -302,9 +299,9 @@ public class VideoSelection : MonoBehaviour
         {
             clipIndexInCurrentTutorial -= 1;
             // youtube
-            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
+            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
             // desktop
-            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
+            ChangeVideo(clipIndexInCurrentTutorial.ToString());
             progressBar.value = clipIndexInCurrentTutorial;
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
         }

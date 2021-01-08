@@ -2569,8 +2569,6 @@ MonoBehaviour:
   nextButton: {fileID: 1771467966}
   previousButton: {fileID: 128731011}
   backToLibButton: {fileID: 437171071}
-  youtubePlayer: {fileID: 1615871847}
-  links: []
 --- !u!114 &526339267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4928,7 +4926,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615871844}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3768fe280903842fdaa2a016022624f1, type: 3}
   m_Name: 
