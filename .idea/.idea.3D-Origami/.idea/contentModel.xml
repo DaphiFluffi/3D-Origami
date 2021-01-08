@@ -18,6 +18,7 @@
               <e p="TutorialController.cs" t="Include" />
             </e>
             <e p="2_Part_Stacking" t="Include">
+              <e p="LoadingCircle.cs" t="Include" />
               <e p="VideoSelection.cs" t="Include" />
             </e>
             <e p="3_Part_Generator" t="Include">
