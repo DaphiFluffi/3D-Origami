@@ -149,7 +149,7 @@ public class Customization : MonoBehaviour
     public void InvertOrRevert(string rowsToInvertOrRevert)
     {
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
-        // holds information about the types of inverted rows for the width heig calculation
+        // holds information about the types of inverted rows for the width height calculation
         // initialized to everything being false
         bool[] invertedInfo = new bool[3];
         // invert

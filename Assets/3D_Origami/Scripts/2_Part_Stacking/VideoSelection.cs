@@ -40,11 +40,11 @@ public class VideoSelection : MonoBehaviour
     [SerializeField] private Button backToLibButton = default; 
 
     // --- Links/YouTube -- 
-   // [SerializeField] private YoutubePlayer.YoutubePlayer youtubePlayer = default;
-    //[SerializeField] private string[] links = default; 
+    [SerializeField] private YoutubePlayer.YoutubePlayer youtubePlayer = default;
+    [SerializeField] private string[] links = default; 
     private void Start()
     {
-        videoUrlTemplate =
+        //videoUrlTemplate =
             //"file://C:/Users/mcflu/Desktop/Videoschnitt_Bachelorarbeit/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
             //"Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
 
@@ -52,7 +52,7 @@ public class VideoSelection : MonoBehaviour
             //trying Github LFS workaround to accces my large video files (Please work)
             //"https://media.githubusercontent.com/media/DaphiFluffi/3D_Origami/beta/Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
             //"https://github.com/DaphiFluffi/3D-Origami/blob/gh-pages/Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4?raw=true";
-            "https://github.com/DaphiFluffi/3D-Origami/raw/main//Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
+            //"https://github.com/DaphiFluffi/3D-Origami/raw/main//Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
 
         VideoCanvas.SetActive(false);
         progressBar.value = 1; // indicate that we are at step 1
@@ -63,9 +63,10 @@ public class VideoSelection : MonoBehaviour
         clipIndexInCurrentTutorial = 0;
     }
     
+    //TODO
     void Update() // don't show previous button at the first step, don't show next button at the last step 
     {
-        if (VideoCanvas.activeInHierarchy)
+       /* if (VideoCanvas.activeInHierarchy)
         {
             Debug.Log(clipIndexInCurrentTutorial);
             if (clipIndexInCurrentTutorial == 0)
@@ -87,10 +88,10 @@ public class VideoSelection : MonoBehaviour
                 backToLibButton.gameObject.SetActive(false);
                 Debug.Log("middle");
             }
-        }
+        }*/
     }
     
-    private void ChangeVideo(string clipIndex)
+   /* private void ChangeVideo(string clipIndex)
     {
         videoUrlTemplate = videoUrlTemplate.Replace("(videoIndex)", clipIndex);
         videoPlayer.url = videoUrlTemplate;
@@ -99,15 +100,15 @@ public class VideoSelection : MonoBehaviour
         var regex = new Regex(Regex.Escape(clipIndex.ToString()));
         videoUrlTemplate = regex.Replace(videoUrlTemplate, "(videoIndex)", 1);
 
-    }
+    }*/
 
-    /*private void ChangeYouTubeVideo(int clipIndex)
+    private void ChangeYouTubeVideo(int clipIndex)
     {
         //Debug.Log(links[clipIndex]);
         // prepare new url
         youtubePlayer.youtubeUrl = links[clipIndex];
         youtubePlayer.PlayVideoAsync(youtubePlayer.youtubeUrl);
-    }*/
+    }
 
     public void BackToSelection()
     {
@@ -149,14 +150,14 @@ public class VideoSelection : MonoBehaviour
             // --Videos from Desktop
            // videoPlayer.url = "file://C:/Users/mcflu/Documents/Daphna/HTW Berlin - Internationale Medieninformatik/5. Semester HTW/Bachelorarbeit/Videoschnitt_Bachelorarbeit/"+currentTutorial+"/(videoIndex)_"+ currentTutorial+".MP4";
             
-           videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
-             ChangeVideo("1");
+           //videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
+            // ChangeVideo("1");
             
             // -- Videos from YouTube
             // get the links to the videos of the current tutorial 
-            //links = YoutubeLinks();
+            links = YoutubeLinks();
             
-            //ChangeYouTubeVideo(0);
+            ChangeYouTubeVideo(0);
         }
     }
     
@@ -189,7 +190,7 @@ public class VideoSelection : MonoBehaviour
         return clipAmount;
     }
 
-    /*private string[] YoutubeLinks()
+    private string[] YoutubeLinks()
     {
         string[] links = new string[7];
         switch (currentTutorial)
@@ -235,7 +236,7 @@ public class VideoSelection : MonoBehaviour
         }
 
         return links;
-    }*/
+    }
     private string[] SetOfInstructions()
     {
         string[] instructions = new string[7];
@@ -292,9 +293,9 @@ public class VideoSelection : MonoBehaviour
         {
             clipIndexInCurrentTutorial += 1;
             // youtube
-            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
+            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
             // desktop
-            ChangeVideo(clipIndexInCurrentTutorial.ToString());
+            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
             progressBar.value = clipIndexInCurrentTutorial;
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
         }
@@ -306,9 +307,9 @@ public class VideoSelection : MonoBehaviour
         {
             clipIndexInCurrentTutorial -= 1;
             // youtube
-            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
+            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
             // desktop
-            ChangeVideo(clipIndexInCurrentTutorial.ToString());
+            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
             progressBar.value = clipIndexInCurrentTutorial;
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
         }
