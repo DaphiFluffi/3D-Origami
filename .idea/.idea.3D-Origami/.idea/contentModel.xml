@@ -39,16 +39,16 @@
                 <e p="Done.cs" t="Include" />
               </e>
               <e p="ProcessGeneratorInputs.cs" t="Include" />
-              <e p="Tooltip" t="Include">
-                <e p="Tooltip.cs" t="Include" />
-                <e p="TooltipSystem.cs" t="Include" />
-                <e p="TooltipTrigger.cs" t="Include" />
-              </e>
             </e>
             <e p="AlwaysOnCamera.cs" t="Include" />
             <e p="CylinderRotation.cs" t="Include" />
             <e p="MainMenuController.cs" t="Include" />
             <e p="PanCamera.cs" t="Include" />
+            <e p="Tooltip" t="Include">
+              <e p="Tooltip.cs" t="Include" />
+              <e p="TooltipSystem.cs" t="Include" />
+              <e p="TooltipTrigger.cs" t="Include" />
+            </e>
           </e>
           <e p="Textures" t="Include">
             <e p="StandardCullOFF.shader" t="Include" />
@@ -70,32 +70,32 @@
           <e p="Android" t="Include">
             <e p="AndroidManifest.xml" t="Include" />
           </e>
-          <e p="SimpleFileBrowser" t="Include">
-            <e p="Android" t="Include">
-              <e p="FBCallbackHelper.cs" t="Include" />
-              <e p="FBDirectoryReceiveCallbackAndroid.cs" t="Include" />
-              <e p="FBPermissionCallbackAndroid.cs" t="Include" />
-            </e>
-            <e p="Editor" t="Include">
-              <e p="FBPostProcessBuild.cs" t="Include" />
-            </e>
-            <e p="README.txt" t="Include" />
-            <e p="Scripts" t="Include">
-              <e p="FileBrowser.cs" t="Include" />
-              <e p="FileBrowserContextMenu.cs" t="Include" />
-              <e p="FileBrowserCursorHandler.cs" t="Include" />
-              <e p="FileBrowserDeleteConfirmationPanel.cs" t="Include" />
-              <e p="FileBrowserHelpers.cs" t="Include" />
-              <e p="FileBrowserItem.cs" t="Include" />
-              <e p="FileBrowserMovement.cs" t="Include" />
-              <e p="FileBrowserQuickLink.cs" t="Include" />
-              <e p="FileBrowserRenamedItem.cs" t="Include" />
-              <e p="NonDrawingGraphic.cs" t="Include" />
-              <e p="SimpleRecycledListView" t="Include">
-                <e p="IListViewAdapter.cs" t="Include" />
-                <e p="ListItem.cs" t="Include" />
-                <e p="RecycledListView.cs" t="Include" />
-              </e>
+        </e>
+        <e p="SimpleFileBrowser" t="Include">
+          <e p="Android" t="Include">
+            <e p="FBCallbackHelper.cs" t="Include" />
+            <e p="FBDirectoryReceiveCallbackAndroid.cs" t="Include" />
+            <e p="FBPermissionCallbackAndroid.cs" t="Include" />
+          </e>
+          <e p="Editor" t="Include">
+            <e p="FBPostProcessBuild.cs" t="Include" />
+          </e>
+          <e p="README.txt" t="Include" />
+          <e p="Scripts" t="Include">
+            <e p="FileBrowser.cs" t="Include" />
+            <e p="FileBrowserContextMenu.cs" t="Include" />
+            <e p="FileBrowserCursorHandler.cs" t="Include" />
+            <e p="FileBrowserDeleteConfirmationPanel.cs" t="Include" />
+            <e p="FileBrowserHelpers.cs" t="Include" />
+            <e p="FileBrowserItem.cs" t="Include" />
+            <e p="FileBrowserMovement.cs" t="Include" />
+            <e p="FileBrowserQuickLink.cs" t="Include" />
+            <e p="FileBrowserRenamedItem.cs" t="Include" />
+            <e p="NonDrawingGraphic.cs" t="Include" />
+            <e p="SimpleRecycledListView" t="Include">
+              <e p="IListViewAdapter.cs" t="Include" />
+              <e p="ListItem.cs" t="Include" />
+              <e p="RecycledListView.cs" t="Include" />
             </e>
           </e>
         </e>
