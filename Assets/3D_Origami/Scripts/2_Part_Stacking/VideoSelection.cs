@@ -105,6 +105,13 @@ public class VideoSelection : MonoBehaviour
         youtubePlayer.youtubeUrl = links[clipIndex];
         youtubePlayer.PlayVideoAsync(youtubePlayer.youtubeUrl);
     }
+    
+    private void ChangeVimeoVideo(int clipIndex)
+    {
+        //Debug.Log(links[clipIndex]);
+        // prepare new url
+        videoPlayer.url = links[clipIndex];
+    }
 
     public void BackToSelection()
     {
@@ -151,9 +158,12 @@ public class VideoSelection : MonoBehaviour
             
             // -- Videos from YouTube
             // get the links to the videos of the current tutorial 
-            links = YoutubeLinks();
+            //links = YoutubeLinks();
+            //ChangeYouTubeVideo(0);
             
-            ChangeYouTubeVideo(0);
+            // --Videos from Vimeo
+            links = VimeoLinks();
+            ChangeVimeoVideo(0);
         }
     }
     
@@ -233,6 +243,53 @@ public class VideoSelection : MonoBehaviour
 
         return links;
     }
+    
+    private string[] VimeoLinks()
+    {
+        string[] links = new string[7];
+        switch (currentTutorial)
+        {
+            case "Base":
+                links[0] = "https://player.vimeo.com/external/502102829.hd.mp4?s=c94b9f628d88491f4d89f07cdeba86d32b1c9c6c&profile_id=175";
+                links[1] = "https://player.vimeo.com/external/502104322.hd.mp4?s=b0fbcf9d821875ccfb11eae7390509f9e918062b&profile_id=175";
+                links[2] = "https://player.vimeo.com/external/502105347.hd.mp4?s=365c96b218303939cf941415d2a397b962df1735&profile_id=175";
+                links[3] = "https://player.vimeo.com/external/502109152.hd.mp4?s=2f445bdb0bcfd6c79fb3602f5a7f7c52a19bf1b0&profile_id=175";
+                break;
+            case "Bottom":
+                links[0] = "https://player.vimeo.com/external/502117177.hd.mp4?s=b83f7c5d84f4d66d7856553653db313ae6411a00&profile_id=175";
+                links[1] = "https://player.vimeo.com/external/502115905.hd.mp4?s=fd7112393b6abe34420cf0b5d30add079f758a26&profile_id=175";
+                links[2] = "https://player.vimeo.com/external/502117004.hd.mp4?s=959af4ff7e2190c4237ef24c375b137ff64268ee&profile_id=175";
+                break;
+            case "Decreased":
+                links[0] = "https://player.vimeo.com/external/502120642.hd.mp4?s=52116964d1f0e564e1c2aa9b1fd489ab858182f0&profile_id=175";
+                links[1] = "https://player.vimeo.com/external/502121685.hd.mp4?s=230e9739f561c982ab5662e54cf1dbf0b188de09&profile_id=175";
+                links[2] = "https://player.vimeo.com/external/502123887.hd.mp4?s=845c0345a47fa3abc00aaefbd9f493ba89fe8a17&profile_id=175";
+                links[3] = "https://player.vimeo.com/external/502124410.hd.mp4?s=dc19047818ffc3f0183d383386f802426d45cf46&profile_id=175";
+                links[4] = "https://player.vimeo.com/external/502124731.hd.mp4?s=604bba60a23f59a465e07bcedb34b4820ae280ef&profile_id=175";
+                links[5] = "https://player.vimeo.com/external/502117558.hd.mp4?s=9f168ca10f6cf86202dea95767a17917a0f15d66&profile_id=175";
+                links[6] = "https://player.vimeo.com/external/502120242.hd.mp4?s=8751f0916980140dabd6c384b2640f8541708bc4&profile_id=175";
+                break;
+            case "Increased": 
+                links[0] = "https://player.vimeo.com/external/502130570.hd.mp4?s=23f631915001e0cb24a98170772a09868822532c&profile_id=175";
+                links[1] = "https://player.vimeo.com/external/502131408.hd.mp4?s=ed6866f27e45d0861358b82d3a6c34c67abef1c8&profile_id=175";
+                links[2] = "https://player.vimeo.com/external/502132714.hd.mp4?s=149299f8a0f0ed4bc1311a8ebb309462f2d14b8f&profile_id=175";
+                links[3] = "https://player.vimeo.com/external/502126339.hd.mp4?s=a4454dd7c4013497ff1d70814d2f1240109ba640&profile_id=175";
+                links[4] = "https://player.vimeo.com/external/502130108.hd.mp4?s=22e125309669b6d6151eb1bdbeecec5561fabd72&profile_id=175";
+                break;
+            case "Inverted":
+                links[0] = "https://player.vimeo.com/external/502135645.hd.mp4?s=48948597eb2ef2e25bdec00755a8a97f4cff72c2&profile_id=175";
+                links[1] = "https://player.vimeo.com/external/502136581.hd.mp4?s=e699a56e8ce71709a0743c1a1960d9b7bb829f2c&profile_id=175";
+                links[2] = "https://player.vimeo.com/external/502140050.hd.mp4?s=2f92a55c12e34c4ac4965fdd619bf6614b33b7bc&profile_id=175";
+                links[3] = "https://player.vimeo.com/external/502142549.hd.mp4?s=912eb7ea3d3e4400a68aa94c7ab01eb156e652af&profile_id=175";
+                links[4] = "https://player.vimeo.com/external/502144943.hd.mp4?s=0b4306fce5f260912203d5837a0154c0b8fbdea0&profile_id=175";
+                break;
+            case "Normal":
+                links[0] = "https://player.vimeo.com/external/502145826.hd.mp4?s=095dde910afd26eb61066ac304a19de9d3cb9211&profile_id=175";
+                links[1] = "https://player.vimeo.com/external/502146711.hd.mp4?s=f3dea7e5dd775de6f707e65aab5e2674b07e0abf&profile_id=175";
+                break;
+        }
+        return links;
+    }
     private string[] SetOfInstructions()
     {
         string[] instructions = new string[7];
@@ -288,8 +345,10 @@ public class VideoSelection : MonoBehaviour
         if (clipIndexInCurrentTutorial < ClipAmountInTutorial())
         {
             clipIndexInCurrentTutorial += 1;
+            //vimeo
+            ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
             // youtube
-            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
+            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
             // desktop
             //ChangeVideo(clipIndexInCurrentTutorial.ToString());
             progressBar.value = clipIndexInCurrentTutorial;
@@ -302,8 +361,10 @@ public class VideoSelection : MonoBehaviour
         if (clipIndexInCurrentTutorial > 1)
         {
             clipIndexInCurrentTutorial -= 1;
+            //vimeo
+            ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
             // youtube
-            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
+            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
             // desktop
             //ChangeVideo(clipIndexInCurrentTutorial.ToString());
             progressBar.value = clipIndexInCurrentTutorial;
