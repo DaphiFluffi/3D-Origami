@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -148,9 +144,9 @@ public class VideoSelection : MonoBehaviour
             instructionsText.text = instructions[0];
 
             // --Videos from Desktop
-           // videoPlayer.url = "file://C:/Users/mcflu/Documents/Daphna/HTW Berlin - Internationale Medieninformatik/5. Semester HTW/Bachelorarbeit/Videoschnitt_Bachelorarbeit/"+currentTutorial+"/(videoIndex)_"+ currentTutorial+".MP4";
+            // videoPlayer.url = "file://C:/Users/mcflu/Documents/Daphna/HTW Berlin - Internationale Medieninformatik/5. Semester HTW/Bachelorarbeit/Videoschnitt_Bachelorarbeit/"+currentTutorial+"/(videoIndex)_"+ currentTutorial+".MP4";
             
-           //videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
+            //videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
             // ChangeVideo("1");
             
             // -- Videos from YouTube

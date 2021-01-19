@@ -204,7 +204,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: WhichTutorial
         m_Mode: 5
         m_Arguments:
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: SpeedSettings
         m_Mode: 0
         m_Arguments:
@@ -743,7 +743,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: PreviousClip
         m_Mode: 1
         m_Arguments:
@@ -1247,7 +1247,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: BackToSelection
         m_Mode: 1
         m_Arguments:
@@ -2175,7 +2175,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: BackToSelection
         m_Mode: 1
         m_Arguments:
@@ -2536,7 +2536,6 @@ GameObject:
   - component: {fileID: 526339269}
   - component: {fileID: 526339268}
   - component: {fileID: 526339267}
-  - component: {fileID: 526339265}
   m_Layer: 5
   m_Name: SelectionCanvas
   m_TagString: Untagged
@@ -2544,33 +2543,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &526339265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526339264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 781f4dac2e1c9c446b76b1bbbd895331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tutorialIndicator: {fileID: 106569630}
-  VideoCanvas: {fileID: 920835610}
-  SelectionCanvas: {fileID: 526339264}
-  videoPlayer: {fileID: 1615871846}
-  instructionsText: {fileID: 2056560661}
-  instructions: []
-  pauseButton: {fileID: 962459326}
-  Unpause: {fileID: 21300000, guid: ab3febfd35d580b42a78edf32dd87369, type: 3}
-  Pause: {fileID: 21300000, guid: bbdc38e9e3fe75745908022f92b11952, type: 3}
-  progressBar: {fileID: 1995425954}
-  nextButton: {fileID: 1771467966}
-  previousButton: {fileID: 128731011}
-  backToLibButton: {fileID: 437171071}
-  youtubePlayer: {fileID: 1615871847}
-  links: []
 --- !u!114 &526339267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3319,7 +3291,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: WhichTutorial
         m_Mode: 5
         m_Arguments:
@@ -3863,7 +3835,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: PauseOrUnpauseClip
         m_Mode: 1
         m_Arguments:
@@ -4188,6 +4160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1063377477}
+  - component: {fileID: 1063377478}
   m_Layer: 0
   m_Name: VideoController
   m_TagString: Untagged
@@ -4209,6 +4182,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1063377478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063377476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781f4dac2e1c9c446b76b1bbbd895331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialIndicator: {fileID: 106569630}
+  VideoCanvas: {fileID: 920835610}
+  SelectionCanvas: {fileID: 526339264}
+  videoPlayer: {fileID: 1615871846}
+  instructionsText: {fileID: 2056560661}
+  instructions: []
+  pauseButton: {fileID: 962459326}
+  Unpause: {fileID: 21300000, guid: ab3febfd35d580b42a78edf32dd87369, type: 3}
+  Pause: {fileID: 21300000, guid: bbdc38e9e3fe75745908022f92b11952, type: 3}
+  progressBar: {fileID: 1995425954}
+  nextButton: {fileID: 1771467966}
+  previousButton: {fileID: 128731011}
+  backToLibButton: {fileID: 437171071}
+  youtubePlayer: {fileID: 1615871847}
+  links: []
 --- !u!1001 &1243788477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4367,7 +4367,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: WhichTutorial
         m_Mode: 5
         m_Arguments:
@@ -4728,7 +4728,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: WhichTutorial
         m_Mode: 5
         m_Arguments:
@@ -5161,7 +5161,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: WhichTutorial
         m_Mode: 5
         m_Arguments:
@@ -5221,7 +5221,7 @@ GameObject:
   - component: {fileID: 1746736456}
   - component: {fileID: 1746736455}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Video Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5366,7 +5366,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: NextClip
         m_Mode: 1
         m_Arguments:
@@ -5499,6 +5499,7 @@ GameObject:
   - component: {fileID: 1828392558}
   - component: {fileID: 1828392557}
   - component: {fileID: 1828392556}
+  - component: {fileID: 1828392559}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5571,6 +5572,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1828392559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828392555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13fd72337bef084b99ca250807767ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1857387431
 GameObject:
   m_ObjectHideFlags: 0
@@ -6130,7 +6143,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526339265}
+      - m_Target: {fileID: 1063377478}
         m_MethodName: WhichTutorial
         m_Mode: 5
         m_Arguments:
