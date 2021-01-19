@@ -1,8 +1,23 @@
 fileFormatVersion: 2
-guid: edab05b8c0eea3c4cbf2d882bda63cb3
+guid: b6e79c249872521478c87eb7ce748bc2
 ModelImporter:
   serializedVersion: 19301
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -3853837236110416357
+    second: 6_bottom|4_spinAction
+  - first:
+      74: -3577108268966389646
+    second: 6_bottom|4_spinAction.001
+  - first:
+      74: -8700972499057966870
+    second: 6_bottom|4_spinAction.002
+  - first:
+      74: -8316952777151801394
+    second: 6_bottom|6_bottomAction
+  - first:
+      74: 6964709254092024438
+    second: 6_bottom|PoseLib.002
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -30,7 +45,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: 6_bottom|6_bottomAction
+      takeName: 6_bottom|6_bottomAction
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
