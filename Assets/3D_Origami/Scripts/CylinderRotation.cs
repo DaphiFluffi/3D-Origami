@@ -42,19 +42,20 @@ public class CylinderRotation : MonoBehaviour
         GUIrotatationX *= Time.deltaTime;
         GUIrotatationY *= Time.deltaTime;
 
-     /*   switch (currentSceneIndex)
+        switch (currentSceneIndex)
         {
             // How to fold Pieces Scene
+            //negative y
             case 1:
-                transform.Rotate(rotationX,0, rotationY, Space.Self);
-                transform.Rotate(GUIrotatationX,0, GUIrotatationY, Space.Self);
+                transform.Rotate(rotationX,-1 * rotationY,0, Space.Self);
+                transform.Rotate(GUIrotatationX, -1 * GUIrotatationY, 0, Space.Self);
                 break;
             //Generator Scene
-            case 3:*/
+            case 3:
                 transform.Rotate(rotationX, rotationY, 0, Space.Self);
                 transform.Rotate(GUIrotatationX, GUIrotatationY, 0, Space.Self);
-              /*  break;
-        }*/
+                break;
+        }
         
         // reset rotation with space
         if(Input.GetKeyDown(KeyCode.Return))

@@ -7,6 +7,12 @@ ModelImporter:
       74: 7324923904919357386
     second: 5_corners|4_spinAction
   - first:
+      74: -4477630255495217176
+    second: 5_corners|4_spinAction.001
+  - first:
+      74: -3972518839625718523
+    second: 5_corners|4_spinAction.002
+  - first:
       74: -1448886457505933293
     second: 5_corners|5_cornersAction
   externalObjects: {}

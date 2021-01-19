@@ -1,20 +1,17 @@
 fileFormatVersion: 2
-guid: e6ab7c30d70dba040aef6de7ea56e87c
+guid: 1f7cdcf5bf18df4489762bd110933764
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: 6283919686801853444
-    second: 7_end|4_spinAction
+      74: 1917703793720328453
+    second: 1_horizontal_fold|1_horizontal_foldAction
   - first:
-      74: -5775214479902141974
-    second: 7_end|4_spinAction.001
+      74: -915888053386400343
+    second: 1_horizontal_fold|4_spinAction
   - first:
-      74: 6461999851530179998
-    second: 7_end|4_spinAction.002
-  - first:
-      74: 4862175012085531389
-    second: 7_end|7_endAction
+      74: 8879669873193403114
+    second: 1_horizontal_fold|PoseLib
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -44,11 +41,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 7_end|7_endAction
-      takeName: 7_end|7_endAction
+      name: 1_horizontal_fold|1_horizontal_foldAction
+      takeName: 1_horizontal_fold|1_horizontal_foldAction
       internalID: 0
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
