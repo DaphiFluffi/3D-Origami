@@ -45,7 +45,7 @@ public class Customization : MonoBehaviour
             }
             else
             {
-                // just position does not produce the desired outcome
+                // just transform.position does not produce the desired outcome
                 generatedRows[i].transform.localPosition = new Vector3(0,  i, 0);
             }
         }
@@ -75,7 +75,7 @@ public class Customization : MonoBehaviour
             // parent new row to current Cylinder object
             currentCylinder = GameObject.FindGameObjectWithTag("Cylinder");
             row.transform.parent = currentCylinder.transform;
-//            Debug.Log(topRow.transform.position);
+            // Debug.Log(topRow.transform.position);
             row.gameObject.tag = "Row";
             
             for (int a = 0; a < piecesInTopRow; a++)
@@ -104,7 +104,7 @@ public class Customization : MonoBehaviour
             }
             // if the cylinder has been rotated, generate the row with the same rotation 
             row.transform.rotation = currentCylinder.transform.rotation;
-            //TODO geht auch nit collapsed = true wenn da bei collapsed gesetzt wird
+
             // in case of collapsed mode
             if (topRow.transform.position != Vector3.zero)
             {
@@ -209,35 +209,30 @@ public class Customization : MonoBehaviour
     {
         // re-invert all rows if the input is 0 
         // https://stackoverflow.com/questions/604831/collection-was-modified-enumeration-operation-may-not-execute
-            foreach(int rowIndex in alreadyInvertedRows.ToList())
+        foreach(int rowIndex in alreadyInvertedRows.ToList())
+        {
+            Debug.Log("rowIndex " + rowIndex);
+            alreadyInvertedRows.Remove(rowIndex);
+            // revert 
+            if (rowIndex == 1)
             {
-                Debug.Log("rowIndex " + rowIndex);
-                alreadyInvertedRows.Remove(rowIndex);
-                // revert 
-                if (rowIndex == 1)
-                {
-                    //very first row is NOT inverted anymore
-                    revertedInfo[0] = false;
-                    Debug.Log("//very first row is not inverted anymore");
-                }
-                if (rowIndex == generatedRows.Length)
-                {
-                    // top most row is NOT inverted
-                    revertedInfo[1] = false;
-                    Debug.Log("// top most row is NOT inverted");
-                }
-                Transform[] oldChildren = generatedRows[rowIndex - 1].GetComponentsInChildren<Transform>();
-                for (int j = 0; j < oldChildren.Length; j++)
-                {
-                    // turn the piece to face inwards
-                    oldChildren[j].rotation *= Quaternion.Euler(0f, 180f, 0f);
-                    //leave the y position as it was 
-                    oldChildren[j].position = Vector3.Scale(oldChildren[j].position, new Vector3(8f/13f, 1, 8f/13f));
-                }
+                //very first row is NOT inverted anymore
+                revertedInfo[0] = false;
             }
-            calculator.CalculateDimensions(revertedInfo);
-            
-        Debug.Log("alreadyInvertedRows.Count " + alreadyInvertedRows.Count);
-        
+            if (rowIndex == generatedRows.Length)
+            {
+                // top most row is NOT inverted
+                revertedInfo[1] = false;
+            }
+            Transform[] oldChildren = generatedRows[rowIndex - 1].GetComponentsInChildren<Transform>();
+            for (int j = 0; j < oldChildren.Length; j++)
+            {
+                // turn the piece to face inwards
+                oldChildren[j].rotation *= Quaternion.Euler(0f, 180f, 0f);
+                //leave the y position as it was 
+                oldChildren[j].position = Vector3.Scale(oldChildren[j].position, new Vector3(8f/13f, 1, 8f/13f));
+            }
+        }
+        calculator.CalculateDimensions(revertedInfo);
     }
 }

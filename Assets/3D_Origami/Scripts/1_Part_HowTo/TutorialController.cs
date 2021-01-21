@@ -1,4 +1,5 @@
 ﻿
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private Sprite Unpause = default;
     [SerializeField] private Sprite Pause = default;
     [SerializeField] private Slider progressBar = default;
+    [SerializeField] private TextMeshProUGUI progressText = default;
     private int index;
     private bool paused;
 
@@ -23,6 +25,7 @@ public class TutorialController : MonoBehaviour
         folds[index].GetComponent<Animator>().SetFloat("animSpeed", 1);
         // indicate that we are at step 1
         progressBar.value = 1; 
+        progressText.text = progressBar.value + " / " + progressBar.maxValue;
         // if it is set as true in the beginning, the PauseAnimation() method flips it to false
         paused = true; 
         PauseOrUnpauseAnimation();
@@ -56,7 +59,8 @@ public class TutorialController : MonoBehaviour
     
     void ProgressBar()
     {
-        progressBar.value = index + 1; 
+        progressBar.value = index + 1;
+        progressText.text = progressBar.value + " / " + progressBar.maxValue;
     }
     
     public void NextAnimation()

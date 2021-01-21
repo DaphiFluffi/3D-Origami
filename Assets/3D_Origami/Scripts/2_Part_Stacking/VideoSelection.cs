@@ -29,6 +29,7 @@ public class VideoSelection : MonoBehaviour
     
     // ---Progress --
     [SerializeField] private Slider progressBar = default;
+    [SerializeField] private TextMeshProUGUI progressText = default;
     
     // --- Navigation ---
     [SerializeField] private Button nextButton = default; 
@@ -52,7 +53,7 @@ public class VideoSelection : MonoBehaviour
 
         VideoCanvas.SetActive(false);
         progressBar.value = 1; // indicate that we are at step 1
-
+        progressText.text = progressBar.value + " / " + progressBar.maxValue;
         paused = true; // if it is set as true in the beginning, the PauseAnimation() method flips it to false
         PauseOrUnpauseClip();
 
@@ -145,7 +146,8 @@ public class VideoSelection : MonoBehaviour
             // how many clips are in the current tutorial
             int howManyClips = ClipAmountInTutorial();
             progressBar.maxValue = howManyClips;
-           
+            progressText.text = progressBar.value + " / " + progressBar.maxValue;
+
             instructions = SetOfInstructions();
             //which Instructions to show
             instructionsText.text = instructions[0];
@@ -352,6 +354,8 @@ public class VideoSelection : MonoBehaviour
             // desktop
             //ChangeVideo(clipIndexInCurrentTutorial.ToString());
             progressBar.value = clipIndexInCurrentTutorial;
+            progressText.text = progressBar.value + " / " + progressBar.maxValue;
+
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
         }
     }
@@ -368,6 +372,8 @@ public class VideoSelection : MonoBehaviour
             // desktop
             //ChangeVideo(clipIndexInCurrentTutorial.ToString());
             progressBar.value = clipIndexInCurrentTutorial;
+            progressText.text = progressBar.value + " / " + progressBar.maxValue;
+
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
         }
     }
