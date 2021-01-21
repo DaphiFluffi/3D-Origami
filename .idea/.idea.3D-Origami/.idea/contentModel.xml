@@ -39,9 +39,9 @@
               </e>
             </e>
             <e p="AlwaysOnCamera.cs" t="Include" />
-            <e p="KeyboardRotation.cs" t="Include" />
             <e p="MainMenuController.cs" t="Include" />
             <e p="Rotation" t="Include">
+              <e p="KeyboardRotation.cs" t="Include" />
               <e p="UIRotation.cs" t="Include" />
             </e>
             <e p="ShowHideUI.cs" t="Include" />
