@@ -1,24 +1,18 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.CrossPlatformInput;
 public class CylinderRotation : MonoBehaviour
 {
     // https://docs.unity3d.com/ScriptReference/Input.GetAxis.html
     public float rotationSpeed = 100.0f;
-    private float startingPositionX;
-    private float startingPositionY;
-    private Button resetButton;
-    private float rotationX, rotationY, GUIrotatationX, GUIrotatationY = 0;
-    private int currentSceneIndex;
-    private Quaternion startRotation; 
     
+    private Button resetButton;
+    private float rotationX, rotationY = 0;
+    private Quaternion startRotation;
+
     void Start()
     {
         resetButton = GameObject.FindGameObjectWithTag("Reset").GetComponent<Button>();
         resetButton.onClick.AddListener(ResetRotation);
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         startRotation = transform.rotation;
     }
     
@@ -31,32 +25,11 @@ public class CylinderRotation : MonoBehaviour
         // rotation works with WSAD and Arrow Keys
         rotationX = Input.GetAxis("Vertical") * rotationSpeed;
         rotationY = Input.GetAxis("Horizontal") * rotationSpeed;
-
-        //https://www.youtube.com/watch?v=XFbNTeW1d_8
-        // rotation with on Screen keys
-        GUIrotatationX = CrossPlatformInputManager.GetAxis("Vertical") * rotationSpeed;
-        GUIrotatationY = CrossPlatformInputManager.GetAxis("Horizontal") * rotationSpeed;
-        
         rotationX *= Time.deltaTime;
         rotationY *= Time.deltaTime;
-        GUIrotatationX *= Time.deltaTime;
-        GUIrotatationY *= Time.deltaTime;
-
-        switch (currentSceneIndex)
-        {
-            // How to fold Pieces Scene
-            //negative y
-            case 1:
-                transform.Rotate(rotationX,-1 * rotationY,0, Space.Self);
-                transform.Rotate(GUIrotatationX, -1 * GUIrotatationY, 0, Space.Self);
-                break;
-            //Generator Scene
-            case 3:
-                transform.Rotate(rotationX, rotationY, 0, Space.Self);
-                transform.Rotate(GUIrotatationX, GUIrotatationY, 0, Space.Self);
-                break;
-        }
         
+        transform.Rotate(rotationX,-1 * rotationY,0, Space.Self);
+
         // reset rotation with space
         if(Input.GetKeyDown(KeyCode.Return))
         {
@@ -68,5 +41,4 @@ public class CylinderRotation : MonoBehaviour
     {
         transform.rotation = startRotation;
     }
-
 }
