@@ -49,8 +49,6 @@ public class CircleGenerator : MonoBehaviour
 
                 // tag row object
                 row.gameObject.tag= "Row";
-                row.gameObject.layer = LayerMask.NameToLayer("Row");
-                //row.AddComponent<MeshCollider>();
                 if (rows[r] == 2) //decreased row 
                 {
                     // integer divison automatically takes the first number before comma
@@ -138,12 +136,11 @@ public class CircleGenerator : MonoBehaviour
     {
         radius = radius * amountPerRow; 
         // How to instantiate game objects around a point https://answers.unity.com/questions/1068513/place-8-objects-around-a-target-gameobject.html
-        // How to make game objects look towards a point https://forum.unity.com/threads/instantiate-prefab-towards-object.134213/
         Vector3 spawnPosition = center + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
         spawnPosition.y += yPosition;
         // so that the pieces look towards the center 
+        // How to make game objects look towards a point https://forum.unity.com/threads/instantiate-prefab-towards-object.134213/#post-908339
         GameObject piece = Instantiate(pieceModel, spawnPosition, Quaternion.LookRotation((center - spawnPosition) + new Vector3(0,0.1f, 0)));
-        //piece.gameObject.layer = LayerMask.NameToLayer("Piece");
         totalPieces++;
         return piece;
     }
