@@ -32,7 +32,7 @@ public class CircleGenerator : MonoBehaviour
             
             // parent cylinder object
             generatedCylinder = new GameObject {name = "cylinder"};
-            generatedCylinder.AddComponent<CylinderRotation>();
+            generatedCylinder.AddComponent<KeyboardRotation>();
             //generatedCylinder.AddComponent<MeshCollider>();
             //for export
             generatedCylinder.AddComponent<MeshFilter>();
