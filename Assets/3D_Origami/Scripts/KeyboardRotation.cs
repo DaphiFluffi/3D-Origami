@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-public class CylinderRotation : MonoBehaviour
+public class KeyboardRotation : MonoBehaviour
 {
     // https://docs.unity3d.com/ScriptReference/Input.GetAxis.html
     public float rotationSpeed = 100.0f;

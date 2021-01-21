@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2048520411839916012}
   - component: {fileID: 2048520411839916011}
   - component: {fileID: 2048520411839916013}
-  - component: {fileID: 2048520411839916014}
   - component: {fileID: 3898363909415794618}
   m_Layer: 5
   m_Name: RightArrow
@@ -120,22 +119,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2048520411839916014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048520411839916009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ab98b66288df7b4fa182075f2f12bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axisName: Horizontal
-  axisValue: 1
-  responseSpeed: 10000
-  returnToCentreSpeed: 3
 --- !u!114 &3898363909415794618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4417623a2091e084d9c9454fa4487a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 100
 --- !u!1 &2048520411927395846
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +183,6 @@ GameObject:
   - component: {fileID: 2048520413065882753}
   - component: {fileID: 2048520413065882752}
   - component: {fileID: 2048520413065882754}
-  - component: {fileID: 2048520413065882755}
   - component: {fileID: 4556989921162986437}
   m_Layer: 5
   m_Name: LeftArrow
@@ -307,22 +290,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2048520413065882755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048520413065882766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ab98b66288df7b4fa182075f2f12bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axisName: Horizontal
-  axisValue: -1
-  responseSpeed: 10000
-  returnToCentreSpeed: 3
 --- !u!114 &4556989921162986437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4417623a2091e084d9c9454fa4487a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 100
 --- !u!1 &2048520413100683600
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +315,6 @@ GameObject:
   - component: {fileID: 2048520413100683603}
   - component: {fileID: 2048520413100683602}
   - component: {fileID: 2048520413100683604}
-  - component: {fileID: 2048520413100683605}
   - component: {fileID: 676278102934686159}
   m_Layer: 5
   m_Name: DownArrow
@@ -455,22 +422,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2048520413100683605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048520413100683600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ab98b66288df7b4fa182075f2f12bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axisName: Vertical
-  axisValue: -1
-  responseSpeed: 10000
-  returnToCentreSpeed: 3
 --- !u!114 &676278102934686159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4417623a2091e084d9c9454fa4487a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 100
 --- !u!1 &2048520413182337580
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +447,6 @@ GameObject:
   - component: {fileID: 2048520413182337583}
   - component: {fileID: 2048520413182337582}
   - component: {fileID: 2048520413182337568}
-  - component: {fileID: 2048520413182337569}
   - component: {fileID: 9145257654671974855}
   m_Layer: 5
   m_Name: UpArrow
@@ -603,22 +554,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2048520413182337569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048520413182337580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ab98b66288df7b4fa182075f2f12bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axisName: Vertical
-  axisValue: 1
-  responseSpeed: 10000
-  returnToCentreSpeed: 3
 --- !u!114 &9145257654671974855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,3 +566,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4417623a2091e084d9c9454fa4487a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 100

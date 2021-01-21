@@ -17,7 +17,7 @@ public class UIRotation : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             objectToRotate.transform.Rotate(new Vector3(0,1 * rotationSpeed * Time.deltaTime,0));
         }
-        else if (moveRight)
+        if (moveRight)
         {
             objectToRotate.transform.Rotate(new Vector3(0,-1 * rotationSpeed * Time.deltaTime,0));
         }
@@ -26,7 +26,7 @@ public class UIRotation : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             objectToRotate.transform.Rotate(new Vector3(1 * rotationSpeed * Time.deltaTime,0,0));
         }
-        else if (moveDown)
+        if (moveDown)
         {
             objectToRotate.transform.Rotate(new Vector3(-1 * rotationSpeed * Time.deltaTime,0,0));
         }
