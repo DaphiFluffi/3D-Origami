@@ -13,7 +13,9 @@ public class ValidateInputs : MonoBehaviour
     [SerializeField] private TMP_InputField whereToAddDecreasedRow = default;
     [SerializeField] private Button generateButton = default; 
     [SerializeField] private GameObject errorPanel = default;
+    [SerializeField] private GameObject infoPanel = default;
     private TMP_Text errorText;
+    private TMP_Text infoText;
     private Image errorBackground;
     private int[] increasedArray;
     private int[] decreasedArray;
@@ -21,15 +23,15 @@ public class ValidateInputs : MonoBehaviour
     void Awake()
     {
         errorText = errorPanel.transform.Find("ErrorMessage").GetComponent<TMP_Text>();
+        infoText = infoPanel.transform.Find("InfoMessage").GetComponent<TMP_Text>();
         errorPanel.SetActive(false);
         errorBackground = errorPanel.GetComponent<Image>();
     }
 
     private void ShowInfoMessage(string infoDescription)
     {
-        errorPanel.SetActive(true);
-        errorBackground.color = new Color32 (201,251,173, 255);
-        errorText.text = infoDescription;
+        infoPanel.SetActive(true);
+        infoText.text = infoDescription;
     }
     
     private void ShowErrorMessage(string errorDescription)
@@ -43,9 +45,7 @@ public class ValidateInputs : MonoBehaviour
     
     public void HideInfoMessage()
     {
-        errorBackground.color = Color.white;
-        // hide error panel
-        errorPanel.SetActive(false);
+        infoPanel.SetActive(false);
     }
 
     private void HideErrorMessage()
@@ -55,6 +55,11 @@ public class ValidateInputs : MonoBehaviour
         // re-enable "Generate" Button
         generateButton.enabled = true;
         generateButton.GetComponent<Image>().color = Color.white; 
+    }
+
+    public void HideErrorPanel()
+    {
+        errorPanel.SetActive(false);
     }
     
     private void InputFieldsCantBeEmpty(string inputString)
@@ -101,7 +106,7 @@ public class ValidateInputs : MonoBehaviour
         // only allow decreasing for rows that are multiples of 3
         else if (amountInt % 3 > 0)
         {
-            ShowInfoMessage("You can only decrease rows that are multiples of 3.");
+            ShowInfoMessage("You can only decrease rows that are divisible 3.");
             whereToAddDecreasedRow.GetComponentInChildren<TMP_Text>().color = Color.gray;
             whereToAddDecreasedRow.GetComponentInChildren<Image>().color = Color.gray;
             whereToAddDecreasedRow.enabled = false; 
@@ -191,8 +196,6 @@ public class ValidateInputs : MonoBehaviour
             var equalItems = increasedArray.Intersect(decreasedArray);
             //https://stackoverflow.com/questions/5079867/c-sharp-ienumerable-print-out
             string errorString = String.Join(",", equalItems);
-            //TODO text ändern NICHT so abgeben
-            //ShowErrorMessage("Wer das liest ist doof! (Hi Tobias). Die Lotto Zahl(en): " + errorString);
             ShowErrorMessage("The row(s) no." + errorString + " cannot be increased and decreased at the same time.");
 
         }
