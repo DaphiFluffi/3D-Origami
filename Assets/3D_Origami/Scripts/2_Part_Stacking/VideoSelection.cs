@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -41,20 +42,15 @@ public class VideoSelection : MonoBehaviour
     [SerializeField] private string[] links = default; 
     private void Start()
     {
+        // -- Videos on Desktop --
         //videoUrlTemplate =
             //"file://C:/Users/mcflu/Desktop/Videoschnitt_Bachelorarbeit/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
             //"Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
-
-            //https://github.com/git-lfs/git-lfs/issues/1342
-            //trying Github LFS workaround to accces my large video files (Please work)
-            //"https://media.githubusercontent.com/media/DaphiFluffi/3D_Origami/beta/Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
-            //"https://github.com/DaphiFluffi/3D-Origami/blob/gh-pages/Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4?raw=true";
-            //"https://github.com/DaphiFluffi/3D-Origami/raw/main//Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
-
         VideoCanvas.SetActive(false);
-        progressBar.value = 1; // indicate that we are at step 1
-        progressText.text = progressBar.value + " / " + progressBar.maxValue;
-        paused = true; // if it is set as true in the beginning, the PauseAnimation() method flips it to false
+    
+        Progress(1);
+        // if it is set as true in the beginning, the PauseAnimation() method flips it to false
+        paused = true; 
         PauseOrUnpauseClip();
 
         clipIndexInCurrentTutorial = 0;
@@ -88,45 +84,17 @@ public class VideoSelection : MonoBehaviour
         }*/
     }
     
-   /* private void ChangeVideo(string clipIndex)
-    {
-        videoUrlTemplate = videoUrlTemplate.Replace("(videoIndex)", clipIndex);
-        videoPlayer.url = videoUrlTemplate;
-        //only change the first occurente of the clipNumber otherwise e.g. in MP4 the 4 will be repaced 
-        // https://stackoverflow.com/questions/8809354/replace-first-occurrence-of-pattern-in-a-string
-        var regex = new Regex(Regex.Escape(clipIndex.ToString()));
-        videoUrlTemplate = regex.Replace(videoUrlTemplate, "(videoIndex)", 1);
-
-    }*/
-
-    private void ChangeYouTubeVideo(int clipIndex)
-    {
-        //Debug.Log(links[clipIndex]);
-        // prepare new url
-        youtubePlayer.youtubeUrl = links[clipIndex];
-        youtubePlayer.PlayVideoAsync(youtubePlayer.youtubeUrl);
-    }
-    
-    private void ChangeVimeoVideo(int clipIndex)
-    {
-        //Debug.Log(links[clipIndex]);
-        // prepare new url
-        videoPlayer.url = links[clipIndex];
-    }
-
     public void BackToSelection()
     {
         SelectionCanvas.SetActive(true);
-        //relaod scene
+        // reload scene
         Scene scene = SceneManager.GetActiveScene(); 
         SceneManager.LoadScene(scene.name);
         VideoCanvas.SetActive(false);
     }
     
-    // TODO may have to go before the change scene main menu controller call
     public void WhichTutorial(string tutorialName)
     {
-      
         if (SelectionCanvas.activeInHierarchy)
         {
             SelectionCanvas.SetActive(false);
@@ -135,7 +103,7 @@ public class VideoSelection : MonoBehaviour
         if (!VideoCanvas.activeInHierarchy)
         {
             VideoCanvas.SetActive(true);
-            //setting all values depending on tutorial
+            // -- Setting all values depending on Tutorial --
             
             // play the first tutorial on button click
             clipIndexInCurrentTutorial = 1;
@@ -145,16 +113,17 @@ public class VideoSelection : MonoBehaviour
             tutorialIndicator.text = currentTutorial;
             // how many clips are in the current tutorial
             int howManyClips = ClipAmountInTutorial();
+            //setting the progress bar values
             progressBar.maxValue = howManyClips;
             progressText.text = progressBar.value + " / " + progressBar.maxValue;
 
-            instructions = SetOfInstructions();
             //which Instructions to show
+            instructions = SetOfInstructions();
             instructionsText.text = instructions[0];
 
+            // -- Show the first video --
             // --Videos from Desktop
             // videoPlayer.url = "file://C:/Users/mcflu/Documents/Daphna/HTW Berlin - Internationale Medieninformatik/5. Semester HTW/Bachelorarbeit/Videoschnitt_Bachelorarbeit/"+currentTutorial+"/(videoIndex)_"+ currentTutorial+".MP4";
-            
             //videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
             // ChangeVideo("1");
             
@@ -169,6 +138,85 @@ public class VideoSelection : MonoBehaviour
         }
     }
     
+    private void Progress(float progress)
+    {
+        progressBar.value = progress;
+        progressText.text = progress + " / " + progressBar.maxValue;
+    }
+    
+    public void NextClip()
+    {
+        if (clipIndexInCurrentTutorial < ClipAmountInTutorial())
+        {
+            clipIndexInCurrentTutorial += 1;
+            //vimeo
+            ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
+            // youtube
+            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
+            // desktop
+            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
+          
+            Progress(clipIndexInCurrentTutorial);
+
+            instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
+            UnpauseClip();
+        }
+    }
+
+    public void PreviousClip()
+    {
+        if (clipIndexInCurrentTutorial > 1)
+        {
+            clipIndexInCurrentTutorial -= 1;
+            // vimeo
+            ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
+            // youtube
+            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
+            // desktop
+            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
+
+            Progress(clipIndexInCurrentTutorial);
+            instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
+            UnpauseClip();
+        }
+    }
+    
+    public void SpeedSettings(float sliderSpeed)
+    {
+        sliderSpeed /= 2f;
+        if (videoPlayer.canSetPlaybackSpeed)
+        {
+            videoPlayer.playbackSpeed = sliderSpeed;
+        }
+    }
+    
+    public void PauseOrUnpauseClip()
+    {
+        if (paused) 
+        {
+            UnpauseClip();
+        }
+        else 
+        {
+            PauseClip();
+        }
+    }
+    
+    private void PauseClip()
+    {
+        videoPlayer.Pause();
+        pauseButton.image.overrideSprite = Unpause;//"Unpause";
+        paused = true;
+    }
+    
+    public void UnpauseClip()
+    {
+        videoPlayer.Play();
+        pauseButton.image.overrideSprite = Pause; //"Pause";
+        paused = false;
+    }
+
+    // -- Instructions --
     private int ClipAmountInTutorial()
     {
         int clipAmount = 0;
@@ -198,6 +246,79 @@ public class VideoSelection : MonoBehaviour
         return clipAmount;
     }
 
+    
+    private string[] SetOfInstructions()
+    {
+        string[] instructions = new string[7];
+
+        switch (currentTutorial)
+        {
+            case "Base":
+                instructions[0] = "1. Take 3 pieces and connect them to make one stack.";
+                instructions[1] = "2. Take two of your stacks and connect them as shown.";
+                instructions[2] = "3. Continue all the way around.";
+                instructions[3] = "4. Squeeze the finished product into a cup shape. \n Try to keep the cup shape when building rows on top.";
+                break;
+            case "Bottom":
+                instructions[0] = "1. Flip your model on its side.";
+                instructions[1] = "2. Turn your piece around and put \n each tip into a pocket of one piece.";
+                instructions[2] = "3. This technique can be used in e.g. this lemon design.";
+                break;
+            case "Decreased":
+                instructions[0] = "1. Put one piece over 3 tips.";
+                instructions[1] = "2. Continue putting one piece over 3 tips all the way around.";
+                instructions[2] = "3. If your row has an amount of tips that is not a multiple of 3, \n  you will have to improvise.";
+                instructions[3] = "4. Be Cautious: Decreased rows make your model less stable.";
+                instructions[4] = "5. For that reason, consider gluing down decreased rows";
+                instructions[5] = "6. To improve stability, put at least one normal row on top. \n Consider gluing it too.";
+                instructions[6] = "7. This technique is useful to finish your model with a dome.";
+                break;
+            case "Increased":
+                instructions[0] = "1. Put one pocket of your piece over 1 tip.";
+                instructions[1] = "2. To make your model more stable, glue down increased rows.";
+                instructions[2] = "3. Continue like this all the way around. \n At the end, the amount of pieces has doubled.";
+                instructions[3] = "4. Putting on a normal row above also increases stability.";
+                instructions[4] = "5. This technique is used to create curved or round objects.";
+                break;
+            case "Inverted":
+                instructions[0] = "1. Turn every piece to face inwards \n and put one piece over two tips.";
+                instructions[1] = "2. Continue all the way around";
+                instructions[2] = "3. Notice, that when applying a new row above it, \n the inverted row is covered completely.";
+                instructions[3] = "4. Continue applying a normal row on top.";
+                instructions[4] = "5. This technique is used to visibly separate two \n parts of a model, e.g. head and body.";
+                break;
+            case "Normal":
+                instructions[0] = "1. Put one pocket of your piece over 1 tip of one piece \n in the row below. Put the second pocket \n over 1 tip of the piece next to the first one.";
+                instructions[1] = "2. Continue all the way around to complete a normal row.";
+                break;
+        }
+
+        return instructions;
+    }
+
+    // -- ChangeVideo Functions dependant on platform --
+    private void ChangeVideo(string clipIndex)
+    {
+        videoUrlTemplate = videoUrlTemplate.Replace("(videoIndex)", clipIndex);
+        videoPlayer.url = videoUrlTemplate;
+        //only change the first occurente of the clipNumber otherwise e.g. in MP4 the 4 will be repaced 
+        // https://stackoverflow.com/questions/8809354/replace-first-occurrence-of-pattern-in-a-string
+        var regex = new Regex(Regex.Escape(clipIndex.ToString()));
+        videoUrlTemplate = regex.Replace(videoUrlTemplate, "(videoIndex)", 1);
+    }
+
+    private void ChangeYouTubeVideo(int clipIndex)
+    {
+        youtubePlayer.youtubeUrl = links[clipIndex];
+        youtubePlayer.PlayVideoAsync(youtubePlayer.youtubeUrl);
+    }
+    
+    private void ChangeVimeoVideo(int clipIndex)
+    {
+        videoPlayer.url = links[clipIndex];
+    }
+    
+    // -- Video Links dependant on platform --
     private string[] YoutubeLinks()
     {
         string[] links = new string[7];
@@ -291,124 +412,5 @@ public class VideoSelection : MonoBehaviour
                 break;
         }
         return links;
-    }
-    private string[] SetOfInstructions()
-    {
-        string[] instructions = new string[7];
-
-        switch (currentTutorial)
-        {
-            case "Base":
-                instructions[0] = "1. Take 3 pieces and connect them to make one stack.";
-                instructions[1] = "2. Take two of your stacks and connect them as shown.";
-                instructions[2] = "3. Continue all the way around.";
-                instructions[3] = "4. Squeeze the finished product into a cup shape.";
-                break;
-            case "Bottom":
-                instructions[0] = "1. Flip your model on its side.";
-                instructions[1] = "2. Turn your piece around and attach and put \n one tip into one pocket of one piece.";
-                instructions[2] = "3. This technique can be used in e.g. this lemon design.";
-                break;
-            case "Decreased":
-                instructions[0] = "1. Put one piece over 3 tips.";
-                instructions[1] = "2. Continue putting one piece over 3 tips all the way around.";
-                instructions[2] = "3. If your row has an amount of tips that is not a multiple of 3, \n  you will have to improvise.";
-                instructions[3] = "4. Be cautious: Decreased rows make your model less stable.";
-                instructions[4] = "5. For that reason, consider gluing down decreased rows";
-                instructions[5] = "6. To improve stability, put at least one normal row on top. \n Consider gluing it too.";
-                instructions[6] = "7. This technique is useful to finish your model with a dome.";
-                break;
-            case "Increased":
-                instructions[0] = "1. Put one pocket of your piece over 1 tip.";
-                instructions[1] = "2. To make your model more stable, glue down increased rows.";
-                instructions[2] = "3. Continue like this all the way around. \n At the end, the amount of pieces has doubled.";
-                instructions[3] = "4. Putting on a normal row above also increases stability.";
-                instructions[4] = "5. This technique is used to create curved objects.";
-                break;
-            case "Inverted":
-                instructions[0] = "1. Turn every piece to face inwards \n and put one piece over two tips.";
-                instructions[1] = "2. Continue all the way around";
-                instructions[2] = "3. Notice, that when applying a new row above it, \n the inverted row is covered completely.";
-                instructions[3] = "4. Continue applying a normal row on top.";
-                instructions[4] = "5. This technique is used to visibly separate two \n parts of a model, e.g. head and body.";
-                break;
-            case "Normal":
-                instructions[0] = "1. Put one pocket of your piece over 1 tip of one piece \n in the row below. Put the second pocket \n over 1 tip of the piece next to the first one.";
-                instructions[1] = "2. Continue all the way around to complete a normal row.";
-                break;
-        }
-
-        return instructions;
-    }
-
-    
-    public void NextClip()
-    {
-        if (clipIndexInCurrentTutorial < ClipAmountInTutorial())
-        {
-            clipIndexInCurrentTutorial += 1;
-            //vimeo
-            ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
-            // youtube
-            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
-            // desktop
-            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
-            progressBar.value = clipIndexInCurrentTutorial;
-            progressText.text = progressBar.value + " / " + progressBar.maxValue;
-
-            instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
-        }
-    }
-
-    public void PreviousClip()
-    {
-        if (clipIndexInCurrentTutorial > 1)
-        {
-            clipIndexInCurrentTutorial -= 1;
-            //vimeo
-            ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
-            // youtube
-            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
-            // desktop
-            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
-            progressBar.value = clipIndexInCurrentTutorial;
-            progressText.text = progressBar.value + " / " + progressBar.maxValue;
-
-            instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
-        }
-    }
-    
-    public void PauseOrUnpauseClip()
-    {
-        if (paused) 
-        {
-            UnpauseClip();
-        }
-        else 
-        {
-            PauseClip();
-        }
-    }
-    
-    private void PauseClip()
-    {
-        videoPlayer.Pause();
-        pauseButton.image.overrideSprite = Unpause;//"Unpause";
-        paused = true;
-    }
-    
-    private void UnpauseClip()
-    {
-        videoPlayer.Play();
-        pauseButton.image.overrideSprite = Pause; //"Pause";
-        paused = false;
-    }
-
-    public void SpeedSettings(float sliderSpeed)
-    {
-        if (videoPlayer.canSetPlaybackSpeed)
-        {
-            videoPlayer.playbackSpeed = sliderSpeed;
-        }
     }
 }
