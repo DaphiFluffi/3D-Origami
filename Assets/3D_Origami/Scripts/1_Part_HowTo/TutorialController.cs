@@ -53,6 +53,7 @@ public class TutorialController : MonoBehaviour
     //How to use sliders https://www.youtube.com/watch?v=HQ8Tttcksu4
     public void AnimationSpeed(float sliderSpeed) //value of the slider will be assigned to the sliderSpeed Variable
     {
+        sliderSpeed /= 2f;
         //https://forum.unity.com/threads/losing-animator-state.307667/
         folds[index].GetComponent<Animator>().SetFloat("animSpeed", sliderSpeed); 
     }
@@ -105,13 +106,16 @@ public class TutorialController : MonoBehaviour
 
     public void ReplayAnimation()
     {
-        if (paused == false) // you should only be able to replay the animation, when the animation is not paused
+        // you should only be able to replay the animation, when the animation is not paused
+        if (paused)
         {
-            // https://docs.unity3d.com/ScriptReference/Animator.Play.html
-            var anim = folds[index].GetComponent<Animator>();
-            // play the first and only animation each object has 
-            anim.Play(0, 0, 0); 
+            UnpauseAnimation();
         }
+
+        // https://docs.unity3d.com/ScriptReference/Animator.Play.html
+        var anim = folds[index].GetComponent<Animator>();
+        // play the first and only animation each object has 
+        anim.Play(0, 0, 0);
     }
 
     public void PauseOrUnpauseAnimation()

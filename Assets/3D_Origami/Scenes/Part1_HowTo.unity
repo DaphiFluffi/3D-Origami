@@ -1005,10 +1005,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 825262949}
   m_HandleRect: {fileID: 135115989}
   m_Direction: 2
-  m_MinValue: 0
-  m_MaxValue: 2
-  m_WholeNumbers: 0
-  m_Value: 1
+  m_MinValue: 1
+  m_MaxValue: 4
+  m_WholeNumbers: 1
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4363,6 +4363,7 @@ GameObject:
   - component: {fileID: 1791458166}
   - component: {fileID: 1791458165}
   - component: {fileID: 1791458168}
+  - component: {fileID: 1791458169}
   m_Layer: 5
   m_Name: PaperSize
   m_TagString: Untagged
@@ -4495,6 +4496,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToHide: {fileID: 1847138503}
+--- !u!114 &1791458169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791458163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32911cafeea5a64bbfc69f85d49a92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: Size of the paper pieces to fold 3D origami pieces out of
 --- !u!1 &1847138503
 GameObject:
   m_ObjectHideFlags: 0
