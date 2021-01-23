@@ -34,7 +34,7 @@ public class ColorManager : MonoBehaviour
             InstantiatePaintPot(white);
             SetPaintPotText(totalPieces);
         }
-        // called from AddRow and RemoveRow Button 
+        // called from AddRow Button 
         else
         {
             usedColors[white] += totalPieces;
@@ -44,11 +44,11 @@ public class ColorManager : MonoBehaviour
         }
     }
 
+    // called by remove row button to remove colors
     public void RemoveRowCallback(string[] totalPieces)
     {
         for (int i = 0; i < totalPieces.Length; i++)
         {
-//            Debug.Log(totalPieces[i]);
             usedColors[totalPieces[i]] -= 1;
             //find the existing paint pot with that color
             paintPot = GameObject.Find(totalPieces[i]).GetComponent<Image>();
@@ -115,6 +115,7 @@ public class ColorManager : MonoBehaviour
        ColorUtility.TryParseHtmlString("#" + paintPot.name, out var convertedColor);
        // https://docs.unity3d.com/ScriptReference/Color.RGBToHSV.html
        float H, S, V;
+       //if the paintpot's color is very dark, the text is set to white
        Color.RGBToHSV(convertedColor, out H, out S, out V);
        if (V <= 0.3f)
        {
