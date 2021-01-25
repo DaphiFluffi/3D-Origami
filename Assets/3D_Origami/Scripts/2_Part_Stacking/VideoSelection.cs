@@ -56,34 +56,6 @@ public class VideoSelection : MonoBehaviour
         clipIndexInCurrentTutorial = 0;
     }
     
-    //TODO
-    void Update() // don't show previous button at the first step, don't show next button at the last step 
-    {
-       /* if (VideoCanvas.activeInHierarchy)
-        {
-            Debug.Log(clipIndexInCurrentTutorial);
-            if (clipIndexInCurrentTutorial == 0)
-            {
-                previousButton.gameObject.SetActive(false);
-                Debug.Log("first clip");
-            }
-            else if (clipIndexInCurrentTutorial == ClipAmountInTutorial())
-            {
-                nextButton.gameObject.SetActive(false);
-                backToLibButton.gameObject.SetActive(true);
-                Debug.Log("last clip");
-
-            }
-            else
-            {
-                previousButton.gameObject.SetActive(true);
-                nextButton.gameObject.SetActive(true);
-                backToLibButton.gameObject.SetActive(false);
-                Debug.Log("middle");
-            }
-        }*/
-    }
-    
     public void BackToSelection()
     {
         SelectionCanvas.SetActive(true);
@@ -107,6 +79,8 @@ public class VideoSelection : MonoBehaviour
             
             // play the first tutorial on button click
             clipIndexInCurrentTutorial = 1;
+            // disable previous button on first clip
+            previousButton.gameObject.SetActive(false);
             // set current Tutorial name
             currentTutorial = tutorialName;
             // put tutorial name into right hand corner
@@ -161,6 +135,18 @@ public class VideoSelection : MonoBehaviour
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
             UnpauseClip();
         }
+        // if we are currently at the last video
+        if (clipIndexInCurrentTutorial == ClipAmountInTutorial())
+        {
+            nextButton.gameObject.SetActive(false);
+            backToLibButton.gameObject.SetActive(true);
+        }
+        
+        // if we are not on the first clip 
+        if (clipIndexInCurrentTutorial == 2)
+        {
+            previousButton.gameObject.SetActive(true);
+        }
     }
 
     public void PreviousClip()
@@ -179,6 +165,19 @@ public class VideoSelection : MonoBehaviour
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
             UnpauseClip();
         }
+        // when we are not on the last lip anymore
+        if (clipIndexInCurrentTutorial == ClipAmountInTutorial() - 1)
+        {
+            nextButton.gameObject.SetActive(true);
+            backToLibButton.gameObject.SetActive(false);
+        }
+        
+        // if we are back at the first clip
+        if (clipIndexInCurrentTutorial == 1)
+        {
+            previousButton.gameObject.SetActive(false);
+        }
+
     }
     
     public void SpeedSettings(float sliderSpeed)
