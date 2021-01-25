@@ -1,23 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.PlayerLoop;
+﻿using UnityEngine;
 
 public class PanCamera : MonoBehaviour
 {
-    //https://www.youtube.com/watch?v=4_HUlAFlxwU
+    // Press Start: https://www.youtube.com/watch?v=4_HUlAFlxwU
     private Vector3 touchStart;
     public Camera cam;
     public float groundZ = 0;
     private Vector3 camStartPos;
-    private int fingerID = -1;
+    private int fingerID;
 
     void Awake()
     {
         camStartPos = Camera.main.transform.position;
-        #if !UNITY_EDITOR && !_UNITY_WEBGL
-             fingerID = 0;
+        
+        #if UNITY_EDITOR || UNITY_WEBGL
+           fingerID = -1;
+        #elif UNITY_ANDROID || UNITY_STANDALONE
+           fingerID = 0;
         #endif
+
     }
 
     void Update()
