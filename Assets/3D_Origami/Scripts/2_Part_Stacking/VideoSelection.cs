@@ -257,38 +257,38 @@ public class VideoSelection : MonoBehaviour
                 instructions[0] = "1. Take 3 pieces and connect them to make one stack.";
                 instructions[1] = "2. Take two of your stacks and connect them as shown.";
                 instructions[2] = "3. Continue all the way around.";
-                instructions[3] = "4. Squeeze the finished product into a cup shape. \n Try to keep the cup shape when building rows on top.";
+                instructions[3] = "4. Squeeze the finished product into a cup shape. Try to keep the cup shape when building rows on top.";
                 break;
             case "Bottom":
                 instructions[0] = "1. Flip your model on its side.";
-                instructions[1] = "2. Turn your piece around and put \n each tip into a pocket of one piece.";
+                instructions[1] = "2. Turn your piece around and put each tip into a pocket of one piece.";
                 instructions[2] = "3. This technique can be used in e.g. this lemon design.";
                 break;
             case "Decreased":
                 instructions[0] = "1. Put one piece over 3 tips.";
                 instructions[1] = "2. Continue putting one piece over 3 tips all the way around.";
-                instructions[2] = "3. If your row has an amount of tips that is not a multiple of 3, \n  you will have to improvise.";
+                instructions[2] = "3. If your row has an amount of tips that is not a multiple of 3, you will have to improvise.";
                 instructions[3] = "4. Be Cautious: Decreased rows make your model less stable.";
                 instructions[4] = "5. For that reason, consider gluing down decreased rows";
-                instructions[5] = "6. To improve stability, put at least one normal row on top. \n Consider gluing it too.";
+                instructions[5] = "6. To improve stability, put at least one normal row on top. Consider gluing it too.";
                 instructions[6] = "7. This technique is useful to finish your model with a dome.";
                 break;
             case "Increased":
                 instructions[0] = "1. Put one pocket of your piece over 1 tip.";
                 instructions[1] = "2. To make your model more stable, glue down increased rows.";
-                instructions[2] = "3. Continue like this all the way around. \n At the end, the amount of pieces has doubled.";
+                instructions[2] = "3. Continue like this all the way around. At the end, the amount of pieces has doubled.";
                 instructions[3] = "4. Putting on a normal row above also increases stability.";
                 instructions[4] = "5. This technique is used to create curved or round objects.";
                 break;
             case "Inverted":
-                instructions[0] = "1. Turn every piece to face inwards \n and put one piece over two tips.";
+                instructions[0] = "1. Turn every piece to face inwards and put one piece over two tips.";
                 instructions[1] = "2. Continue all the way around";
-                instructions[2] = "3. Notice, that when applying a new row above it, \n the inverted row is covered completely.";
+                instructions[2] = "3. Notice, that when applying a new row above it, the inverted row is covered completely.";
                 instructions[3] = "4. Continue applying a normal row on top.";
-                instructions[4] = "5. This technique is used to visibly separate two \n parts of a model, e.g. head and body.";
+                instructions[4] = "5. This technique is used to visibly separate two parts of a model, e.g. head and body.";
                 break;
             case "Normal":
-                instructions[0] = "1. Put one pocket of your piece over 1 tip of one piece \n in the row below. Put the second pocket \n over 1 tip of the piece next to the first one.";
+                instructions[0] = "1. Put one pocket of your piece over 1 tip of one piece in the row below. Put the second pocket over 1 tip of the piece next to the first one.";
                 instructions[1] = "2. Continue all the way around to complete a normal row.";
                 break;
         }

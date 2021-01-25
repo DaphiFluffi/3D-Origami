@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 public class CalculateWidthHeight : MonoBehaviour
 {
