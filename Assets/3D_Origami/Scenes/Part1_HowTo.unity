@@ -1711,7 +1711,8 @@ MonoBehaviour:
   - 5. Fold the small corners inwards.
   - 6. Fold up the two protruding flaps.
   - 7. Fold it in half and you are done!
-  - 8. This is what your piece should look like.
+  - 8. This is what your piece should look like if you stack multiple on top of each
+    other.
 --- !u!1001 &807794569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3736,7 +3737,7 @@ GameObject:
   - component: {fileID: 1677357374}
   - component: {fileID: 1677357373}
   m_Layer: 5
-  m_Name: Background
+  m_Name: InscructionsBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
