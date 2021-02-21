@@ -9,15 +9,9 @@ public class Done : MonoBehaviour
 {
     // uses fbx exporter package by https://github.com/KellanHiggins/UnityFBXExporter
     GameObject objectToExport;
-    //FBXExporter fBXExporter;
     private GameObject cylinder;
     [SerializeField] private Material doubleSided = default;
-    //[DllImport("__Internal")] private static extern void JS_FileSystem_Sync();
-	/*void Start()
-	{
-		fBXExporter = new FBXExporter();
-    }*/
-
+    
     void Start()
     {
         FileBrowser.SetFilters( true, new FileBrowser.Filter( ".fbx", ".fbx" ));
@@ -30,15 +24,10 @@ public class Done : MonoBehaviour
         cylinder.GetComponent<MeshRenderer>().material = doubleSided;
      
         objectToExport = cylinder;
-       /* if(objectToExport == null)
-        {
-            Debug.LogError($"Please assign an object to export as an .fbx file.", this);
-            return;
-        }*/
-
-
+        
         #if UNITY_EDITOR
-            string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "", objectToExport.name.ToString() + ".fbx", "fbx");
+            string path = EditorUtility.SaveFilePanel($"Export {objectToExport} as .fbx", "",
+                objectToExport.name.ToString() + ".fbx", "fbx");
             FBXExporter.ExportGameObjToFBX(objectToExport, path, true, true);
         #elif UNITY_WEBGL
             string content = FBXExporter.MeshToString(objectToExport, null, true, true);
