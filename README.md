@@ -15,3 +15,6 @@ It is split into 3 parts:
   * Download or Clone this Repository to your machine.
 ### License
 [3D-Origami](https://daphifluffi.github.io/3D-Origami-Web/) by [Daphna Beljavskij](https://www.linkedin.com/in/daphna-b-35752616b/) is licensed under [CC BY-NC 4.0![](https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1)![](https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1)![](https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1)](http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1)
+
+### Attribution
+<div>Icons made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect "Pixel perfect") from [www.flaticon.com](https://www.flaticon.com/ "Flaticon")</div>
