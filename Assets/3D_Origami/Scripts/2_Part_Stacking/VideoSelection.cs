@@ -103,12 +103,12 @@ public class VideoSelection : MonoBehaviour
             
             // -- Videos from YouTube
             // get the links to the videos of the current tutorial 
-            //links = YoutubeLinks();
-            //ChangeYouTubeVideo(0);
+            links = YoutubeLinks();
+            ChangeYouTubeVideo(0);
             
             // --Videos from Vimeo
-            links = VimeoLinks();
-            ChangeVimeoVideo(0);
+            //links = VimeoLinks();
+            //ChangeVimeoVideo(0);
         }
     }
     
@@ -124,9 +124,9 @@ public class VideoSelection : MonoBehaviour
         {
             clipIndexInCurrentTutorial += 1;
             //vimeo
-            ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
+            //ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
             // youtube
-            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
+            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
             // desktop
             //ChangeVideo(clipIndexInCurrentTutorial.ToString());
           
@@ -155,9 +155,9 @@ public class VideoSelection : MonoBehaviour
         {
             clipIndexInCurrentTutorial -= 1;
             // vimeo
-            ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
+            //ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
             // youtube
-            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
+            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
             // desktop
             //ChangeVideo(clipIndexInCurrentTutorial.ToString());
 
