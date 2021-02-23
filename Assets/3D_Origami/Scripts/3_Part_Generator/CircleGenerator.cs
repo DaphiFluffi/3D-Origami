@@ -51,7 +51,7 @@ public class CircleGenerator : MonoBehaviour
                 row.gameObject.tag= "Row";
                 if (rows[r] == 2) //decreased row 
                 {
-                    // integer divison automatically takes the first number before comma
+                    // integer division automatically takes the first number before comma
                     // only allow rows that are divisible by 3 
                     int decreasedAmount = (2 * amountPerRow) / 3;
                     amountPerRow = decreasedAmount;
@@ -131,11 +131,10 @@ public class CircleGenerator : MonoBehaviour
         }
     }
 
-    //TODO make this not have to be public anymoreee :(
     public GameObject AssemblePieces(float angle, float radius, int amountPerRow, Vector3 center, float yPosition)
     {
         radius = radius * amountPerRow; 
-        // How to instantiate game objects around a point https://answers.unity.com/questions/1068513/place-8-objects-around-a-target-gameobject.html
+        // How to instantiate game objects around a point http://answers.unity.com/answers/1727089/view.html
         Vector3 spawnPosition = center + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
         spawnPosition.y += yPosition;
         // so that the pieces look towards the center 

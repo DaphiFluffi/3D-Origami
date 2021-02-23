@@ -56,7 +56,7 @@ public class ValidateCustomization : MonoBehaviour
     public void CheckInvertedInput(string invertedString)
     {
         generatedRows = GameObject.FindGameObjectsWithTag("Row");
-        // https://stackoverflow.com/questions/17472580/regular-expression-to-allow-comma-and-space-delimited-number-list
+        // https://stackoverflow.com/a/17472609
         // only matches series of natural numbers with commas in between
         // @ is to skip over the escape character "\"
         Regex rgx = new Regex(@"^[\d,\s]+$");

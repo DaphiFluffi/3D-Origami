@@ -24,7 +24,6 @@ public class Customization : MonoBehaviour
         generator = FindObjectOfType<CircleGenerator>();
         alreadyInvertedRows = new List<int>();
 
-        //TODO callback not necessary right? 
         if (OnAddRemove == null)
         {
             OnAddRemove = new IntEvent();
@@ -50,8 +49,6 @@ public class Customization : MonoBehaviour
             }
         }
     }
-    
-    //TODO maybe have a "prepare information" function 
     
     public void RowOnTop()
     {
@@ -137,7 +134,6 @@ public class Customization : MonoBehaviour
             for (int i = 0; i < amountOfPiecesInTopRow; i++)
             {
                 color[i] = ColorUtility.ToHtmlStringRGB(generatedRows[topRowIndex].transform.GetChild(i).GetComponent<Renderer>().material.color);
-                //Debug.Log(color[i]);
             }
             Destroy(generatedRows[topRowIndex]);
             //remove colors as well
@@ -208,7 +204,7 @@ public class Customization : MonoBehaviour
     private void RevertRows(GameObject[] generatedRows, bool[] revertedInfo)
     {
         // re-invert all rows if the input is 0 
-        // https://stackoverflow.com/questions/604831/collection-was-modified-enumeration-operation-may-not-execute
+        // Collection was modified; enumeration operation may not execute https://stackoverflow.com/a/604843
         foreach(int rowIndex in alreadyInvertedRows.ToList())
         {
             Debug.Log("rowIndex " + rowIndex);

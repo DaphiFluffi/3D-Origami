@@ -72,7 +72,7 @@ public class TutorialController : MonoBehaviour
             folds[index + 1].SetActive(true);
             // slider speed has to persist on all different animators
             // you can only set Animation Speed at runtime trough modifiers ("animSpeed" in this case)
-            //https://answers.unity.com/questions/1472587/change-the-speed-of-a-specific-animation-of-an-ani.html
+            // http://answers.unity.com/answers/1472612/view.html
             // give the next animation the speed of the current animation when changing to it 
             var nextAnim = folds[index + 1].GetComponent<Animator>();
             nextAnim.SetFloat("animSpeed", folds[index].GetComponent<Animator>().GetFloat("animSpeed")); 

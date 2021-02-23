@@ -4,7 +4,7 @@ using UnityEngine;
 public class InstructionsController : MonoBehaviour
 {
     // = default to avoid the following warning warning CS0649: Field is never assigned to, and will always have its default value `null'
-    //warning appears because my variables are private
+    // warning appears because my variables are private
     // https://answers.unity.com/questions/60461/warning-cs0649-field-is-never-assigned-to-and-will.html answer by Delacrowa
     
     // UI Text the instructions are going to be displayed in 
