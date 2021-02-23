@@ -7,7 +7,7 @@ public class AlwaysOnCamera : MonoBehaviour
     void Start()
     {
         // prevents phone screen from turning off 
-        // https://answers.unity.com/questions/46204/stop-mobile-screens-turning-off.html
+        // http://answers.unity.com/answers/247524/view.html
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 }

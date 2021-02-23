@@ -15,7 +15,6 @@
               <e p="TutorialController.cs" t="Include" />
             </e>
             <e p="2_Part_Stacking" t="Include">
-              <e p="LoadingCircle.cs" t="Include" />
               <e p="VideoSelection.cs" t="Include" />
             </e>
             <e p="3_Part_Generator" t="Include">
@@ -25,7 +24,6 @@
                 <e p="AccessColorAgain.cs" t="Include" />
                 <e p="ColorManager.cs" t="Include" />
                 <e p="ColorOrigami.cs" t="Include" />
-                <e p="ColorToggle.cs" t="Include" />
               </e>
               <e p="Customization.cs" t="Include" />
               <e p="Export" t="Include">

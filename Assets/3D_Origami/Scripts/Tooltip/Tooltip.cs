@@ -58,7 +58,6 @@ public class Tooltip : MonoBehaviour
         transform.position = position;
     }
 
-    //todo quelle: unity doku 
     IEnumerator FadeImageIn()
     {
         // loop over 1 second
