@@ -40,12 +40,13 @@ public class VideoSelection : MonoBehaviour
     // --- Links/YouTube -- 
     [SerializeField] private YoutubePlayer.YoutubePlayer youtubePlayer = default;
     [SerializeField] private string[] links = default; 
+   
     private void Start()
     {
         // -- Videos on Desktop --
-        //videoUrlTemplate =
+        videoUrlTemplate =
             //"file://C:/Users/mcflu/Desktop/Videoschnitt_Bachelorarbeit/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
-            //"Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
+            "Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
         VideoCanvas.SetActive(false);
     
         Progress(1);
@@ -97,14 +98,14 @@ public class VideoSelection : MonoBehaviour
 
             // -- Show the first video --
             // --Videos from Desktop
-            // videoPlayer.url = "file://C:/Users/mcflu/Documents/Daphna/HTW Berlin - Internationale Medieninformatik/5. Semester HTW/Bachelorarbeit/Videoschnitt_Bachelorarbeit/"+currentTutorial+"/(videoIndex)_"+ currentTutorial+".MP4";
-            //videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
-            // ChangeVideo("1");
+            videoPlayer.url = "Assets/3D_Origami/Video/" + currentTutorial + "/1_" + currentTutorial + ".MP4";
+            videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
+            //ChangeVideo("1");
             
             // -- Videos from YouTube
             // get the links to the videos of the current tutorial 
-            links = YoutubeLinks();
-            ChangeYouTubeVideo(0);
+            //links = YoutubeLinks();
+            //ChangeYouTubeVideo(0);
             
             // --Videos from Vimeo
             //links = VimeoLinks();
@@ -126,9 +127,9 @@ public class VideoSelection : MonoBehaviour
             //vimeo
             //ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
             // youtube
-            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
+            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
             // desktop
-            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
+            ChangeVideo(clipIndexInCurrentTutorial.ToString());
           
             Progress(clipIndexInCurrentTutorial);
 
@@ -157,9 +158,9 @@ public class VideoSelection : MonoBehaviour
             // vimeo
             //ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
             // youtube
-            ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
+            //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
             // desktop
-            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
+            ChangeVideo(clipIndexInCurrentTutorial.ToString());
 
             Progress(clipIndexInCurrentTutorial);
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
@@ -295,15 +296,18 @@ public class VideoSelection : MonoBehaviour
         return instructions;
     }
 
-    // -- ChangeVideo Functions dependant on platform --
+    // -- ChangeVideo Functions dependent on platform --
     private void ChangeVideo(string clipIndex)
     {
-        videoUrlTemplate = videoUrlTemplate.Replace("(videoIndex)", clipIndex);
+        // add the "_" tot he end of the videoIndex so it does not get mistaken with any other numbers in the path 
+        clipIndex += "_";
+        // replace place holder 
+        videoUrlTemplate = videoUrlTemplate.Replace("(videoIndex)_", clipIndex);
+        // assign new url to videoPlayer
         videoPlayer.url = videoUrlTemplate;
-        //only change the first occurente of the clipNumber otherwise e.g. in MP4 the 4 will be repaced 
-        // https://stackoverflow.com/questions/8809354/replace-first-occurrence-of-pattern-in-a-string
-        var regex = new Regex(Regex.Escape(clipIndex.ToString()));
-        videoUrlTemplate = regex.Replace(videoUrlTemplate, "(videoIndex)", 1);
+        // reset placeholder 
+        videoUrlTemplate = videoUrlTemplate.Replace(clipIndex, "(videoIndex)_");
+
     }
 
     private void ChangeYouTubeVideo(int clipIndex)
