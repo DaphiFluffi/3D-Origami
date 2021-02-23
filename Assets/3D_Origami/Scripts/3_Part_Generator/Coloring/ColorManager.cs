@@ -6,10 +6,8 @@ using UnityEngine.UI;
 public class ColorManager : MonoBehaviour
 {
     [SerializeField] private Image paintPotPrefab = default;
-    //private ProcessGeneratorInputs processGeneratorInputs;
     
     private GameObject content = default;
-    //private GameObject scrollView = default;
     private Image paintPot;
     
     private Dictionary<string, int> usedColors;
@@ -19,8 +17,6 @@ public class ColorManager : MonoBehaviour
     {
         usedColors = new Dictionary<string, int>();
         content = GameObject.FindGameObjectWithTag("Content");
-       /* scrollView = GameObject.FindGameObjectWithTag("Palette");
-        scrollView.SetActive(false);*/
     }
     
     public void InputCallback(int totalPieces)

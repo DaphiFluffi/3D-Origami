@@ -16,7 +16,6 @@ public class ValidateInputs : MonoBehaviour
     [SerializeField] private GameObject infoPanel = default;
     private TMP_Text errorText;
     private TMP_Text infoText;
-    private Image errorBackground;
     private int[] increasedArray;
     private int[] decreasedArray;
 
@@ -25,7 +24,6 @@ public class ValidateInputs : MonoBehaviour
         errorText = errorPanel.transform.Find("ErrorMessage").GetComponent<TMP_Text>();
         infoText = infoPanel.transform.Find("InfoMessage").GetComponent<TMP_Text>();
         errorPanel.SetActive(false);
-        errorBackground = errorPanel.GetComponent<Image>();
     }
 
     private void ShowInfoMessage(string infoDescription)
@@ -123,7 +121,7 @@ public class ValidateInputs : MonoBehaviour
     
     private void CheckIncreasedAndDecreasedInput(string increasedOrDecreasedString)
     {
-        // https://stackoverflow.com/questions/17472580/regular-expression-to-allow-comma-and-space-delimited-number-list
+        // https://stackoverflow.com/a/17472609
         // only matches series of natural numbers with commas in between
         // @ is to skip over the escape character "\"
         Regex rgx = new Regex(@"^[\d,\s]+$");
@@ -187,23 +185,16 @@ public class ValidateInputs : MonoBehaviour
 
     private void CheckDoubleInput()
     {
-        // https://stackoverflow.com/questions/55215016/unity-how-to-compare-contents-of-two-arrays-regardless-of-order
+        // https://stackoverflow.com/a/55215794
         // 0 and 0 does not count as doubles
         // check if there is equal items
         if (increasedArray.Intersect(decreasedArray).Any() && increasedArray[0] != 0 && decreasedArray[0] != 0) 
         {
             // the intersection
             var equalItems = increasedArray.Intersect(decreasedArray);
-            //https://stackoverflow.com/questions/5079867/c-sharp-ienumerable-print-out
+            //https://stackoverflow.com/a/5079888
             string errorString = String.Join(",", equalItems);
             ShowErrorMessage("The row(s) no." + errorString + " cannot be increased and decreased at the same time.");
-
         }
-        //TODO brauche ich das?
-        /* else
-        {
-            HideErrorMessage();
-        }*/
-        
     }
 }

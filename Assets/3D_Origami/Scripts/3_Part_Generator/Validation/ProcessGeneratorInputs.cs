@@ -62,7 +62,6 @@ public class ProcessGeneratorInputs : MonoBehaviour
         
         rowsInfo = new int[howManyRows];
         
-        //TODO I should probably sort the Array
         int[] decreased = Array.ConvertAll<string, int>(whereToAddDecreasedRow.text.Split(','), int.Parse);
         int[] increased = Array.ConvertAll<string, int>(whereToAddIncreasedRow.text.Split(','), int.Parse);
 
@@ -93,10 +92,9 @@ public class ProcessGeneratorInputs : MonoBehaviour
             }
         }
 
-        //TODO make function access not public
         generator.GenerateCylinder(rowsInfo, amountPerRow);
         calculator.CalculateDimensions(rowsInfo.Length - 1, amountPerRow);
-        // customization is disacled until Generate Button is pressed 
+        // customization is disabled until Generate Button is pressed 
         customization.gameObject.SetActive(true);
         // reset list of already inverted Rows with new cylinder
         customization.alreadyInvertedRows.Clear();
