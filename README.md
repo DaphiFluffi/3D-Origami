@@ -19,3 +19,4 @@ It is split into 3 parts:
 ### Attribution
   * In-app Icons made by Pixel perfect, mavadee, Freepik, Dave Gandy, Google, Pixelmeetup from Flaticon
   * Origami Making Font by https://www.fontget.com/font/origami-making/
+  * If code snippets from forums were used, the link to the answer is on a comment above it. 
