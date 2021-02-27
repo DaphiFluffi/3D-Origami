@@ -1,13 +1,13 @@
 # 3D Origami
 My bachelor's thesis on creating an interactive application that helps users trying to teach themselves how to build 3D Origami figurines.  
 It is split into 3 parts:  
-  1. Animated Tutorial on how to fold the basic 3D Origami piece. 
-  2. Video Tutorial on the different ways to connect 3D Origami pieces together to make models.
-  3. The 3D Origami Generator that lets you generate and color models in any size you want. You are able to create increased, decreased and inverted rows. 
+  *1.* Animated Tutorial on how to fold the basic 3D Origami piece. 
+  *2.* Video Tutorial on the different ways to connect 3D Origami pieces together to make models.
+  *3.* The 3D Origami Generator that lets you generate and color models in any size you want. You are able to create increased, decreased and inverted rows. 
 ### Releases
   * WebGL: https://daphifluffi.github.io/3D-Origami-Web/ (does not work on mobile)
   * **:warning: Currently, the videos on the website don't work because I stopped paying for Vimeo Pro. I am looking into other solutions.**
-  * With working Videos (expect some loading times):
+  * With working Videos (expect 5s loading times between videos):
     * Android and Windows: https://github.com/DaphiFluffi/3D-Origami/releases/tag/1.0.0
 ### Download Unity Project
   * Install Unity 2019.4.
