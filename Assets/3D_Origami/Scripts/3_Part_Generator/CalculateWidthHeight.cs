@@ -34,41 +34,33 @@ public class CalculateWidthHeight : MonoBehaviour
         // inverting rows
         if (invertedInfo[2])
         {
-            Debug.Log("INvert");
-
             // if we have an inverted row in the first row 
             if (invertedInfo[0])
             {
                 height -= 0.5f;
-                Debug.Log("unterste -0.5f");
             }
 
             // if there are inverted rows at the top 
             if (invertedInfo[1])
             {
                 height += 0.5f;
-                Debug.Log("oberste +0.5f");
             }
         }
         // reverting rows
         else
         {
-            Debug.Log("revert");
             // revert first row
             if (!invertedInfo[0])
             {
                 height += 0.5f;
-                Debug.Log("nicht unterste +0.5f");
             }
 
             // revert inverted row on top 
             if (!invertedInfo[1])
             {
                 height -= 0.5f;
-                Debug.Log("nicht oberste -0.5f");
             }
         }
-
         heightTMP.text = "height: " + height + " cm";
     }
 }
