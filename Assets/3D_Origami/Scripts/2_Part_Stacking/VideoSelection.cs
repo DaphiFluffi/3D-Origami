@@ -46,7 +46,7 @@ public class VideoSelection : MonoBehaviour
         // -- Videos on Desktop --
         videoUrlTemplate =
             //"file://C:/Users/mcflu/Desktop/Videoschnitt_Bachelorarbeit/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
-            "Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
+            "Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).mp4";
         VideoCanvas.SetActive(false);
     
         Progress(1);
@@ -98,7 +98,7 @@ public class VideoSelection : MonoBehaviour
 
             // -- Show the first video --
             // --Videos from Desktop
-            videoPlayer.url = "Assets/3D_Origami/Video/" + currentTutorial + "/1_" + currentTutorial + ".MP4";
+            videoPlayer.url = "Assets/3D_Origami/Video/" + currentTutorial + "/1_" + currentTutorial + ".mp4";
             videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
             //ChangeVideo("1");
             
