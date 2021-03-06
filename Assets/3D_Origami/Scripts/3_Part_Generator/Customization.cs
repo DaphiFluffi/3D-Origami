@@ -207,7 +207,6 @@ public class Customization : MonoBehaviour
         // Collection was modified; enumeration operation may not execute https://stackoverflow.com/a/604843
         foreach(int rowIndex in alreadyInvertedRows.ToList())
         {
-            Debug.Log("rowIndex " + rowIndex);
             alreadyInvertedRows.Remove(rowIndex);
             // revert 
             if (rowIndex == 1)

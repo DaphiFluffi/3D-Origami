@@ -268,8 +268,8 @@ public class VideoSelection : MonoBehaviour
                 instructions[0] = "1. Put one piece over 3 tips.";
                 instructions[1] = "2. Continue putting one piece over 3 tips all the way around.";
                 instructions[2] = "3. If your row has an amount of tips that is not a multiple of 3, you will have to improvise.";
-                instructions[3] = "4. Be Cautious: Decreased rows make your model less stable.";
-                instructions[4] = "5. For that reason, consider gluing down decreased rows";
+                instructions[3] = "4. Be cautious: Decreased rows make your model less stable.";
+                instructions[4] = "5. For that reason, consider gluing down decreased rows.";
                 instructions[5] = "6. To improve stability, put at least one normal row on top. Consider gluing it too.";
                 instructions[6] = "7. This technique is useful to finish your model with a dome.";
                 break;
@@ -277,7 +277,7 @@ public class VideoSelection : MonoBehaviour
                 instructions[0] = "1. Put one pocket of your piece over 1 tip.";
                 instructions[1] = "2. To make your model more stable, glue down increased rows.";
                 instructions[2] = "3. Continue like this all the way around. At the end, the amount of pieces has doubled.";
-                instructions[3] = "4. Putting on a normal row above also increases stability.";
+                instructions[3] = "4. Putting on a normal row on top also increases stability.";
                 instructions[4] = "5. This technique is used to create curved or round objects.";
                 break;
             case "Inverted":
