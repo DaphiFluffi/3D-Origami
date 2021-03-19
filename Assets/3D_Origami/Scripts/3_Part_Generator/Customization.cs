@@ -149,7 +149,7 @@ public class Customization : MonoBehaviour
         // initialized to everything being false
         bool[] invertedInfo = new bool[3];
         // invert
-        if (!rowsToInvertOrRevert.Contains("0"))
+        if (!rowsToInvertOrRevert.Equals("0"))
         {
             invertedInfo[2] = true;
             NewInvertRows(rowsToInvertOrRevert, generatedRows, invertedInfo);
@@ -157,7 +157,6 @@ public class Customization : MonoBehaviour
         else
         {
             //revert
-            
             // initialize the array to be true everywhere
             for (int i = 0; i < 3; i++) { invertedInfo[i] = true; }
             // gives CalculateHeightWidth Script the Info to revert
