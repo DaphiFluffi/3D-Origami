@@ -98,8 +98,8 @@ public class VideoSelection : MonoBehaviour
 
             // -- Show the first video --
             // --Videos from Desktop
-            //videoPlayer.url = "Assets/3D_Origami/Video/" + currentTutorial + "/1_" + currentTutorial + ".mp4";
-            //videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
+            videoPlayer.url = "Assets/3D_Origami/Video/" + currentTutorial + "/1_" + currentTutorial + ".mp4";
+            videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
             //ChangeVideo("1");
             
             // -- Videos from YouTube
@@ -108,8 +108,8 @@ public class VideoSelection : MonoBehaviour
             //ChangeYouTubeVideo(0);
             
             // --Videos from Vimeo
-            links = HTWDriveLinks();
-            ChangeVimeoVideo(0);
+            //links = VimeoLinks();
+            //ChangeVimeoVideo(0);
         }
     }
     
@@ -125,11 +125,11 @@ public class VideoSelection : MonoBehaviour
         {
             clipIndexInCurrentTutorial += 1;
             //vimeo
-            ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
+            //ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
             // youtube
             //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
             // desktop
-            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
+            ChangeVideo(clipIndexInCurrentTutorial.ToString());
           
             Progress(clipIndexInCurrentTutorial);
 
@@ -156,11 +156,11 @@ public class VideoSelection : MonoBehaviour
         {
             clipIndexInCurrentTutorial -= 1;
             // vimeo
-            ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
+            //ChangeVimeoVideo(clipIndexInCurrentTutorial - 1);
             // youtube
             //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
             // desktop
-            //ChangeVideo(clipIndexInCurrentTutorial.ToString());
+            ChangeVideo(clipIndexInCurrentTutorial.ToString());
 
             Progress(clipIndexInCurrentTutorial);
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
@@ -412,53 +412,6 @@ public class VideoSelection : MonoBehaviour
             case "Normal":
                 links[0] = "https://player.vimeo.com/external/502145826.hd.mp4?s=095dde910afd26eb61066ac304a19de9d3cb9211&profile_id=175";
                 links[1] = "https://player.vimeo.com/external/502146711.hd.mp4?s=f3dea7e5dd775de6f707e65aab5e2674b07e0abf&profile_id=175";
-                break;
-        }
-        return links;
-    }
-    
-     private string[] HTWDriveLinks()
-    {
-        string[] links = new string[7];
-        switch (currentTutorial)
-        {
-            case "Base":
-                links[0] = "https://webdrive.htw-berlin.de/public/file/OctH8Ff2N0GZ7rOJkjsOiQ/1_Base.mp4";
-                links[1] = "https://webdrive.htw-berlin.de/public/file/hXbXF18ymU_meX_EUOgj0Q/2_Base.mp4";
-                links[2] = "https://webdrive.htw-berlin.de/public/file/czATzkxlbk_jnlB7eM3u3w/3_Base.mp4";
-                links[3] = "https://webdrive.htw-berlin.de/public/file/8B8LDbbcD0yC0picYS7shA/4_Base.mp4";
-                break;
-            case "Bottom":
-                links[0] = "https://webdrive.htw-berlin.de/public/file/7jaZ3UdTVkKE5r31TuoQJg/1_Bottom.mp4";
-                links[1] = "https://webdrive.htw-berlin.de/public/file/FCFRqVcjuU65x_ckFDSFnw/2_Bottom.mp4";
-                links[2] = "https://webdrive.htw-berlin.de/public/file/hqqULTHXZEu26IkF3eI28w/3_Bottom.mp4";
-                break;
-            case "Decreased":
-                links[0] = "https://webdrive.htw-berlin.de/public/file/hhOcnLY9l0ihLPeXpH6drg/1_Decreased.mp4";
-                links[1] = "https://webdrive.htw-berlin.de/public/file/lfN4AZwS10_Q-YKX8Di5jQ/2_Decreased.mp4";
-                links[2] = "https://webdrive.htw-berlin.de/public/file/cC0T9AgOc0_2CJ8DQ9Mrvg/3_Decreased.mp4";
-                links[3] = "https://webdrive.htw-berlin.de/public/file/RZBDivc91UaX9QIlkSgXVw/4_Decreased.mp4";
-                links[4] = "https://webdrive.htw-berlin.de/public/file/_tXnmDZdA0yC325JsZCG3Q/5_Decreased.mp4";
-                links[5] = "https://webdrive.htw-berlin.de/public/file/yKMnU6bErEqSffFKu8M3qA/6_Decreased.mp4";
-                links[6] = "https://webdrive.htw-berlin.de/public/file/Df78eofZwUGuoHb2JgMWmQ/7_Decreased.mp4";
-                break;
-            case "Increased": 
-                links[0] = "https://webdrive.htw-berlin.de/public/file/qaoqLRqvmUa7ZL6B14ZZxA/1_Increased.mp4";
-                links[1] = "https://webdrive.htw-berlin.de/public/file/k2noNm5gqUe6TEgkT-HgKA/2_Increased.mp4";
-                links[2] = "https://webdrive.htw-berlin.de/public/file/Ab9NnEnN-0K7lb5hma_dJA/3_Increased.mp4";
-                links[3] = "https://webdrive.htw-berlin.de/public/file/VLvN_04LZEyEdsuSxKtOoA/4_Increased.mp4";
-                links[4] = "https://webdrive.htw-berlin.de/public/file/9QIkhtdPLUClNTKfX9Vqsg/5_Increased.mp4";
-                break;
-            case "Inverted":
-                links[0] = "https://webdrive.htw-berlin.de/public/file/SwmMz9xvFk2nkD1WIEiLMw/1_Inverted.mp4";
-                links[1] = "https://webdrive.htw-berlin.de/public/file/CpY08xW24ECjjCgL78tYTA/2_Inverted.mp4";
-                links[2] = "https://webdrive.htw-berlin.de/public/file/Q2CCUksABEGhmYtVdNwDZQ/3_Inverted.mp4";
-                links[3] = "https://webdrive.htw-berlin.de/public/file/bKHO4lrIyUycto4XpW-UAQ/4_Inverted.mp4";
-                links[4] = "https://webdrive.htw-berlin.de/public/file/E2srBvrgTkaRsCxlY0HPfQ/5_Inverted.mp4";
-                break;
-            case "Normal":
-                links[0] = "https://webdrive.htw-berlin.de/public/file/g50QU9AheEWnaWf8vHnpDA/1_Normal.mp4";
-                links[1] = "https://webdrive.htw-berlin.de/public/file/jUHBIqSbjEaYm0cgqkJteA/2_Normal.mp4";
                 break;
         }
         return links;
