@@ -1,5 +1,6 @@
 # 3D Origami
 My bachelor's thesis on creating an interactive application that helps users trying to teach themselves how to build 3D Origami figurines.  
+[![3D Origami Generator on YouTube](http://img.youtube.com/vi/MdAafZWrLDE/0.jpg)](http://www.youtube.com/watch?v=MdAafZWrLDE "3D Origami Generator on YouTube")  
 It is split into 3 parts:  
   ##### 1. Animated Tutorial on how to fold the basic 3D Origami piece. 
   ##### 2. Video Tutorial on the different ways to connect 3D Origami pieces together to make models.
