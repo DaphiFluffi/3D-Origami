@@ -92,7 +92,7 @@ public class ValidateInputs : MonoBehaviour
             HideErrorMessage();
         }
     }
-    
+
     public void CheckAmountInput(string amountString)
     {
         InputFieldsCantBeEmpty(amountString);

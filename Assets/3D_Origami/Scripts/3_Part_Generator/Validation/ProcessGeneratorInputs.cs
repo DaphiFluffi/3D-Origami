@@ -50,7 +50,12 @@ public class ProcessGeneratorInputs : MonoBehaviour
 
         OnNewCylinder.AddListener(colorManager.InputCallback);
     }
-    
+
+    //reset decreased input field once someone edits the amount of pieces per row
+    public void OnEndEditAmount()
+    {
+        whereToAddDecreasedRow.text = "0";
+    }
     
     // can only be accessed if all Validations were passed
     public void OnSubmit()

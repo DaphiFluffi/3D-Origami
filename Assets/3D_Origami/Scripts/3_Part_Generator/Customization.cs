@@ -151,11 +151,13 @@ public class Customization : MonoBehaviour
         // invert
         if (!rowsToInvertOrRevert.Equals("0"))
         {
+            Debug.Log("invert");
             invertedInfo[2] = true;
             NewInvertRows(rowsToInvertOrRevert, generatedRows, invertedInfo);
         }
         else
         {
+            Debug.Log("revert");
             //revert
             // initialize the array to be true everywhere
             for (int i = 0; i < 3; i++) { invertedInfo[i] = true; }
@@ -167,11 +169,12 @@ public class Customization : MonoBehaviour
 
     private void NewInvertRows(string rowsToInvert, GameObject[] generatedRows, bool[] invertedInfo)
     {
+        int[] invertedArray = Array.ConvertAll<string, int>(rowsToInvert.Split(','), int.Parse);
         // invert
         for (int i = 0; i < generatedRows.Length; i++)
         {
             //only works thanks to LINQ
-            if (rowsToInvert.Contains((i + 1).ToString()) && !alreadyInvertedRows.Contains(i+1))
+            if (invertedArray.Contains((i + 1)) && !alreadyInvertedRows.Contains(i+1))
             {
                 alreadyInvertedRows.Add(i + 1);
                 Transform[] children = generatedRows[i].GetComponentsInChildren<Transform>();
