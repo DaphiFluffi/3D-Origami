@@ -198,6 +198,7 @@ public class Customization : MonoBehaviour
                     children[j].position = Vector3.Scale(children[j].position, new Vector3(13f / 8f, 1, 13f / 8f));
 
                 }
+                generatedRows[i].transform.rotation = Quaternion.Euler(0,20f,0);
             }
         }
         calculator.CalculateDimensions(invertedInfo);
@@ -229,6 +230,8 @@ public class Customization : MonoBehaviour
                 //leave the y position as it was 
                 oldChildren[j].position = Vector3.Scale(oldChildren[j].position, new Vector3(8f/13f, 1, 8f/13f));
             }
+            generatedRows[rowIndex - 1].transform.rotation = Quaternion.Euler(0,0f,0);
+
         }
         calculator.CalculateDimensions(revertedInfo);
     }
