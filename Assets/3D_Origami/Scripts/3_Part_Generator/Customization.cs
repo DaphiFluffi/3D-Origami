@@ -141,7 +141,7 @@ public class Customization : MonoBehaviour
             calculator.CalculateDimensions(false);
         }
     }
-
+    
     public void InvertOrRevert(string rowsToInvertOrRevert)
     {
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
