@@ -15,7 +15,8 @@ public class VideoSelection : MonoBehaviour
     [SerializeField] private GameObject VideoCanvas = default;
     [SerializeField] private GameObject SelectionCanvas = default;
     [SerializeField] private VideoPlayer videoPlayer = default;
-    private string videoUrlTemplate;
+    private string desktopVideoUrlTemplate;
+    private string serverVideoUrlTemplate;
     private int clipIndexInCurrentTutorial;
     
     // --- Instructions ---
@@ -44,9 +45,13 @@ public class VideoSelection : MonoBehaviour
     private void Start()
     {
         // -- Videos on Desktop --
-        videoUrlTemplate =
+        /*desktopVideoUrlTemplate =
             //"file://C:/Users/mcflu/Desktop/Videoschnitt_Bachelorarbeit/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
-            "Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).mp4";
+            "Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).mp4";*/
+        
+        // -- Videos on RaspberryPi Server --
+        serverVideoUrlTemplate= "www.3dorigamigenerator.com/(videoIndex)_(currentTutorial).mp4";
+        
         VideoCanvas.SetActive(false);
     
         Progress(1);
@@ -98,9 +103,13 @@ public class VideoSelection : MonoBehaviour
 
             // -- Show the first video --
             // --Videos from Desktop
-            videoPlayer.url = "Assets/3D_Origami/Video/" + currentTutorial + "/1_" + currentTutorial + ".mp4";
-            videoUrlTemplate = videoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
+           /* videoPlayer.url = "Assets/3D_Origami/Video/" + currentTutorial + "/1_" + currentTutorial + ".mp4";
+            desktopVideoUrlTemplate = desktopVideoUrlTemplate.Replace("(currentTutorial)", currentTutorial);*/
             //ChangeVideo("1");
+            
+            // -- Videos on RaspberryPi Server --
+            videoPlayer.url= "www.3dorigamigenerator.com/1_" + currentTutorial + ".mp4";
+            serverVideoUrlTemplate = serverVideoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
             
             // -- Videos from YouTube
             // get the links to the videos of the current tutorial 
@@ -129,8 +138,10 @@ public class VideoSelection : MonoBehaviour
             // youtube
             //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
             // desktop
-            ChangeVideo(clipIndexInCurrentTutorial.ToString());
-          
+            //ChangeDesktopVideo(clipIndexInCurrentTutorial.ToString());
+            //server
+            ChangeServerVideo(clipIndexInCurrentTutorial.ToString());
+
             Progress(clipIndexInCurrentTutorial);
 
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
@@ -160,8 +171,10 @@ public class VideoSelection : MonoBehaviour
             // youtube
             //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
             // desktop
-            ChangeVideo(clipIndexInCurrentTutorial.ToString());
-
+            //ChangeDesktopVideo(clipIndexInCurrentTutorial.ToString());
+            //server
+            ChangeServerVideo(clipIndexInCurrentTutorial.ToString());
+            
             Progress(clipIndexInCurrentTutorial);
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
             UnpauseClip();
@@ -297,19 +310,32 @@ public class VideoSelection : MonoBehaviour
     }
 
     // -- ChangeVideo Functions dependent on platform --
-    private void ChangeVideo(string clipIndex)
+    private void ChangeDesktopVideo(string clipIndex)
     {
         // add the "_" tot he end of the videoIndex so it does not get mistaken with any other numbers in the path 
         clipIndex += "_";
         // replace place holder 
-        videoUrlTemplate = videoUrlTemplate.Replace("(videoIndex)_", clipIndex);
+        desktopVideoUrlTemplate = desktopVideoUrlTemplate.Replace("(videoIndex)_", clipIndex);
         // assign new url to videoPlayer
-        videoPlayer.url = videoUrlTemplate;
+        videoPlayer.url = desktopVideoUrlTemplate;
         // reset placeholder 
-        videoUrlTemplate = videoUrlTemplate.Replace(clipIndex, "(videoIndex)_");
+        desktopVideoUrlTemplate = desktopVideoUrlTemplate.Replace(clipIndex, "(videoIndex)_");
 
     }
 
+    private void ChangeServerVideo(string clipIndex)
+    {
+        // "www.3dorigamigenerator.com/(videoIndex)_(currentTutorial).mp4";
+        // add the "_" tot he end of the videoIndex so it does not get mistaken with any other numbers in the path 
+        clipIndex += "_";
+        // replace place holder 
+        serverVideoUrlTemplate = serverVideoUrlTemplate.Replace("(videoIndex)_", clipIndex);
+        // assign new url to videoPlayer
+        videoPlayer.url = serverVideoUrlTemplate;
+        // reset placeholder 
+        serverVideoUrlTemplate = serverVideoUrlTemplate.Replace(clipIndex, "(videoIndex)_");
+
+    }
     private void ChangeYouTubeVideo(int clipIndex)
     {
         youtubePlayer.youtubeUrl = links[clipIndex];
