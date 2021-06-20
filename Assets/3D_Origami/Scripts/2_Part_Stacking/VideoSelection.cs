@@ -50,7 +50,7 @@ public class VideoSelection : MonoBehaviour
             "Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).mp4";*/
         
         // -- Videos on RaspberryPi Server --
-        serverVideoUrlTemplate= "www.3dorigamigenerator.com/(videoIndex)_(currentTutorial).mp4";
+        serverVideoUrlTemplate= "https://3dorigamigenerator.com/(videoIndex)_(currentTutorial).mp4";
         
         VideoCanvas.SetActive(false);
     
@@ -108,7 +108,7 @@ public class VideoSelection : MonoBehaviour
             //ChangeVideo("1");
             
             // -- Videos on RaspberryPi Server --
-            videoPlayer.url= "www.3dorigamigenerator.com/1_" + currentTutorial + ".mp4";
+            videoPlayer.url= "https://3dorigamigenerator.com/1_" + currentTutorial + ".mp4";
             serverVideoUrlTemplate = serverVideoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
             
             // -- Videos from YouTube
@@ -325,7 +325,7 @@ public class VideoSelection : MonoBehaviour
 
     private void ChangeServerVideo(string clipIndex)
     {
-        // "www.3dorigamigenerator.com/(videoIndex)_(currentTutorial).mp4";
+        // "https://3dorigamigenerator.com/(videoIndex)_(currentTutorial).mp4";
         // add the "_" tot he end of the videoIndex so it does not get mistaken with any other numbers in the path 
         clipIndex += "_";
         // replace place holder 
