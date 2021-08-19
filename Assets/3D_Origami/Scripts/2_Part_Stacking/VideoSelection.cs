@@ -45,12 +45,12 @@ public class VideoSelection : MonoBehaviour
     private void Start()
     {
         // -- Videos on Desktop --
-        /*desktopVideoUrlTemplate =
+        desktopVideoUrlTemplate =
             //"file://C:/Users/mcflu/Desktop/Videoschnitt_Bachelorarbeit/(currentTutorial)/(videoIndex)_(currentTutorial).MP4";
-            "Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).mp4";*/
+            "Assets/3D_Origami/Video/(currentTutorial)/(videoIndex)_(currentTutorial).mp4";
         
         // -- Videos on RaspberryPi Server --
-        serverVideoUrlTemplate= "https://3dorigamigenerator.com/(videoIndex)_(currentTutorial).mp4";
+        //serverVideoUrlTemplate= "https://3dorigamigenerator.com/(videoIndex)_(currentTutorial).mp4";
         
         VideoCanvas.SetActive(false);
     
@@ -103,14 +103,14 @@ public class VideoSelection : MonoBehaviour
 
             // -- Show the first video --
             // --Videos from Desktop
-           /* videoPlayer.url = "Assets/3D_Origami/Video/" + currentTutorial + "/1_" + currentTutorial + ".mp4";
-            desktopVideoUrlTemplate = desktopVideoUrlTemplate.Replace("(currentTutorial)", currentTutorial);*/
+            videoPlayer.url = "Assets/3D_Origami/Video/" + currentTutorial + "/1_" + currentTutorial + ".mp4";
+            desktopVideoUrlTemplate = desktopVideoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
             //ChangeVideo("1");
             
             // -- Videos on RaspberryPi Server --
-            videoPlayer.url= "https://3dorigamigenerator.com/1_" + currentTutorial + ".mp4";
+            /*videoPlayer.url= "https://3dorigamigenerator.com/1_" + currentTutorial + ".mp4";
             serverVideoUrlTemplate = serverVideoUrlTemplate.Replace("(currentTutorial)", currentTutorial);
-            
+            */
             // -- Videos from YouTube
             // get the links to the videos of the current tutorial 
             //links = YoutubeLinks();
@@ -138,9 +138,9 @@ public class VideoSelection : MonoBehaviour
             // youtube
             //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1);
             // desktop
-            //ChangeDesktopVideo(clipIndexInCurrentTutorial.ToString());
+            ChangeDesktopVideo(clipIndexInCurrentTutorial.ToString());
             //server
-            ChangeServerVideo(clipIndexInCurrentTutorial.ToString());
+            //ChangeServerVideo(clipIndexInCurrentTutorial.ToString());
 
             Progress(clipIndexInCurrentTutorial);
 
@@ -171,9 +171,9 @@ public class VideoSelection : MonoBehaviour
             // youtube
             //ChangeYouTubeVideo(clipIndexInCurrentTutorial - 1); // -1 because we count from 0 
             // desktop
-            //ChangeDesktopVideo(clipIndexInCurrentTutorial.ToString());
+            ChangeDesktopVideo(clipIndexInCurrentTutorial.ToString());
             //server
-            ChangeServerVideo(clipIndexInCurrentTutorial.ToString());
+            //ChangeServerVideo(clipIndexInCurrentTutorial.ToString());
             
             Progress(clipIndexInCurrentTutorial);
             instructionsText.text = instructions[clipIndexInCurrentTutorial - 1];
