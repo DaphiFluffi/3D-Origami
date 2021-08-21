@@ -141,7 +141,7 @@ public class Customization : MonoBehaviour
             calculator.CalculateDimensions(false);
         }
     }
-
+    
     public void InvertOrRevert(string rowsToInvertOrRevert)
     {
         GameObject[] generatedRows = GameObject.FindGameObjectsWithTag("Row");
@@ -149,15 +149,16 @@ public class Customization : MonoBehaviour
         // initialized to everything being false
         bool[] invertedInfo = new bool[3];
         // invert
-        if (!rowsToInvertOrRevert.Contains("0"))
+        if (!rowsToInvertOrRevert.Equals("0"))
         {
+            Debug.Log("invert");
             invertedInfo[2] = true;
             NewInvertRows(rowsToInvertOrRevert, generatedRows, invertedInfo);
         }
         else
         {
+            Debug.Log("revert");
             //revert
-            
             // initialize the array to be true everywhere
             for (int i = 0; i < 3; i++) { invertedInfo[i] = true; }
             // gives CalculateHeightWidth Script the Info to revert
@@ -168,11 +169,12 @@ public class Customization : MonoBehaviour
 
     private void NewInvertRows(string rowsToInvert, GameObject[] generatedRows, bool[] invertedInfo)
     {
+        int[] invertedArray = Array.ConvertAll<string, int>(rowsToInvert.Split(','), int.Parse);
         // invert
         for (int i = 0; i < generatedRows.Length; i++)
         {
             //only works thanks to LINQ
-            if (rowsToInvert.Contains((i + 1).ToString()) && !alreadyInvertedRows.Contains(i+1))
+            if (invertedArray.Contains((i + 1)) && !alreadyInvertedRows.Contains(i+1))
             {
                 alreadyInvertedRows.Add(i + 1);
                 Transform[] children = generatedRows[i].GetComponentsInChildren<Transform>();
@@ -196,6 +198,7 @@ public class Customization : MonoBehaviour
                     children[j].position = Vector3.Scale(children[j].position, new Vector3(13f / 8f, 1, 13f / 8f));
 
                 }
+                generatedRows[i].transform.rotation = Quaternion.Euler(0,20f,0);
             }
         }
         calculator.CalculateDimensions(invertedInfo);
@@ -227,6 +230,8 @@ public class Customization : MonoBehaviour
                 //leave the y position as it was 
                 oldChildren[j].position = Vector3.Scale(oldChildren[j].position, new Vector3(8f/13f, 1, 8f/13f));
             }
+            generatedRows[rowIndex - 1].transform.rotation = Quaternion.Euler(0,0f,0);
+
         }
         calculator.CalculateDimensions(revertedInfo);
     }
